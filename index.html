@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Presentación Comercial — Medelsa.</title>
+    <title>Propuesta Técnica y Comercial — Medelsa.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -37,6 +37,11 @@
         color: var(--fg);
         font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
         letter-spacing: -0.01em;
+      }
+
+      html.doc-mode {
+        scroll-snap-type: none;
+        background: #ebe8e2;
       }
 
       body {
@@ -97,10 +102,10 @@
       .nav-links {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 16px;
       }
       .nav-links a {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -611,19 +616,255 @@
         margin: 8px 0 4px;
       }
 
+      /* ===================================================================
+         FORMAL PROPOSAL DOCUMENT (04_propuesta_comercial.md CON FORMATO)
+         Hidden in slide mode; visible in doc-mode or when printing to PDF!
+         =================================================================== */
+      .formal-doc-wrapper {
+        display: none;
+        padding: 100px 20px 60px;
+      }
+      html.doc-mode .deck-view,
+      html.doc-mode .side-dots,
+      html.doc-mode .deck-controls {
+        display: none !important;
+      }
+      html.doc-mode .formal-doc-wrapper {
+        display: block;
+      }
+
+      .formal-sheet {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 56px 64px;
+        box-shadow: 0 24px 60px -28px rgba(51, 54, 59, 0.25);
+        color: var(--fg);
+      }
+
+      .doc-letterhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid var(--fg);
+        margin-bottom: 28px;
+      }
+      .doc-brand {
+        font-size: 2rem;
+        font-weight: 500;
+        letter-spacing: -0.06em;
+        color: var(--fg);
+      }
+      .doc-brand span {
+        color: var(--primary);
+      }
+      .doc-meta-box {
+        text-align: right;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .doc-h1 {
+        font-size: 1.95rem;
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1.15;
+        color: var(--fg);
+        margin-bottom: 18px;
+      }
+
+      .doc-meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-bottom: 32px;
+      }
+      .doc-meta-item small {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+      .doc-meta-item strong {
+        display: block;
+        font-size: 0.92rem;
+        color: var(--fg);
+        margin-top: 3px;
+      }
+      .doc-meta-item strong.accent {
+        color: var(--primary);
+      }
+
+      .doc-section {
+        margin-bottom: 28px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .doc-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .doc-h2 {
+        font-size: 1.22rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--fg);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .doc-h2::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary);
+      }
+
+      .doc-h3 {
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--fg);
+        margin: 14px 0 8px;
+      }
+
+      .doc-list {
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .doc-list li {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--body);
+      }
+      .doc-list ul {
+        padding-left: 20px;
+        margin-top: 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .doc-list strong {
+        color: var(--fg);
+      }
+
+      .doc-quote {
+        margin: 10px 0 12px;
+        padding: 10px 16px;
+        border-left: 3px solid var(--primary);
+        background: rgba(61, 90, 71, 0.07);
+        border-radius: 0 8px 8px 0;
+        font-size: 0.88rem;
+        font-style: italic;
+        color: var(--fg);
+      }
+
+      .doc-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0 16px;
+        font-size: 0.88rem;
+      }
+      .doc-table th {
+        text-align: left;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        background: var(--card);
+        padding: 10px 14px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--fg);
+      }
+      .doc-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        color: var(--body);
+        vertical-align: top;
+        line-height: 1.5;
+      }
+      .doc-table tr.total-row td {
+        background: var(--card);
+        font-weight: 600;
+        color: var(--fg);
+      }
+      .doc-table .num-col {
+        text-align: center;
+        font-family: "JetBrains Mono", monospace;
+        white-space: nowrap;
+        color: var(--fg);
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.84em;
+        background: var(--card);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+      }
+
       @media (max-width: 980px) {
         html { scroll-snap-type: none; }
         .nav-links, .side-dots { display: none; }
-        .telemetry-strip, .hero-kpi-bar, .timeline-grid { grid-template-columns: repeat(2, 1fr); }
+        .telemetry-strip, .hero-kpi-bar, .timeline-grid, .doc-meta-grid { grid-template-columns: 1fr; }
         .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 12; }
         .slide-header { flex-direction: column; align-items: flex-start; }
         .header-sub { text-align: left; }
+        .formal-sheet { padding: 28px 20px; }
       }
 
+      /* Al imprimir o guardar como PDF, SIEMPRE se exporta la propuesta formal de 04_propuesta_comercial.md con formato editorial */
       @media print {
-        html { scroll-snap-type: none; }
-        .top-nav, .progress-bar, .side-dots, .deck-controls, .no-print { display: none !important; }
-        .slide { min-height: auto; padding: 32px 0; page-break-after: always; }
+        @page {
+          size: A4;
+          margin: 14mm 16mm;
+        }
+        html, body {
+          scroll-snap-type: none !important;
+          background: #ffffff !important;
+          color: #33363b !important;
+        }
+        .top-nav,
+        .progress-bar,
+        .side-dots,
+        .deck-controls,
+        .deck-view,
+        .no-print {
+          display: none !important;
+        }
+        .formal-doc-wrapper {
+          display: block !important;
+          padding: 0 !important;
+        }
+        .formal-sheet {
+          max-width: 100% !important;
+          border: none !important;
+          box-shadow: none !important;
+          padding: 0 !important;
+        }
+        .doc-section {
+          page-break-inside: avoid;
+        }
       }
     </style>
   </head>
@@ -631,9 +872,9 @@
     <div class="progress-bar" id="progressBar"></div>
 
     <!-- Barra superior flotante -->
-    <header class="top-nav">
-      <a href="#s1" class="brand">Medelsa<span>.</span></a>
-      <nav class="nav-links" aria-label="Láminas">
+    <header class="top-nav no-print">
+      <a href="#s1" onclick="setDocMode(false)" class="brand">Medelsa<span>.</span></a>
+      <nav class="nav-links" id="slideNavLinks" aria-label="Láminas">
         <a href="#s1" data-nav="0" class="active">01 Portada</a>
         <a href="#s2" data-nav="1">02 Valor &amp; $0 Cloud</a>
         <a href="#s3" data-nav="2">03 Portafolios &amp; CTA</a>
@@ -643,11 +884,14 @@
         <a href="#s7" data-nav="6">07 Inversión</a>
       </nav>
       <div class="nav-actions">
+        <button type="button" id="toggleModeBtn" onclick="toggleDocMode()" class="btn-pill">
+          Ver Documento Formal
+        </button>
         <a href="https://architechts.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-pill">
           Demo en Vivo ↗
         </a>
-        <button type="button" onclick="window.print()" class="btn-pill primary no-print">
-          PDF
+        <button type="button" onclick="window.print()" class="btn-pill primary" title="Exporta la propuesta formal completa en PDF">
+          Guardar PDF (Propuesta)
         </button>
       </div>
     </header>
@@ -672,530 +916,769 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- LÁMINA 01: PORTADA -->
+    <!-- VISTA 1: PRESENTACIÓN VISUAL (7 LÁMINAS CONCISAS) -->
     <!-- =================================================================== -->
-    <section id="s1" class="slide slide-hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
+    <main class="deck-view">
+      <!-- LÁMINA 01: PORTADA -->
+      <section id="s1" class="slide slide-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
 
-      <div class="hero-content">
-        <div class="telemetry-strip">
-          <span>Propuesta Técnica &amp; Comercial</span>
-          <span>Cliente · Medelsa.</span>
-          <span>León, Gto · Todo México</span>
-          <span style="text-align: right">21°07′N · 101°41′W</span>
-        </div>
-
-        <div style="margin: auto 0; padding: 28px 0">
-          <span class="badge dark-badge">Plataforma Web + Portafolios + CMS Autónomo</span>
-          <h1 class="hero-title">
-            Plataforma <em>&amp;</em><br />Presencia Digital.
-          </h1>
-          <p style="max-width: 560px; font-size: 1.2rem; color: #e6e3de; font-weight: 300">
-            Herramienta comercial en vivo para presentar obra, captar prospectos y operar con <strong>$0 USD / mes</strong> en servidores.
-          </p>
-        </div>
-
-        <div class="hero-kpi-bar">
-          <div class="hero-kpi">
-            <div class="hero-kpi-val">$0 USD / mes</div>
-            <div class="hero-kpi-lbl">Hosting, BD &amp; SSL perpetuo</div>
-          </div>
-          <div class="hero-kpi">
-            <div class="hero-kpi-val">3 Portafolios</div>
-            <div class="hero-kpi-lbl">Categorías + Ficha técnica</div>
-          </div>
-          <div class="hero-kpi">
-            <div class="hero-kpi-val">CMS /admin</div>
-            <div class="hero-kpi-lbl">Blog SEO, Obras y Sitio</div>
-          </div>
-          <div class="hero-kpi">
-            <div class="hero-kpi-val">6 Semanas</div>
-            <div class="hero-kpi-lbl">Entrega llave en mano</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- LÁMINA 02: RESUMEN EJECUTIVO & INFRAESTRUCTURA $0 USD -->
-    <!-- =================================================================== -->
-    <section id="s2" class="slide">
-      <div class="container">
-        <div class="slide-header">
-          <div>
-            <p class="eyebrow">01 — Enfoque Estratégico &amp; Costo Cero</p>
-            <h2 class="section-title">Herramienta comercial <em>en vivo</em><span class="dot">.</span></h2>
-          </div>
-          <p class="header-sub">
-            Diseñada para reuniones con inversionistas, desarrolladores y clientes privados sin rentas mensuales de servidor.
-          </p>
-        </div>
-
-        <div class="grid-12">
-          <div class="stat-card dark col-3">
-            <span class="badge dark-badge">Google Firebase Spark</span>
-            <div class="big-stat">$0 USD</div>
-            <div class="stat-title">Costo Mensual Perpetuo</div>
-            <p class="stat-desc">Sin servidores VPS, sin licencias mensuales ni pausas por inactividad.</p>
+        <div class="hero-content">
+          <div class="telemetry-strip">
+            <span>Propuesta Técnica &amp; Comercial</span>
+            <span>Cliente · Medelsa.</span>
+            <span>León, Gto · Todo México</span>
+            <span style="text-align: right">21°07′N · 101°41′W</span>
           </div>
 
-          <div class="stat-card col-3">
-            <span class="badge">Compresión Automática</span>
-            <div class="big-stat">+2,500</div>
-            <div class="stat-title">Fotografías en la Nube</div>
-            <p class="stat-desc">Optimización en navegador (~200 KB/foto) dentro de 1 GB gratuito en Firestore.</p>
+          <div style="margin: auto 0; padding: 28px 0">
+            <span class="badge dark-badge">Plataforma Web + Portafolios + CMS Autónomo</span>
+            <h1 class="hero-title">
+              Plataforma <em>&amp;</em><br />Presencia Digital.
+            </h1>
+            <p style="max-width: 560px; font-size: 1.2rem; color: #e6e3de; font-weight: 300">
+              Herramienta comercial en vivo para presentar obra, captar prospectos y operar con <strong>$0 USD / mes</strong> en servidores.
+            </p>
           </div>
 
-          <div class="stat-card col-3">
-            <span class="badge">Alto Rendimiento</span>
-            <div class="big-stat">50,000</div>
-            <div class="stat-title">Lecturas / Día Gratis</div>
-            <p class="stat-desc">+ 20,000 escrituras/día, CDN global y certificado SSL incluido.</p>
-          </div>
-
-          <div class="stat-card col-3">
-            <span class="badge">Alcance Global</span>
-            <div class="big-stat">ES·EN·JA</div>
-            <div class="stat-title">Trilingüe Instantáneo</div>
-            <p class="stat-desc">Cambio de idioma en vivo para clientes locales y firmas internacionales.</p>
-          </div>
-
-          <!-- Tira visual de impacto -->
-          <div class="stat-card col-12" style="padding: 20px 24px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
-            <div style="display: flex; align-items: center; gap: 14px">
-              <span class="badge">KPIs de Negocio</span>
-              <strong style="font-size: 0.95rem">Presentación fluida en Sala de Juntas, iPad y Móvil</strong>
+          <div class="hero-kpi-bar">
+            <div class="hero-kpi">
+              <div class="hero-kpi-val">$0 USD / mes</div>
+              <div class="hero-kpi-lbl">Hosting, BD &amp; SSL perpetuo</div>
             </div>
-            <div class="chip-list">
-              <span class="chip">✓ Contacto directo inmediato</span>
-              <span class="chip">✓ Carga ultrarrápida de galerías</span>
-              <span class="chip">✓ Posicionamiento orgánico en Google</span>
+            <div class="hero-kpi">
+              <div class="hero-kpi-val">3 Portafolios</div>
+              <div class="hero-kpi-lbl">Categorías + Ficha técnica</div>
+            </div>
+            <div class="hero-kpi">
+              <div class="hero-kpi-val">CMS /admin</div>
+              <div class="hero-kpi-lbl">Blog SEO, Obras y Sitio</div>
+            </div>
+            <div class="hero-kpi">
+              <div class="hero-kpi-val">6 Semanas</div>
+              <div class="hero-kpi-lbl">Entrega llave en mano</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- =================================================================== -->
-    <!-- LÁMINA 03: PORTAFOLIOS POR CATEGORÍA & CONTACTO PERSISTENTE -->
-    <!-- =================================================================== -->
-    <section id="s3" class="slide" style="background: var(--card)">
-      <div class="container">
-        <div class="slide-header">
-          <div>
-            <p class="eyebrow">02 &amp; 03 — Portafolios &amp; Captación</p>
-            <h2 class="section-title">Obras por mercado <em>&amp;</em> contacto directo<span class="dot">.</span></h2>
+      <!-- LÁMINA 02: RESUMEN EJECUTIVO & INFRAESTRUCTURA $0 USD -->
+      <section id="s2" class="slide">
+        <div class="container">
+          <div class="slide-header">
+            <div>
+              <p class="eyebrow">01 — Enfoque Estratégico &amp; Costo Cero</p>
+              <h2 class="section-title">Herramienta comercial <em>en vivo</em><span class="dot">.</span></h2>
+            </div>
+            <p class="header-sub">
+              Diseñada para reuniones con inversionistas, desarrolladores y clientes privados sin rentas mensuales de servidor.
+            </p>
           </div>
-          <p class="header-sub">
-            3 categorías iniciales con identidad propia* y formulario de cierre presente en cada página.
-          </p>
-        </div>
 
-        <div class="grid-12">
-          <!-- 3 Categorías Visuales -->
-          <div class="col-7" style="display: flex; flex-direction: column; gap: 16px">
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px">
-              <div class="img-card" style="aspect-ratio: 4/5">
-                <img src="https://architechts.vercel.app/images/res-1.png" alt="Categoría 01" />
-                <div class="img-card-overlay">
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">01 / 03</span>
-                  <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 01*</strong>
+          <div class="grid-12">
+            <div class="stat-card dark col-3">
+              <span class="badge dark-badge">Google Firebase Spark</span>
+              <div class="big-stat">$0 USD</div>
+              <div class="stat-title">Costo Mensual Perpetuo</div>
+              <p class="stat-desc">Sin servidores VPS, sin licencias mensuales ni pausas por inactividad.</p>
+            </div>
+
+            <div class="stat-card col-3">
+              <span class="badge">Compresión Automática</span>
+              <div class="big-stat">+2,500</div>
+              <div class="stat-title">Fotografías en la Nube</div>
+              <p class="stat-desc">Optimización en navegador (~200 KB/foto) dentro de 1 GB gratuito en Firestore.</p>
+            </div>
+
+            <div class="stat-card col-3">
+              <span class="badge">Alto Rendimiento</span>
+              <div class="big-stat">50,000</div>
+              <div class="stat-title">Lecturas / Día Gratis</div>
+              <p class="stat-desc">+ 20,000 escrituras/día, CDN global y certificado SSL incluido.</p>
+            </div>
+
+            <div class="stat-card col-3">
+              <span class="badge">Alcance Global</span>
+              <div class="big-stat">ES·EN·JA</div>
+              <div class="stat-title">Trilingüe Instantáneo</div>
+              <p class="stat-desc">Cambio de idioma en vivo para clientes locales y firmas internacionales.</p>
+            </div>
+
+            <div class="stat-card col-12" style="padding: 20px 24px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
+              <div style="display: flex; align-items: center; gap: 14px">
+                <span class="badge">KPIs de Negocio</span>
+                <strong style="font-size: 0.95rem">Presentación fluida en Sala de Juntas, iPad y Móvil</strong>
+              </div>
+              <div class="chip-list">
+                <span class="chip">✓ Contacto directo inmediato</span>
+                <span class="chip">✓ Carga ultrarrápida de galerías</span>
+                <span class="chip">✓ Posicionamiento orgánico en Google</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LÁMINA 03: PORTAFOLIOS POR CATEGORÍA & CONTACTO PERSISTENTE -->
+      <section id="s3" class="slide" style="background: var(--card)">
+        <div class="container">
+          <div class="slide-header">
+            <div>
+              <p class="eyebrow">02 &amp; 03 — Portafolios &amp; Captación</p>
+              <h2 class="section-title">Obras por mercado <em>&amp;</em> contacto directo<span class="dot">.</span></h2>
+            </div>
+            <p class="header-sub">
+              3 categorías iniciales con identidad propia* y formulario de cierre presente en cada página.
+            </p>
+          </div>
+
+          <div class="grid-12">
+            <div class="col-7" style="display: flex; flex-direction: column; gap: 16px">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px">
+                <div class="img-card" style="aspect-ratio: 4/5">
+                  <img src="https://architechts.vercel.app/images/res-1.png" alt="Categoría 01" />
+                  <div class="img-card-overlay">
+                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">01 / 03</span>
+                    <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 01*</strong>
+                  </div>
+                </div>
+                <div class="img-card" style="aspect-ratio: 4/5">
+                  <img src="https://architechts.vercel.app/images/corp-1.png" alt="Categoría 02" />
+                  <div class="img-card-overlay">
+                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">02 / 03</span>
+                    <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 02*</strong>
+                  </div>
+                </div>
+                <div class="img-card" style="aspect-ratio: 4/5">
+                  <img src="https://architechts.vercel.app/images/civic-1.png" alt="Categoría 03" />
+                  <div class="img-card-overlay">
+                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">03 / 03</span>
+                    <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 03*</strong>
+                  </div>
                 </div>
               </div>
-              <div class="img-card" style="aspect-ratio: 4/5">
-                <img src="https://architechts.vercel.app/images/corp-1.png" alt="Categoría 02" />
-                <div class="img-card-overlay">
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">02 / 03</span>
-                  <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 02*</strong>
-                </div>
-              </div>
-              <div class="img-card" style="aspect-ratio: 4/5">
-                <img src="https://architechts.vercel.app/images/civic-1.png" alt="Categoría 03" />
-                <div class="img-card-overlay">
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">03 / 03</span>
-                  <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 03*</strong>
+
+              <div class="stat-card" style="padding: 18px 22px">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                  <div>
+                    <span class="badge">Ficha por Obra Adaptable</span>
+                    <p style="font-size: 0.85rem; color: var(--body); margin-top: 6px">
+                      Memoria descriptiva · Ficha técnica (<strong>m², año, ubicación, materiales</strong>) · Galería fotográfica.
+                    </p>
+                  </div>
+                  <span style="font-size: 0.75rem; color: var(--muted); font-style: italic">
+                    *Categorías pendientes de definir con el cliente.
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div class="stat-card" style="padding: 18px 22px">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+            <div class="stat-card dark col-5" style="justify-content: space-between">
+              <div>
+                <span class="badge dark-badge">03 · Motor de Contacto Persistente</span>
+                <h3 style="font-size: 1.55rem; font-weight: 500; margin-top: 12px; line-height: 1.15">
+                  Botón flotante + Formulario al final de cada página.
+                </h3>
+                <p class="stat-desc" style="margin-top: 8px">
+                  El prospecto cotiza en cualquier momento sin perder la obra que está viendo.
+                </p>
+              </div>
+
+              <div style="background: #faf9f7; color: #33363b; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary)">
+                  3 Campos Directos de Conversión
+                </div>
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
+                  1. Teléfono o correo de contacto
+                </div>
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
+                  2. Asunto (ej. Proyecto Residencial)
+                </div>
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
+                  3. Descripción / Mensaje
+                </div>
+                <div style="display: flex; gap: 8px; margin-top: 4px">
+                  <span style="flex: 1; text-align: center; background: var(--primary); color: #fff; padding: 8px; border-radius: 8px; font-size: 0.72rem; font-weight: 500">
+                    WhatsApp Directo ↗
+                  </span>
+                  <span style="flex: 1; text-align: center; border: 1px solid var(--border); background: #fff; padding: 8px; border-radius: 8px; font-size: 0.72rem; font-weight: 500">
+                    Correo ↗
+                  </span>
+                </div>
+              </div>
+
+              <p style="font-size: 0.74rem; color: #b8bdc4; font-style: italic">
+                *Canal de recepción (WhatsApp, correo o ambos) por confirmar con el cliente.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LÁMINA 04: CMS /admin & IMPACTO DEL BLOG -->
+      <section id="s4" class="slide">
+        <div class="container">
+          <div class="slide-header">
+            <div>
+              <p class="eyebrow">04 — Panel Privado /admin en Firestore</p>
+              <h2 class="section-title">Autonomía <em>&amp;</em> posicionamiento SEO<span class="dot">.</span></h2>
+            </div>
+            <p class="header-sub">
+              Alcance completo configurable: se pueden descartar módulos opcionales para ajustar la inversión.
+            </p>
+          </div>
+
+          <div class="grid-12">
+            <div class="stat-card col-6" style="border-color: var(--primary); background: #ffffff">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+                <span class="badge">Incluido en Plataforma Base ($22,000 MXN)</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--primary)">/admin → Blogs</span>
+              </div>
+
+              <div>
+                <h3 style="font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em">
+                  Blog / Ensayos con Fotografías Internas
+                </h3>
+                <p class="stat-desc" style="margin-top: 6px">
+                  Editor enriquecido con títulos, citas, formato y <strong>carga de fotografías intercaladas dentro del artículo</strong>.
+                </p>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--card); padding: 16px; border-radius: 14px; border: 1px solid var(--border)">
                 <div>
-                  <span class="badge">Ficha por Obra Adaptable</span>
-                  <p style="font-size: 0.85rem; color: var(--body); margin-top: 6px">
-                    Memoria descriptiva · Ficha técnica (<strong>m², año, ubicación, materiales</strong>) · Galería fotográfica.
+                  <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">1. Autoridad Comercial</strong>
+                  <p style="font-size: 0.8rem; color: var(--body); margin-top: 4px">
+                    Explica criterio, materiales y procesos constructivos de <strong>Medelsa</strong> ante inversionistas.
                   </p>
                 </div>
-                <span style="font-size: 0.75rem; color: var(--muted); font-style: italic">
-                  *Categorías pendientes de definir con el cliente.
-                </span>
+                <div>
+                  <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">2. Tráfico en Google (SEO)</strong>
+                  <p style="font-size: 0.8rem; color: var(--body); margin-top: 4px">
+                    Mantiene el sitio indexado y activo para atraer prospectos orgánicos continuamente.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6" style="display: flex; flex-direction: column; gap: 14px">
+              <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
+                <div>
+                  <span class="badge">Módulo Configurable 01</span>
+                  <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Gestión de Obras y Proyectos</h3>
+                  <p class="stat-desc">Subir fotos (con compresión gratis), editar ficha técnica y reordenar prioridad.</p>
+                </div>
+                <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$3,500</span>
+              </div>
+
+              <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
+                <div>
+                  <span class="badge">Módulo Configurable 02</span>
+                  <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Gestión de Categorías (Portafolios)</h3>
+                  <p class="stat-desc">Crear, editar, eliminar y reordenar categorías de mercado en vivo.</p>
+                </div>
+                <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$2,500</span>
+              </div>
+
+              <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
+                <div>
+                  <span class="badge">Módulo Configurable 03</span>
+                  <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Configuración de Contacto y Sitio</h3>
+                  <p class="stat-desc">Cambiar WhatsApp, correos, teléfono, ubicación, texto de <em>Nosotros</em> y <em>Menciones</em>.</p>
+                </div>
+                <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$2,000</span>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <!-- Motor de Contacto Directo -->
-          <div class="stat-card dark col-5" style="justify-content: space-between">
+      <!-- LÁMINA 05: INTERNACIONALIZACIÓN & STACK TECNOLÓGICO -->
+      <section id="s5" class="slide" style="background: var(--card)">
+        <div class="container">
+          <div class="slide-header">
             <div>
-              <span class="badge dark-badge">03 · Motor de Contacto Persistente</span>
-              <h3 style="font-size: 1.55rem; font-weight: 500; margin-top: 12px; line-height: 1.15">
-                Botón flotante + Formulario al final de cada página.
-              </h3>
-              <p class="stat-desc" style="margin-top: 8px">
-                El prospecto cotiza en cualquier momento sin perder la obra que está viendo.
+              <p class="eyebrow">05 &amp; 06 — Ingeniería &amp; Alcance Internacional</p>
+              <h2 class="section-title">Stack moderno <em>&amp;</em> motor trilingüe<span class="dot">.</span></h2>
+            </div>
+            <p class="header-sub">
+              Arquitectura de nivel empresarial sobre Google Cloud con conmutación instantánea en 3 idiomas.
+            </p>
+          </div>
+
+          <div class="grid-12">
+            <div class="stat-card col-4" style="background: #ffffff">
+              <span class="badge">01 · Experiencia &amp; UI</span>
+              <div class="big-stat">React + TS</div>
+              <div class="stat-title">Frontend Editorial Ultrarrápido</div>
+              <div class="chip-list" style="margin-top: 6px">
+                <span class="chip">React 19 + Vite</span>
+                <span class="chip">TypeScript</span>
+                <span class="chip">Tailwind CSS</span>
+                <span class="chip">SEO Schema.org</span>
+              </div>
+            </div>
+
+            <div class="stat-card dark col-4">
+              <span class="badge dark-badge">02 · Cloud &amp; Seguridad</span>
+              <div class="big-stat">Firebase</div>
+              <div class="stat-title">Firestore + Auth + Hosting SSL</div>
+              <div class="chip-list" style="margin-top: 6px">
+                <span class="chip" style="background: rgba(255,255,255,0.08); border-color: #4b4f56; color: #fff">Plan Spark $0 USD</span>
+                <span class="chip" style="background: rgba(255,255,255,0.08); border-color: #4b4f56; color: #fff">Compresión en Navegador</span>
+                <span class="chip" style="background: rgba(255,255,255,0.08); border-color: #4b4f56; color: #fff">CDN Global + SSL</span>
+              </div>
+            </div>
+
+            <div class="stat-card col-4" style="background: #ffffff">
+              <span class="badge">03 · Internacionalización</span>
+              <div class="big-stat">ES · EN · JA</div>
+              <div class="stat-title">3 Idiomas Nativos en Tiempo Real</div>
+              <div class="chip-list" style="margin-top: 6px">
+                <span class="chip">Español</span>
+                <span class="chip">English</span>
+                <span class="chip">日本語 (Noto JP)</span>
+                <span class="chip">Campos Multilingües</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LÁMINA 06: CRONOGRAMA VISUAL (6 SEMANAS) -->
+      <section id="s6" class="slide">
+        <div class="container">
+          <div class="slide-header">
+            <div>
+              <p class="eyebrow">07 — Metodología &amp; Entrega</p>
+              <h2 class="section-title">Puesta en marcha en <em>6 semanas</em><span class="dot">.</span></h2>
+            </div>
+            <p class="header-sub">
+              Ejecución estructurada en 4 fases semanales hasta la liberación en dominio definitivo.
+            </p>
+          </div>
+
+          <div class="timeline-grid">
+            <div class="phase-card">
+              <div class="phase-num">
+                <span>Fase 01</span>
+                <span class="phase-week">1 Semana</span>
+              </div>
+              <div>
+                <h3>Identidad Digital y Estructura</h3>
+                <p style="margin-top: 8px">Arquitectura de información, diseño editorial y plantillas maestras.</p>
+              </div>
+              <span class="badge">Semana 1</span>
+            </div>
+
+            <div class="phase-card">
+              <div class="phase-num">
+                <span>Fase 02</span>
+                <span class="phase-week">2 Semanas</span>
+              </div>
+              <div>
+                <h3>Frontend &amp; Motor Trilingüe</h3>
+                <p style="margin-top: 8px">Maquetación responsiva, portafolios por categoría e i18n (ES / EN / JA).</p>
+              </div>
+              <span class="badge">Semanas 2 – 3</span>
+            </div>
+
+            <div class="phase-card">
+              <div class="phase-num">
+                <span>Fase 03</span>
+                <span class="phase-week">2 Semanas</span>
+              </div>
+              <div>
+                <h3>CMS Firebase &amp; Contacto</h3>
+                <p style="margin-top: 8px">Panel <code>/admin</code> para categorías, obras, blog con fotos y canales de contacto.</p>
+              </div>
+              <span class="badge">Semanas 4 – 5</span>
+            </div>
+
+            <div class="phase-card" style="border-color: var(--primary); background: #ffffff">
+              <div class="phase-num">
+                <span>Fase 04</span>
+                <span class="phase-week" style="background: var(--primary)">1 Semana</span>
+              </div>
+              <div>
+                <h3>Carga, Pruebas y Go-Live</h3>
+                <p style="margin-top: 8px">Carga de hasta 15 obras base, optimización de velocidad, dominio y lanzamiento.</p>
+              </div>
+              <span class="badge">Semana 6 · Entrega</span>
+            </div>
+          </div>
+
+          <div class="stat-card" style="margin-top: 20px; padding: 18px 24px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
+            <div style="display: flex; align-items: center; gap: 12px">
+              <span class="badge">Garantía Post-Lanzamiento</span>
+              <strong>3 semanas de soporte técnico y ajustes menores incluidos.</strong>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--muted)">
+              *Cambios robustos o fuera de alcance se evalúan por horas.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LÁMINA 07: INVERSIÓN INTERACTIVA & CONDICIONES -->
+      <section id="s7" class="slide slide-dark">
+        <div class="container">
+          <div class="slide-header">
+            <div>
+              <p class="eyebrow">08 — Propuesta Económica &amp; Condiciones</p>
+              <h2 class="section-title">Inversión modular <em>transparente</em><span class="dot">.</span></h2>
+            </div>
+            <p class="header-sub">
+              Activa o desactiva los módulos opcionales para simular el alcance en tiempo real.
+            </p>
+          </div>
+
+          <div class="grid-12" style="align-items: start">
+            <div class="col-7">
+              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
+                A. Plataforma Base + CMS de Blogs (Mínimo Requerido)
               </p>
-            </div>
-
-            <!-- Mockup visual de los 3 campos -->
-            <div style="background: #faf9f7; color: #33363b; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary)">
-                3 Campos Directos de Conversión
+              <div class="module-toggle active" style="cursor: default; margin-bottom: 18px">
+                <div>
+                  <strong style="font-size: 1.02rem; color: #ffffff">Plataforma Web Base + CMS de Blogs</strong>
+                  <p style="font-size: 0.8rem; color: #d6d3cd; margin-top: 3px">
+                    3 Portafolios, Ficha de obra, Nosotros, Menciones, CTA contacto, ES/EN/JA, Cloud $0 y <code>/admin</code> de Blogs con fotos internas.
+                  </p>
+                </div>
+                <span class="mono-price" style="color: #ffffff; font-size: 1.05rem">$22,000 MXN</span>
               </div>
-              <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
-                1. Teléfono o correo de contacto
-              </div>
-              <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
-                2. Asunto (ej. Proyecto Residencial)
-              </div>
-              <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
-                3. Descripción / Mensaje
-              </div>
-              <div style="display: flex; gap: 8px; margin-top: 4px">
-                <span style="flex: 1; text-align: center; background: var(--primary); color: #fff; padding: 8px; border-radius: 8px; font-size: 0.72rem; font-weight: 500">
-                  WhatsApp Directo ↗
-                </span>
-                <span style="flex: 1; text-align: center; border: 1px solid var(--border); background: #fff; padding: 8px; border-radius: 8px; font-size: 0.72rem; font-weight: 500">
-                  Correo ↗
-                </span>
-              </div>
-            </div>
 
-            <p style="font-size: 0.74rem; color: #b8bdc4; font-style: italic">
-              *Canal de recepción (WhatsApp, correo o ambos) por confirmar con el cliente.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- LÁMINA 04: CMS /admin & IMPACTO DEL BLOG -->
-    <!-- =================================================================== -->
-    <section id="s4" class="slide">
-      <div class="container">
-        <div class="slide-header">
-          <div>
-            <p class="eyebrow">04 — Panel Privado /admin en Firestore</p>
-            <h2 class="section-title">Autonomía <em>&amp;</em> posicionamiento SEO<span class="dot">.</span></h2>
-          </div>
-          <p class="header-sub">
-            Alcance completo configurable: se pueden descartar módulos opcionales para ajustar la inversión.
-          </p>
-        </div>
-
-        <div class="grid-12">
-          <!-- Blog e impacto SEO (Protagonista) -->
-          <div class="stat-card col-6" style="border-color: var(--primary); background: #ffffff">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
-              <span class="badge">Incluido en Plataforma Base ($22,000 MXN)</span>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--primary)">/admin → Blogs</span>
-            </div>
-
-            <div>
-              <h3 style="font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em">
-                Blog / Ensayos con Fotografías Internas
-              </h3>
-              <p class="stat-desc" style="margin-top: 6px">
-                Editor enriquecido con títulos, citas, formato y <strong>carga de fotografías intercaladas dentro del artículo</strong>.
+              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
+                B. Módulos Configurables Opcionales (Autonomía Total)
               </p>
+
+              <label class="module-toggle active" id="row-mod1">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <input type="checkbox" checked onchange="recalcQuote()" id="mod1" data-price="3500" />
+                  <div>
+                    <strong style="color: #ffffff; font-size: 0.95rem">1. Gestión de Obras y Proyectos</strong>
+                    <p style="font-size: 0.78rem; color: #d6d3cd">Alta, edición, fotos optimizadas y orden desde <code>/admin</code>.</p>
+                  </div>
+                </div>
+                <span class="mono-price" style="color: var(--primary-on-dark)">+$3,500 MXN</span>
+              </label>
+
+              <label class="module-toggle active" id="row-mod2">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <input type="checkbox" checked onchange="recalcQuote()" id="mod2" data-price="2500" />
+                  <div>
+                    <strong style="color: #ffffff; font-size: 0.95rem">2. Gestión de Categorías (Portafolios)</strong>
+                    <p style="font-size: 0.78rem; color: #d6d3cd">Crear, editar, eliminar y reordenar categorías desde <code>/admin</code>.</p>
+                  </div>
+                </div>
+                <span class="mono-price" style="color: var(--primary-on-dark)">+$2,500 MXN</span>
+              </label>
+
+              <label class="module-toggle active" id="row-mod3">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <input type="checkbox" checked onchange="recalcQuote()" id="mod3" data-price="2000" />
+                  <div>
+                    <strong style="color: #ffffff; font-size: 0.95rem">3. Configuración de Contacto y Sitio</strong>
+                    <p style="font-size: 0.78rem; color: #d6d3cd">Editar WhatsApp, correos, teléfono, ubicación, Nosotros y Menciones.</p>
+                  </div>
+                </div>
+                <span class="mono-price" style="color: var(--primary-on-dark)">+$2,000 MXN</span>
+              </label>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--card); padding: 16px; border-radius: 14px; border: 1px solid var(--border)">
-              <div>
-                <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">1. Autoridad Comercial</strong>
-                <p style="font-size: 0.8rem; color: var(--body); margin-top: 4px">
-                  Explica criterio, materiales y procesos constructivos de <strong>Medelsa</strong> ante inversionistas.
-                </p>
+            <div class="quote-box col-5">
+              <div style="display: flex; align-items: center; justify-content: space-between">
+                <span class="badge">Inversión Total</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted)">+ IVA si aplica</span>
               </div>
-              <div>
-                <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">2. Tráfico en Google (SEO)</strong>
-                <p style="font-size: 0.8rem; color: var(--body); margin-top: 4px">
-                  Mantiene el sitio indexado y activo para atraer prospectos orgánicos continuamente.
-                </p>
-              </div>
-            </div>
-          </div>
+              <div class="quote-total" id="totalAmount">$30,000 MXN</div>
+              <p style="font-size: 0.8rem; color: var(--muted); font-weight: 500" id="packageLabel">
+                Proyecto Completo (Autonomía Total)
+              </p>
 
-          <!-- 3 Módulos Opcionales -->
-          <div class="col-6" style="display: flex; flex-direction: column; gap: 14px">
-            <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
-              <div>
-                <span class="badge">Módulo Configurable 01</span>
-                <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Gestión de Obras y Proyectos</h3>
-                <p class="stat-desc">Subir fotos (con compresión gratis), editar ficha técnica y reordenar prioridad.</p>
-              </div>
-              <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$3,500</span>
-            </div>
-
-            <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
-              <div>
-                <span class="badge">Módulo Configurable 02</span>
-                <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Gestión de Categorías (Portafolios)</h3>
-                <p class="stat-desc">Crear, editar, eliminar y reordenar categorías de mercado en vivo.</p>
-              </div>
-              <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$2,500</span>
-            </div>
-
-            <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
-              <div>
-                <span class="badge">Módulo Configurable 03</span>
-                <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Configuración de Contacto y Sitio</h3>
-                <p class="stat-desc">Cambiar WhatsApp, correos, teléfono, ubicación, texto de <em>Nosotros</em> y <em>Menciones</em>.</p>
-              </div>
-              <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$2,000</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- LÁMINA 05: INTERNACIONALIZACIÓN & STACK TECNOLÓGICO -->
-    <!-- =================================================================== -->
-    <section id="s5" class="slide" style="background: var(--card)">
-      <div class="container">
-        <div class="slide-header">
-          <div>
-            <p class="eyebrow">05 &amp; 06 — Ingeniería &amp; Alcance Internacional</p>
-            <h2 class="section-title">Stack moderno <em>&amp;</em> motor trilingüe<span class="dot">.</span></h2>
-          </div>
-          <p class="header-sub">
-            Arquitectura de nivel empresarial sobre Google Cloud con conmutación instantánea en 3 idiomas.
-          </p>
-        </div>
-
-        <div class="grid-12">
-          <div class="stat-card col-4" style="background: #ffffff">
-            <span class="badge">01 · Experiencia &amp; UI</span>
-            <div class="big-stat">React + TS</div>
-            <div class="stat-title">Frontend Editorial Ultrarrápido</div>
-            <div class="chip-list" style="margin-top: 6px">
-              <span class="chip">React 19 + Vite</span>
-              <span class="chip">TypeScript</span>
-              <span class="chip">Tailwind CSS</span>
-              <span class="chip">SEO Schema.org</span>
-            </div>
-          </div>
-
-          <div class="stat-card dark col-4">
-            <span class="badge dark-badge">02 · Cloud &amp; Seguridad</span>
-            <div class="big-stat">Firebase</div>
-            <div class="stat-title">Firestore + Auth + Hosting SSL</div>
-            <div class="chip-list" style="margin-top: 6px">
-              <span class="chip" style="background: rgba(255,255,255,0.08); border-color: #4b4f56; color: #fff">Plan Spark $0 USD</span>
-              <span class="chip" style="background: rgba(255,255,255,0.08); border-color: #4b4f56; color: #fff">Compresión en Navegador</span>
-              <span class="chip" style="background: rgba(255,255,255,0.08); border-color: #4b4f56; color: #fff">CDN Global + SSL</span>
-            </div>
-          </div>
-
-          <div class="stat-card col-4" style="background: #ffffff">
-            <span class="badge">03 · Internacionalización</span>
-            <div class="big-stat">ES · EN · JA</div>
-            <div class="stat-title">3 Idiomas Nativos en Tiempo Real</div>
-            <div class="chip-list" style="margin-top: 6px">
-              <span class="chip">Español</span>
-              <span class="chip">English</span>
-              <span class="chip">日本語 (Noto JP)</span>
-              <span class="chip">Campos Multilingües</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- LÁMINA 06: CRONOGRAMA VISUAL (6 SEMANAS) -->
-    <!-- =================================================================== -->
-    <section id="s6" class="slide">
-      <div class="container">
-        <div class="slide-header">
-          <div>
-            <p class="eyebrow">07 — Metodología &amp; Entrega</p>
-            <h2 class="section-title">Puesta en marcha en <em>6 semanas</em><span class="dot">.</span></h2>
-          </div>
-          <p class="header-sub">
-            Ejecución estructurada en 4 fases semanales hasta la liberación en dominio definitivo.
-          </p>
-        </div>
-
-        <div class="timeline-grid">
-          <div class="phase-card">
-            <div class="phase-num">
-              <span>Fase 01</span>
-              <span class="phase-week">1 Semana</span>
-            </div>
-            <div>
-              <h3>Identidad Digital y Estructura</h3>
-              <p style="margin-top: 8px">Arquitectura de información, diseño editorial y plantillas maestras.</p>
-            </div>
-            <span class="badge">Semana 1</span>
-          </div>
-
-          <div class="phase-card">
-            <div class="phase-num">
-              <span>Fase 02</span>
-              <span class="phase-week">2 Semanas</span>
-            </div>
-            <div>
-              <h3>Frontend &amp; Motor Trilingüe</h3>
-              <p style="margin-top: 8px">Maquetación responsiva, portafolios por categoría e i18n (ES / EN / JA).</p>
-            </div>
-            <span class="badge">Semanas 2 – 3</span>
-          </div>
-
-          <div class="phase-card">
-            <div class="phase-num">
-              <span>Fase 03</span>
-              <span class="phase-week">2 Semanas</span>
-            </div>
-            <div>
-              <h3>CMS Firebase &amp; Contacto</h3>
-              <p style="margin-top: 8px">Panel <code>/admin</code> para categorías, obras, blog con fotos y canales de contacto.</p>
-            </div>
-            <span class="badge">Semanas 4 – 5</span>
-          </div>
-
-          <div class="phase-card" style="border-color: var(--primary); background: #ffffff">
-            <div class="phase-num">
-              <span>Fase 04</span>
-              <span class="phase-week" style="background: var(--primary)">1 Semana</span>
-            </div>
-            <div>
-              <h3>Carga, Pruebas y Go-Live</h3>
-              <p style="margin-top: 8px">Carga de hasta 15 obras base, optimización de velocidad, dominio y lanzamiento.</p>
-            </div>
-            <span class="badge">Semana 6 · Entrega</span>
-          </div>
-        </div>
-
-        <div class="stat-card" style="margin-top: 20px; padding: 18px 24px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
-          <div style="display: flex; align-items: center; gap: 12px">
-            <span class="badge">Garantía Post-Lanzamiento</span>
-            <strong>3 semanas de soporte técnico y ajustes menores incluidos.</strong>
-          </div>
-          <span style="font-size: 0.8rem; color: var(--muted)">
-            *Cambios robustos o fuera de alcance se evalúan por horas.
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- LÁMINA 07: INVERSIÓN INTERACTIVA & CONDICIONES -->
-    <!-- =================================================================== -->
-    <section id="s7" class="slide slide-dark">
-      <div class="container">
-        <div class="slide-header">
-          <div>
-            <p class="eyebrow">08 — Propuesta Económica &amp; Condiciones</p>
-            <h2 class="section-title">Inversión modular <em>transparente</em><span class="dot">.</span></h2>
-          </div>
-          <p class="header-sub">
-            Activa o desactiva los módulos opcionales para simular el alcance en tiempo real.
-          </p>
-        </div>
-
-        <div class="grid-12" style="align-items: start">
-          <div class="col-7">
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
-              A. Plataforma Base + CMS de Blogs (Mínimo Requerido)
-            </p>
-            <div class="module-toggle active" style="cursor: default; margin-bottom: 18px">
-              <div>
-                <strong style="font-size: 1.02rem; color: #ffffff">Plataforma Web Base + CMS de Blogs</strong>
-                <p style="font-size: 0.8rem; color: #d6d3cd; margin-top: 3px">
-                  3 Portafolios, Ficha de obra, Nosotros, Menciones, CTA contacto, ES/EN/JA, Cloud $0 y <code>/admin</code> de Blogs con fotos internas.
-                </p>
-              </div>
-              <span class="mono-price" style="color: #ffffff; font-size: 1.05rem">$22,000 MXN</span>
-            </div>
-
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
-              B. Módulos Configurables Opcionales (Autonomía Total)
-            </p>
-
-            <label class="module-toggle active" id="row-mod1">
-              <div style="display: flex; align-items: center; gap: 12px">
-                <input type="checkbox" checked onchange="recalcQuote()" id="mod1" data-price="3500" />
-                <div>
-                  <strong style="color: #ffffff; font-size: 0.95rem">1. Gestión de Obras y Proyectos</strong>
-                  <p style="font-size: 0.78rem; color: #d6d3cd">Alta, edición, fotos optimizadas y orden desde <code>/admin</code>.</p>
+              <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+                <div style="background: #ffffff; border: 1px solid var(--border); padding: 12px; border-radius: 12px">
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted)">30% Anticipo</span>
+                  <div style="font-size: 1.2rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="anticipoAmount">$9,000 MXN</div>
+                </div>
+                <div style="background: #ffffff; border: 1px solid var(--border); padding: 12px; border-radius: 12px">
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted)">70% Contra Entrega</span>
+                  <div style="font-size: 1.2rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="entregaAmount">$21,000 MXN</div>
                 </div>
               </div>
-              <span class="mono-price" style="color: var(--primary-on-dark)">+$3,500 MXN</span>
-            </label>
 
-            <label class="module-toggle active" id="row-mod2">
-              <div style="display: flex; align-items: center; gap: 12px">
-                <input type="checkbox" checked onchange="recalcQuote()" id="mod2" data-price="2500" />
-                <div>
-                  <strong style="color: #ffffff; font-size: 0.95rem">2. Gestión de Categorías (Portafolios)</strong>
-                  <p style="font-size: 0.78rem; color: #d6d3cd">Crear, editar, eliminar y reordenar categorías desde <code>/admin</code>.</p>
+              <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem; color: var(--body)">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 6px">
+                  <span>Carga inicial incluida</span>
+                  <strong>Hasta 15 obras (5 / categoría)</strong>
                 </div>
-              </div>
-              <span class="mono-price" style="color: var(--primary-on-dark)">+$2,500 MXN</span>
-            </label>
-
-            <label class="module-toggle active" id="row-mod3">
-              <div style="display: flex; align-items: center; gap: 12px">
-                <input type="checkbox" checked onchange="recalcQuote()" id="mod3" data-price="2000" />
-                <div>
-                  <strong style="color: #ffffff; font-size: 0.95rem">3. Configuración de Contacto y Sitio</strong>
-                  <p style="font-size: 0.78rem; color: #d6d3cd">Editar WhatsApp, correos, teléfono, ubicación, Nosotros y Menciones.</p>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 6px">
+                  <span>Servidores / Hosting / BD</span>
+                  <strong style="color: var(--primary)">$0 USD / mes</strong>
                 </div>
-              </div>
-              <span class="mono-price" style="color: var(--primary-on-dark)">+$2,000 MXN</span>
-            </label>
-          </div>
-
-          <div class="quote-box col-5">
-            <div style="display: flex; align-items: center; justify-content: space-between">
-              <span class="badge">Inversión Total</span>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted)">+ IVA si aplica</span>
-            </div>
-            <div class="quote-total" id="totalAmount">$30,000 MXN</div>
-            <p style="font-size: 0.8rem; color: var(--muted); font-weight: 500" id="packageLabel">
-              Proyecto Completo (Autonomía Total)
-            </p>
-
-            <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
-              <div style="background: #ffffff; border: 1px solid var(--border); padding: 12px; border-radius: 12px">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted)">30% Anticipo</span>
-                <div style="font-size: 1.2rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="anticipoAmount">$9,000 MXN</div>
-              </div>
-              <div style="background: #ffffff; border: 1px solid var(--border); padding: 12px; border-radius: 12px">
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted)">70% Contra Entrega</span>
-                <div style="font-size: 1.2rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="entregaAmount">$21,000 MXN</div>
-              </div>
-            </div>
-
-            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem; color: var(--body)">
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 6px">
-                <span>Carga inicial incluida</span>
-                <strong>Hasta 15 obras (5 / categoría)</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 6px">
-                <span>Servidores / Hosting / BD</span>
-                <strong style="color: var(--primary)">$0 USD / mes</strong>
-              </div>
-              <div style="display: flex; justify-content: space-between">
-                <span>Dominio <code>.com</code> / <code>.mx</code> (externo)</span>
-                <strong>$300 – $950 MXN / año</strong>
+                <div style="display: flex; justify-content: space-between">
+                  <span>Dominio <code>.com</code> / <code>.mx</code> (externo)</span>
+                  <strong>$300 – $950 MXN / año</strong>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- VISTA 2 / IMPRESIÓN PDF: PROPUESTA ÍNTEGRA (04_propuesta_comercial.md CON FORMATO) -->
+    <!-- =================================================================== -->
+    <section class="formal-doc-wrapper" aria-label="Propuesta Técnica y Comercial con Formato">
+      <article class="formal-sheet">
+        <header class="doc-letterhead">
+          <div>
+            <div class="doc-brand">Medelsa<span>.</span></div>
+            <p style="font-size: 0.8rem; color: var(--muted); margin-top: 4px">
+              León, Guanajuato · Operación en todo México · 21°07′N · 101°41′W
+            </p>
+          </div>
+          <div class="doc-meta-box">
+            <div>PROPUESTA TÉCNICA Y COMERCIAL</div>
+            <div>PLATAFORMA DIGITAL &amp; CMS</div>
+          </div>
+        </header>
+
+        <h1 class="doc-h1">Propuesta Técnica y Comercial: Plataforma Digital — Medelsa</h1>
+
+        <div class="doc-meta-grid">
+          <div class="doc-meta-item">
+            <small>Cliente</small>
+            <strong>Medelsa</strong>
+          </div>
+          <div class="doc-meta-item">
+            <small>Enfoque</small>
+            <strong>Plataforma web comercial, portafolios y gestión autónoma</strong>
+          </div>
+          <div class="doc-meta-item">
+            <small>Infraestructura Recurrente</small>
+            <strong class="accent">$0 USD / mes (Google Cloud &amp; Firebase Spark Tier)</strong>
+          </div>
+        </div>
+
+        <!-- 1. Resumen Ejecutivo -->
+        <div class="doc-section">
+          <h2 class="doc-h2">1. Resumen Ejecutivo y Enfoque Estratégico</h2>
+          <ul class="doc-list">
+            <li>
+              <strong>Objetivo de Negocio:</strong> Crear desde cero la presencia digital de <strong>Medelsa</strong>, diseñada no solo como catálogo sino como una <strong>herramienta comercial en vivo</strong> para reuniones con inversionistas, desarrolladores y clientes privados.
+            </li>
+            <li>
+              <strong>Premisa de Costo Cero ($0 USD / mes):</strong> Arquitectura montada sobre la capa gratuita perpetua de <strong>Google Firebase (Firestore + Authentication + Hosting)</strong> sin pagos mensuales de servidores VPS, licencias ni pausas por inactividad.
+              <ul>
+                <li>
+                  <em>Capacidad gratuita garantizada:</em> 50,000 lecturas/día, 20,000 escrituras/día y <strong>1 GB de almacenamiento en Firestore</strong>. Gracias a la compresión automática de imágenes en navegador (~150–350 KB por foto), el sistema puede almacenar <strong>más de 2,500 fotografías</strong> sin costo alguno de almacenamiento en la nube.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>KPIs Comerciales:</strong>
+              <ul>
+                <li><strong>Contacto Directo:</strong> Envío inmediato de consultas por los canales definidos por el cliente.</li>
+                <li><strong>Retención en Reuniones:</strong> Visualización ágil y elegante en computadoras, tablets y teléfonos.</li>
+                <li><strong>Performance:</strong> Carga rápida de fotografías optimizadas.</li>
+                <li><strong>Alcance Internacional:</strong> Navegación trilingüe (Español, Inglés y Japonés).</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 2. Portafolios por Categoría -->
+        <div class="doc-section">
+          <h2 class="doc-h2">2. Portafolios por Categoría &amp; Modo Presentación</h2>
+          <h3 class="doc-h3">3 Categorías Iniciales*</h3>
+          <div class="doc-quote">Nota: Las categorías están pendientes de definir con el cliente.</div>
+          <h3 class="doc-h3">Ficha por Obra</h3>
+          <ul class="doc-list">
+            <li>
+              Desglose técnico-artístico adaptable según el material que proporcione el cliente: memoria descriptiva, ficha técnica (m², año, ubicación, materiales) y galería fotográfica.
+            </li>
+          </ul>
+        </div>
+
+        <!-- 3. Motor de Contacto Directo -->
+        <div class="doc-section">
+          <h2 class="doc-h2">3. Motor de Contacto Directo: CTA Persistente</h2>
+          <ul class="doc-list">
+            <li><strong>Botón Flotante Omnipresente:</strong> Visible en todas las secciones del sitio.</li>
+            <li>
+              <strong>Formulario Base en Todas las Páginas:</strong> Visible y ejecutable al final de cada página (además del acceso flotante), con campos editables de <strong>Teléfono o correo de contacto</strong>, <strong>Asunto</strong> y <strong>Descripción / Mensaje</strong>, enviando la información directamente al canal o canales que el cliente defina.
+            </li>
+          </ul>
+          <div class="doc-quote">Nota: WhatsApp, correo electrónico o ambos; por confirmar con el cliente.</div>
+        </div>
+
+        <!-- 4. Sistema de Administración Total (CMS) -->
+        <div class="doc-section">
+          <h2 class="doc-h2">4. Sistema de Administración Total (CMS) en Google Firestore</h2>
+          <div class="doc-quote">
+            Se contempla autonomía total de configuración como alcance completo; tras revisarlo con el cliente se podrán recortar módulos que no necesite y ajustar el costo final.
+          </div>
+          <ul class="doc-list">
+            <li><strong>Acceso Privado (<code>/admin</code>):</strong> Inicio de sesión protegido.</li>
+            <li>
+              <strong>Módulos Administrables:</strong>
+              <ul>
+                <li><strong>Categorías (Portafolios):</strong> Crear, editar, eliminar y reordenar cada categoría.</li>
+                <li><strong>Obras &amp; Proyectos:</strong> Agrupación por categoría, carga directa de archivos de imagen (con compresión gratuita automática), ficha técnica y reordenamiento prioritario.</li>
+                <li>
+                  <strong>Blog / Ensayos:</strong> Editor de texto enriquecido (títulos, subtítulos, negritas, cursivas, subrayado, citas, fuentes e <strong>inserción directa de fotografías dentro del artículo</strong>) y ordenamiento manual.
+                  <ul>
+                    <li>
+                      <em>Propósito e impacto en el sitio:</em> Muestra el criterio, procesos constructivos y autoridad arquitectónica de <strong>Medelsa</strong> para generar confianza frente a clientes e inversionistas, además de mantener el sitio activo para mejorar el <strong>posicionamiento en Google (SEO)</strong> y atraer nuevos prospectos.
+                    </li>
+                  </ul>
+                </li>
+                <li><strong>Configuración de Contacto y Sitio:</strong> Edición directa del número de WhatsApp receptor, correo(s) de destino, teléfono, ubicación del cliente, textos institucionales (<em>Nosotros</em>) y menciones/premios.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 5. Internacionalización Trilingüe -->
+        <div class="doc-section">
+          <h2 class="doc-h2">5. Internacionalización Trilingüe Nativa (ES / EN / JA)</h2>
+          <ul class="doc-list">
+            <li><strong>Conmutación Instantánea:</strong> Cambio de idioma en tiempo real (Español, Inglés y Japonés).</li>
+            <li><strong>Tipografía Japonesa Balanceada:</strong> Fuentes optimizadas (<em>Noto Sans JP</em> / <em>Noto Serif JP</em>) para lectura armónica.</li>
+            <li><strong>Base de Datos Multilingüe:</strong> Campos independientes por idioma en Firestore.</li>
+          </ul>
+        </div>
+
+        <!-- 6. Arquitectura Tecnológica -->
+        <div class="doc-section">
+          <h2 class="doc-h2">6. Arquitectura Tecnológica &amp; Cero Costos Cloud ($0 USD)</h2>
+          <ul class="doc-list">
+            <li><strong>Frontend:</strong> React + Vite + TypeScript + Tailwind CSS.</li>
+            <li><strong>Base de Datos &amp; Autenticación:</strong> Google Cloud Firestore y Firebase Auth (Plan Spark $0 USD perpetuo).</li>
+            <li><strong>Almacenamiento Multimedia ($0 USD):</strong> Compresión automática en el navegador guardada directo en Firestore, evitando el costo de Cloud Storage de pago.</li>
+            <li><strong>Hosting &amp; SSL:</strong> Firebase Hosting con CDN global y certificado SSL incluido ($0 USD).</li>
+          </ul>
+        </div>
+
+        <!-- 7. Metodología de Entrega y Cronograma -->
+        <div class="doc-section">
+          <h2 class="doc-h2">7. Metodología de Entrega y Cronograma</h2>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Fase</th>
+                <th class="num-col">Duración</th>
+                <th>Entregables Clave</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Fase 1: Identidad Digital y Estructura</strong></td>
+                <td class="num-col">1 semana</td>
+                <td>Arquitectura de información, diseño editorial y plantillas maestras.</td>
+              </tr>
+              <tr>
+                <td><strong>Fase 2: Frontend &amp; Motor Trilingüe</strong></td>
+                <td class="num-col">2 semanas</td>
+                <td>Maquetación responsiva, portafolios por categoría e i18n (ES/EN/JA).</td>
+              </tr>
+              <tr>
+                <td><strong>Fase 3: CMS Total en Firebase &amp; Contacto</strong></td>
+                <td class="num-col">2 semanas</td>
+                <td>Panel de administración de categorías, obras, blog y canales de contacto.</td>
+              </tr>
+              <tr>
+                <td><strong>Fase 4: Carga, Pruebas y Go-Live</strong></td>
+                <td class="num-col">1 semana</td>
+                <td>Carga de obras base, optimización de velocidad, dominio y entrega.</td>
+              </tr>
+              <tr class="total-row">
+                <td><strong>TOTAL</strong></td>
+                <td class="num-col" style="color: var(--primary)"><strong>6 semanas</strong></td>
+                <td><strong>Puesta en marcha productiva llave en mano.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="doc-list">
+            <li>
+              <strong>Garantía Post-Lanzamiento:</strong> 3 semanas de soporte y ajustes menores incluidos. <em>Nota: Cambios robustos o fuera de alcance se evalúan por horas para definir si entran en soporte o se cotizan aparte.</em>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 8. Modelo Comercial, Inversión y Condiciones -->
+        <div class="doc-section">
+          <h2 class="doc-h2">8. Modelo Comercial, Inversión y Condiciones</h2>
+
+          <h3 class="doc-h3">A. Plataforma Base + CMS de Blogs <em>(Mínimo Requerido)</em></h3>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>Alcance Técnico</th>
+                <th class="num-col">Inversión</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Plataforma Web Base + CMS de Blogs</strong></td>
+                <td>Portafolios (3 categorías), ficha de obra, Nosotros, Menciones, CTA de contacto, Motor Trilingüe (ES/EN/JA), SEO, Despliegue Cloud ($0 USD) y panel <code>/admin</code> con editor enriquecido (fotos internas y portada) para Blogs</td>
+                <td class="num-col"><strong>$22,000 MXN</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="doc-h3">B. Módulos Configurables Opcionales <em>(para Autonomía Total)</em></h3>
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Módulo Adicional</th>
+                <th>Alcance Técnico</th>
+                <th class="num-col">Costo por Módulo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Gestión de Obras y Proyectos</strong></td>
+                <td>Alta, edición, carga de fotos optimizadas y reordenamiento de proyectos desde <code>/admin</code></td>
+                <td class="num-col">+$3,500 MXN</td>
+              </tr>
+              <tr>
+                <td><strong>2. Gestión de Categorías (Portafolios)</strong></td>
+                <td>Crear, editar, eliminar categorías y elegir estilo visual desde <code>/admin</code></td>
+                <td class="num-col">+$2,500 MXN</td>
+              </tr>
+              <tr>
+                <td><strong>3. Configuración de Contacto y Sitio</strong></td>
+                <td>Editar WhatsApp receptor, correo(s) de destino, teléfono, ubicación, Nosotros y Menciones desde <code>/admin</code></td>
+                <td class="num-col">+$2,000 MXN</td>
+              </tr>
+              <tr class="total-row">
+                <td><strong>SUBTOTAL MÓDULOS OPCIONALES</strong></td>
+                <td><strong>Autonomía completa de administración</strong></td>
+                <td class="num-col" style="color: var(--primary)"><strong>+$8,000 MXN</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="doc-h3">Inversión Total</h3>
+          <ul class="doc-list">
+            <li><strong>Proyecto Completo (Autonomía Total):</strong> <strong>$30,000 MXN</strong> <em>(+ IVA si aplica)</em></li>
+            <li><strong>Versión Esencial (Solo CMS de Blogs):</strong> <strong>$22,000 MXN</strong> <em>(+ IVA si aplica)</em> — <em>Si el cliente decide prescindir de alguno de los módulos opcionales, se descuenta exactamente el monto indicado en la tabla B.</em></li>
+            <li><strong>Carga Inicial de Obras (sin Gestor de Proyectos):</strong> Incluye sin costo adicional la optimización y carga inicial de <strong>hasta 5 proyectos por categoría</strong> <em>(15 proyectos totales sobre 3 categorías)</em>. Proyectos adicionales o actualizaciones posteriores sin el módulo <em>Gestión de Obras</em> se cotizan por separado.</li>
+            <li><strong>Costo de Mantenimiento de Servidores:</strong> <strong>$0 USD / mes</strong> <em>(Plan gratuito Spark de Google Firebase)</em>.</li>
+            <li><strong>Dominio Web (<code>.com</code> / <code>.mx</code>):</strong> Costo externo estimado de <strong>$300 – $950 MXN/año</strong> <em>(esquema de pago mensual o anual según proveedor y extensión; sujeto a disponibilidad)</em>.</li>
+          </ul>
+
+          <h3 class="doc-h3">Esquema de Pagos</h3>
+          <ul class="doc-list">
+            <li><strong>30%</strong> Anticipo al inicio del proyecto <em>(ej. $9,000 MXN en versión completa / $6,600 MXN en versión esencial)</em>.</li>
+            <li><strong>70%</strong> Contra entrega y confirmación formal de funcionamiento <em>(ej. $21,000 MXN / $15,400 MXN)</em>.</li>
+          </ul>
+        </div>
+      </article>
     </section>
 
     <script>
@@ -1204,9 +1687,25 @@
       const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
       const counterEl = document.getElementById("slideCounter");
       const progressEl = document.getElementById("progressBar");
+      const toggleBtn = document.getElementById("toggleModeBtn");
+      const slideNavLinks = document.getElementById("slideNavLinks");
       let currentIdx = 0;
+      let isDocMode = false;
+
+      function setDocMode(val) {
+        isDocMode = val;
+        document.documentElement.classList.toggle("doc-mode", isDocMode);
+        toggleBtn.textContent = isDocMode ? "← Volver a Presentación" : "Ver Documento Formal";
+        slideNavLinks.style.display = isDocMode ? "none" : "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function toggleDocMode() {
+        setDocMode(!isDocMode);
+      }
 
       function updateActiveSlide() {
+        if (isDocMode) return;
         const mid = window.innerHeight * 0.45;
         let active = 0;
         slides.forEach((s, i) => {
@@ -1223,6 +1722,7 @@
       window.addEventListener("scroll", updateActiveSlide, { passive: true });
 
       function goSlide(idx) {
+        if (isDocMode) setDocMode(false);
         const target = slides[Math.max(0, Math.min(slides.length - 1, idx))];
         if (target) target.scrollIntoView({ behavior: "smooth" });
       }
@@ -1240,6 +1740,7 @@
       }
 
       window.addEventListener("keydown", (e) => {
+        if (isDocMode) return;
         if (["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) return;
         if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(e.key)) {
           e.preventDefault();
