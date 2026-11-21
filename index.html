@@ -21,6 +21,7 @@
         --border: #e6e3de;
         --primary: #3d5a47;
         --primary-on-dark: #93b59e;
+        --rail-w: 248px;
         --ease: cubic-bezier(0.22, 1, 0.36, 1);
       }
 
@@ -58,7 +59,7 @@
       .progress-bar {
         position: fixed;
         top: 0;
-        left: 0;
+        left: var(--rail-w);
         right: 0;
         height: 3px;
         background: var(--primary);
@@ -68,163 +69,198 @@
         z-index: 120;
       }
 
-      /* Floating Header */
-      .top-nav {
+      /* ===================================================================
+         LEFT VERTICAL SIDEBAR (ÍNDICE VERTICAL A LA IZQUIERDA)
+         =================================================================== */
+      .left-rail {
         position: fixed;
-        top: 16px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(1380px, 94vw);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: var(--rail-w);
         z-index: 100;
+        background: var(--card);
+        border-right: 1px solid var(--border);
+        padding: 26px 18px 20px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: space-between;
-        gap: 12px;
-        padding: 10px 22px;
-        border-radius: 999px;
-        border: 1px solid rgba(230, 227, 222, 0.9);
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(20px);
-        box-shadow: 0 14px 40px -24px rgba(51, 54, 59, 0.35);
+        gap: 18px;
       }
 
+      .rail-top {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .brand-block {
+        padding: 0 6px;
+      }
       .brand {
-        font-size: 1.5rem;
+        font-size: 1.65rem;
         font-weight: 500;
         letter-spacing: -0.06em;
         color: var(--fg);
         text-decoration: none;
+        display: inline-block;
       }
       .brand span {
         color: var(--primary);
       }
-
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-      }
-      .nav-links a {
-        font-size: 0.68rem;
-        font-weight: 500;
+      .brand-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.63rem;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.14em;
         color: var(--muted);
-        text-decoration: none;
-        padding: 4px 8px;
-        border-radius: 999px;
-        transition: all 0.25s;
-      }
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--primary);
-        background: rgba(61, 90, 71, 0.09);
+        margin-top: 2px;
       }
 
-      .nav-actions {
+      /* Switcher Presentación / Documento MD */
+      .mode-switch {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        background: #ebe8e2;
+        padding: 4px;
+        border-radius: 10px;
+      }
+      .mode-btn {
+        border: none;
+        background: transparent;
+        padding: 7px 8px;
+        border-radius: 7px;
+        font-family: "Inter Tight", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .mode-btn.active {
+        background: #ffffff;
+        color: var(--fg);
+        box-shadow: 0 2px 8px rgba(51, 54, 59, 0.08);
+      }
+
+      /* Vertical Nav Links */
+      .rail-nav-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+        padding: 0 8px;
+        margin-bottom: 4px;
+      }
+
+      .rail-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .rail-link {
         display: flex;
         align-items: center;
-        gap: 8px;
-      }
-
-      .btn-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        min-height: 36px;
-        padding: 0 15px;
-        border-radius: 999px;
-        font-size: 0.7rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+        gap: 10px;
+        padding: 9px 10px;
+        border-radius: 10px;
         text-decoration: none;
-        border: 1px solid var(--border);
-        background: var(--card);
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--muted);
+        border-left: 2px solid transparent;
+        transition: all 0.2s var(--ease);
+      }
+      .rail-link:hover {
         color: var(--fg);
-        transition: all 0.3s var(--ease);
+        background: rgba(51, 54, 59, 0.04);
       }
-      .btn-pill:hover {
-        border-color: var(--primary);
+      .rail-link.active {
         color: var(--primary);
+        background: rgba(61, 90, 71, 0.1);
+        border-left-color: var(--primary);
+        font-weight: 600;
       }
-      .btn-pill.primary {
-        background: var(--fg);
-        border-color: var(--fg);
-        color: #faf9f7;
-      }
-      .btn-pill.primary:hover {
-        background: var(--primary);
-        border-color: var(--primary);
-        color: #ffffff;
+      .rail-num {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        opacity: 0.75;
+        min-width: 18px;
       }
 
-      /* Side Dot Indicators */
-      .side-dots {
-        position: fixed;
-        right: 22px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 95;
+      .rail-bottom {
         display: flex;
         flex-direction: column;
         gap: 10px;
-      }
-      .side-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: rgba(107, 112, 120, 0.35);
-        border: none;
-        transition: all 0.3s var(--ease);
-      }
-      .side-dot.active {
-        height: 26px;
-        background: var(--primary);
+        border-top: 1px solid var(--border);
+        padding-top: 14px;
       }
 
-      /* Bottom Presentation Controller */
-      .deck-controls {
-        position: fixed;
-        bottom: 20px;
-        right: 24px;
-        z-index: 100;
+      .rail-controls {
         display: flex;
         align-items: center;
-        gap: 6px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        background: rgba(51, 54, 59, 0.92);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        color: #faf9f7;
-        backdrop-filter: blur(14px);
-        box-shadow: 0 14px 36px rgba(51, 54, 59, 0.35);
+        justify-content: space-between;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 5px 8px;
       }
       .ctrl-btn {
-        width: 32px;
-        height: 32px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 28px;
+        height: 28px;
+        border-radius: 7px;
+        border: 1px solid transparent;
         background: transparent;
-        color: #faf9f7;
-        font-size: 0.85rem;
+        color: var(--fg);
+        font-size: 0.82rem;
         display: grid;
         place-items: center;
         transition: all 0.2s;
       }
       .ctrl-btn:hover {
         background: var(--primary);
-        border-color: var(--primary);
+        color: #ffffff;
       }
       .slide-counter {
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.72rem;
-        padding: 0 10px;
+        font-size: 0.7rem;
         letter-spacing: 0.08em;
-        color: #d6d3cd;
+        color: var(--muted);
       }
 
-      /* Slide Container */
+      .btn-demo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        min-height: 38px;
+        padding: 0 14px;
+        border-radius: 10px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        background: var(--fg);
+        color: #faf9f7;
+        transition: all 0.25s var(--ease);
+      }
+      .btn-demo:hover {
+        background: var(--primary);
+        color: #ffffff;
+      }
+
+      /* ===================================================================
+         MAIN CONTENT AREA (A LA DERECHA DEL ÍNDICE VERTICAL)
+         =================================================================== */
+      .deck-view,
+      .formal-doc-wrapper {
+        margin-left: var(--rail-w);
+        width: calc(100% - var(--rail-w));
+      }
+
       .slide {
         min-height: 100svh;
         width: 100%;
@@ -233,14 +269,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 96px 5vw 64px;
+        padding: 56px 4.5vw;
         border-bottom: 1px solid var(--border);
         position: relative;
         overflow: hidden;
       }
 
       .container {
-        width: min(1320px, 100%);
+        width: min(1240px, 100%);
         margin: 0 auto;
         position: relative;
         z-index: 2;
@@ -252,8 +288,8 @@
         align-items: flex-end;
         justify-content: space-between;
         gap: 24px;
-        margin-bottom: 36px;
-        padding-bottom: 20px;
+        margin-bottom: 32px;
+        padding-bottom: 18px;
         border-bottom: 1px solid var(--border);
       }
       .slide-dark .slide-header {
@@ -270,7 +306,7 @@
         margin-bottom: 10px;
       }
       .section-title {
-        font-size: clamp(2.4rem, 5.5vw, 4.7rem);
+        font-size: clamp(2.2rem, 4.8vw, 4.3rem);
         font-weight: 500;
         line-height: 0.92;
         letter-spacing: -0.05em;
@@ -287,8 +323,8 @@
       }
 
       .header-sub {
-        max-width: 360px;
-        font-size: 0.92rem;
+        max-width: 350px;
+        font-size: 0.9rem;
         line-height: 1.5;
         color: var(--muted);
         text-align: right;
@@ -299,7 +335,7 @@
         background: #33363b;
         color: #faf9f7;
         justify-content: space-between;
-        padding-top: 104px;
+        padding: 44px 4.5vw;
       }
       .hero-bg {
         position: absolute;
@@ -326,7 +362,7 @@
       .hero-content {
         position: relative;
         z-index: 2;
-        width: min(1320px, 100%);
+        width: min(1240px, 100%);
         margin: 0 auto;
         flex: 1;
         display: flex;
@@ -341,14 +377,14 @@
         border-top: 1px solid rgba(255, 255, 255, 0.28);
         border-bottom: 1px solid rgba(255, 255, 255, 0.28);
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
       }
       .hero-title {
-        font-size: clamp(3.6rem, 11vw, 9.2rem);
+        font-size: clamp(3.4rem, 9.5vw, 8.2rem);
         font-weight: 200;
-        line-height: 0.84;
+        line-height: 0.85;
         letter-spacing: -0.05em;
         text-transform: uppercase;
         margin: 18px 0 14px;
@@ -371,16 +407,16 @@
         border: 1px solid rgba(255, 255, 255, 0.22);
         backdrop-filter: blur(14px);
         border-radius: 16px;
-        padding: 18px 20px;
+        padding: 16px 18px;
       }
       .hero-kpi-val {
         font-family: "JetBrains Mono", monospace;
-        font-size: 1.45rem;
+        font-size: 1.35rem;
         font-weight: 500;
         color: var(--primary-on-dark);
       }
       .hero-kpi-lbl {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         color: #e6e3de;
         margin-top: 4px;
       }
@@ -389,7 +425,7 @@
       .grid-12 {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 20px;
+        gap: 18px;
       }
       .col-3 { grid-column: span 3; }
       .col-4 { grid-column: span 4; }
@@ -402,17 +438,17 @@
       .stat-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 26px 24px;
+        border-radius: 18px;
+        padding: 24px 22px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 14px;
+        gap: 12px;
         transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
       }
       .stat-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 44px -24px rgba(51, 54, 59, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px -24px rgba(51, 54, 59, 0.2);
       }
       .stat-card.dark {
         background: #33363b;
@@ -420,7 +456,7 @@
         color: #faf9f7;
       }
       .big-stat {
-        font-size: clamp(2.1rem, 3.6vw, 3.2rem);
+        font-size: clamp(1.9rem, 3.2vw, 2.9rem);
         font-weight: 500;
         letter-spacing: -0.05em;
         line-height: 0.95;
@@ -430,7 +466,7 @@
         color: var(--primary-on-dark);
       }
       .stat-title {
-        font-size: 1.08rem;
+        font-size: 1.02rem;
         font-weight: 500;
         color: var(--fg);
       }
@@ -438,7 +474,7 @@
         color: #ffffff;
       }
       .stat-desc {
-        font-size: 0.84rem;
+        font-size: 0.82rem;
         line-height: 1.45;
         color: var(--muted);
       }
@@ -449,7 +485,7 @@
       /* Visual Image Strip / Cards */
       .img-card {
         position: relative;
-        border-radius: 18px;
+        border-radius: 16px;
         overflow: hidden;
         border: 1px solid var(--border);
         background: #33363b;
@@ -471,7 +507,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 18px;
+        padding: 16px;
         color: #faf9f7;
       }
 
@@ -479,10 +515,10 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 5px 12px;
+        padding: 4px 11px;
         border-radius: 999px;
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.66rem;
+        font-size: 0.64rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
         background: rgba(61, 90, 71, 0.12);
@@ -501,9 +537,9 @@
         gap: 8px;
       }
       .chip {
-        padding: 6px 12px;
+        padding: 5px 11px;
         border-radius: 999px;
-        font-size: 0.76rem;
+        font-size: 0.74rem;
         font-weight: 500;
         background: var(--bg);
         border: 1px solid var(--border);
@@ -514,22 +550,22 @@
       .timeline-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
+        gap: 16px;
       }
       .phase-card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 26px 22px;
+        border-radius: 18px;
+        padding: 24px 20px;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 18px;
+        gap: 16px;
       }
       .phase-num {
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--primary);
@@ -542,15 +578,15 @@
         color: #faf9f7;
         padding: 3px 10px;
         border-radius: 999px;
-        font-size: 0.66rem;
+        font-size: 0.64rem;
       }
       .phase-card h3 {
-        font-size: 1.25rem;
+        font-size: 1.18rem;
         font-weight: 500;
         line-height: 1.2;
       }
       .phase-card p {
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         color: var(--muted);
         line-height: 1.5;
       }
@@ -577,8 +613,8 @@
         align-items: center;
         justify-content: space-between;
         gap: 14px;
-        padding: 16px 20px;
-        border-radius: 16px;
+        padding: 15px 18px;
+        border-radius: 14px;
         border: 1px solid #4b4f56;
         background: rgba(255, 255, 255, 0.04);
         transition: all 0.25s;
@@ -603,12 +639,12 @@
       .quote-box {
         background: #faf9f7;
         color: #33363b;
-        border-radius: 22px;
-        padding: 30px;
+        border-radius: 20px;
+        padding: 28px;
         box-shadow: 0 28px 64px rgba(0, 0, 0, 0.28);
       }
       .quote-total {
-        font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+        font-size: clamp(2.2rem, 4vw, 3.3rem);
         font-weight: 500;
         letter-spacing: -0.05em;
         color: var(--primary);
@@ -618,15 +654,12 @@
 
       /* ===================================================================
          FORMAL PROPOSAL DOCUMENT (04_propuesta_comercial.md CON FORMATO)
-         Hidden in slide mode; visible in doc-mode or when printing to PDF!
          =================================================================== */
       .formal-doc-wrapper {
         display: none;
-        padding: 100px 20px 60px;
+        padding: 48px 4vw 64px;
       }
-      html.doc-mode .deck-view,
-      html.doc-mode .side-dots,
-      html.doc-mode .deck-controls {
+      html.doc-mode .deck-view {
         display: none !important;
       }
       html.doc-mode .formal-doc-wrapper {
@@ -634,12 +667,12 @@
       }
 
       .formal-sheet {
-        max-width: 900px;
+        max-width: 920px;
         margin: 0 auto;
         background: #ffffff;
         border: 1px solid var(--border);
         border-radius: 16px;
-        padding: 56px 64px;
+        padding: 52px 60px;
         box-shadow: 0 24px 60px -28px rgba(51, 54, 59, 0.25);
         color: var(--fg);
       }
@@ -649,9 +682,9 @@
         justify-content: space-between;
         align-items: flex-start;
         gap: 24px;
-        padding-bottom: 24px;
+        padding-bottom: 22px;
         border-bottom: 2px solid var(--fg);
-        margin-bottom: 28px;
+        margin-bottom: 26px;
       }
       .doc-brand {
         font-size: 2rem;
@@ -671,7 +704,7 @@
       }
 
       .doc-h1 {
-        font-size: 1.95rem;
+        font-size: 1.85rem;
         font-weight: 500;
         letter-spacing: -0.04em;
         line-height: 1.15;
@@ -699,7 +732,7 @@
       }
       .doc-meta-item strong {
         display: block;
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         color: var(--fg);
         margin-top: 3px;
       }
@@ -711,6 +744,7 @@
         margin-bottom: 28px;
         padding-bottom: 24px;
         border-bottom: 1px solid var(--border);
+        scroll-margin-top: 28px;
       }
       .doc-section:last-child {
         border-bottom: none;
@@ -719,7 +753,7 @@
       }
 
       .doc-h2 {
-        font-size: 1.22rem;
+        font-size: 1.2rem;
         font-weight: 600;
         letter-spacing: -0.02em;
         color: var(--fg);
@@ -738,7 +772,7 @@
       }
 
       .doc-h3 {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
         font-weight: 600;
         color: var(--fg);
         margin: 14px 0 8px;
@@ -825,95 +859,111 @@
 
       @media (max-width: 980px) {
         html { scroll-snap-type: none; }
-        .nav-links, .side-dots { display: none; }
+        .left-rail {
+          position: static;
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .progress-bar { left: 0; }
+        .deck-view, .formal-doc-wrapper {
+          margin-left: 0;
+          width: 100%;
+        }
         .telemetry-strip, .hero-kpi-bar, .timeline-grid, .doc-meta-grid { grid-template-columns: 1fr; }
         .col-3, .col-4, .col-5, .col-6, .col-7, .col-8 { grid-column: span 12; }
         .slide-header { flex-direction: column; align-items: flex-start; }
         .header-sub { text-align: left; }
         .formal-sheet { padding: 28px 20px; }
       }
-
-      /* Al imprimir o guardar como PDF, SIEMPRE se exporta la propuesta formal de 04_propuesta_comercial.md con formato editorial */
-      @media print {
-        @page {
-          size: A4;
-          margin: 14mm 16mm;
-        }
-        html, body {
-          scroll-snap-type: none !important;
-          background: #ffffff !important;
-          color: #33363b !important;
-        }
-        .top-nav,
-        .progress-bar,
-        .side-dots,
-        .deck-controls,
-        .deck-view,
-        .no-print {
-          display: none !important;
-        }
-        .formal-doc-wrapper {
-          display: block !important;
-          padding: 0 !important;
-        }
-        .formal-sheet {
-          max-width: 100% !important;
-          border: none !important;
-          box-shadow: none !important;
-          padding: 0 !important;
-        }
-        .doc-section {
-          page-break-inside: avoid;
-        }
-      }
     </style>
   </head>
   <body>
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Barra superior flotante -->
-    <header class="top-nav no-print">
-      <a href="#s1" onclick="setDocMode(false)" class="brand">Medelsa<span>.</span></a>
-      <nav class="nav-links" id="slideNavLinks" aria-label="Láminas">
-        <a href="#s1" data-nav="0" class="active">01 Portada</a>
-        <a href="#s2" data-nav="1">02 Valor &amp; $0 Cloud</a>
-        <a href="#s3" data-nav="2">03 Portafolios &amp; CTA</a>
-        <a href="#s4" data-nav="3">04 CMS &amp; Blog SEO</a>
-        <a href="#s5" data-nav="4">05 Stack &amp; Idiomas</a>
-        <a href="#s6" data-nav="5">06 6 Semanas</a>
-        <a href="#s7" data-nav="6">07 Inversión</a>
-      </nav>
-      <div class="nav-actions">
-        <button type="button" id="toggleModeBtn" onclick="toggleDocMode()" class="btn-pill">
-          Ver Documento Formal
-        </button>
-        <a href="https://architechts.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-pill">
-          Demo en Vivo ↗
-        </a>
-        <button type="button" onclick="window.print()" class="btn-pill primary" title="Exporta la propuesta formal completa en PDF">
-          Guardar PDF (Propuesta)
-        </button>
+    <!-- =================================================================== -->
+    <!-- ÍNDICE VERTICAL FIJO A LA IZQUIERDA -->
+    <!-- =================================================================== -->
+    <aside class="left-rail" aria-label="Índice de la propuesta">
+      <div class="rail-top">
+        <div class="brand-block">
+          <a href="#s1" onclick="setDocMode(false)" class="brand">Medelsa<span>.</span></a>
+          <div class="brand-sub">Propuesta Comercial</div>
+        </div>
+
+        <div class="mode-switch" role="tablist" aria-label="Cambiar vista">
+          <button type="button" id="btnDeckMode" onclick="setDocMode(false)" class="mode-btn active">
+            Presentación
+          </button>
+          <button type="button" id="btnDocMode" onclick="setDocMode(true)" class="mode-btn">
+            Documento
+          </button>
+        </div>
+
+        <!-- Índice vertical para Modo Presentación -->
+        <div id="deckIndex">
+          <div class="rail-nav-label">Láminas</div>
+          <nav class="rail-nav" aria-label="Láminas de la presentación">
+            <a href="#s1" data-nav="0" class="rail-link active">
+              <span class="rail-num">01</span>
+              <span>Portada</span>
+            </a>
+            <a href="#s2" data-nav="1" class="rail-link">
+              <span class="rail-num">02</span>
+              <span>Valor &amp; Cloud $0</span>
+            </a>
+            <a href="#s3" data-nav="2" class="rail-link">
+              <span class="rail-num">03</span>
+              <span>Portafolios &amp; CTA</span>
+            </a>
+            <a href="#s4" data-nav="3" class="rail-link">
+              <span class="rail-num">04</span>
+              <span>CMS &amp; Blog SEO</span>
+            </a>
+            <a href="#s5" data-nav="4" class="rail-link">
+              <span class="rail-num">05</span>
+              <span>Stack &amp; Idiomas</span>
+            </a>
+            <a href="#s6" data-nav="5" class="rail-link">
+              <span class="rail-num">06</span>
+              <span>Entrega (6 Sem)</span>
+            </a>
+            <a href="#s7" data-nav="6" class="rail-link">
+              <span class="rail-num">07</span>
+              <span>Inversión</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Índice vertical para Modo Documento Formal -->
+        <div id="docIndex" style="display: none">
+          <div class="rail-nav-label">Secciones</div>
+          <nav class="rail-nav" aria-label="Secciones del documento">
+            <a href="#d1" class="rail-link"><span class="rail-num">01</span><span>Resumen Ejecutivo</span></a>
+            <a href="#d2" class="rail-link"><span class="rail-num">02</span><span>Portafolios</span></a>
+            <a href="#d3" class="rail-link"><span class="rail-num">03</span><span>Contacto Directo</span></a>
+            <a href="#d4" class="rail-link"><span class="rail-num">04</span><span>CMS Firestore</span></a>
+            <a href="#d5" class="rail-link"><span class="rail-num">05</span><span>Trilingüe ES/EN/JA</span></a>
+            <a href="#d6" class="rail-link"><span class="rail-num">06</span><span>Arquitectura $0</span></a>
+            <a href="#d7" class="rail-link"><span class="rail-num">07</span><span>Cronograma</span></a>
+            <a href="#d8" class="rail-link"><span class="rail-num">08</span><span>Inversión &amp; Pagos</span></a>
+          </nav>
+        </div>
       </div>
-    </header>
 
-    <!-- Indicadores laterales -->
-    <div class="side-dots no-print" aria-label="Navegación por láminas">
-      <button class="side-dot active" onclick="goSlide(0)" title="01 Portada"></button>
-      <button class="side-dot" onclick="goSlide(1)" title="02 Valor & $0 Cloud"></button>
-      <button class="side-dot" onclick="goSlide(2)" title="03 Portafolios & CTA"></button>
-      <button class="side-dot" onclick="goSlide(3)" title="04 CMS & Blog"></button>
-      <button class="side-dot" onclick="goSlide(4)" title="05 Stack & Idiomas"></button>
-      <button class="side-dot" onclick="goSlide(5)" title="06 Cronograma"></button>
-      <button class="side-dot" onclick="goSlide(6)" title="07 Inversión"></button>
-    </div>
+      <div class="rail-bottom">
+        <div class="rail-controls" id="slideControls">
+          <button type="button" class="ctrl-btn" onclick="stepSlide(-1)" title="Anterior (↑ / ←)">←</button>
+          <span class="slide-counter" id="slideCounter">01 / 07</span>
+          <button type="button" class="ctrl-btn" onclick="stepSlide(1)" title="Siguiente (↓ / →)">→</button>
+          <button type="button" class="ctrl-btn" onclick="toggleFull()" title="Pantalla completa">⛶</button>
+        </div>
 
-    <!-- Controlador inferior de presentación -->
-    <div class="deck-controls no-print">
-      <button class="ctrl-btn" onclick="stepSlide(-1)" title="Lámina anterior (↑ / ←)">←</button>
-      <span class="slide-counter" id="slideCounter">01 / 07</span>
-      <button class="ctrl-btn" onclick="stepSlide(1)" title="Siguiente lámina (↓ / →)">→</button>
-      <button class="ctrl-btn" onclick="toggleFull()" title="Pantalla completa">⛶</button>
-    </div>
+        <a href="https://architechts.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-demo">
+          Ver Demo en Vivo ↗
+        </a>
+      </div>
+    </aside>
 
     <!-- =================================================================== -->
     <!-- VISTA 1: PRESENTACIÓN VISUAL (7 LÁMINAS CONCISAS) -->
@@ -937,7 +987,7 @@
             <h1 class="hero-title">
               Plataforma <em>&amp;</em><br />Presencia Digital.
             </h1>
-            <p style="max-width: 560px; font-size: 1.2rem; color: #e6e3de; font-weight: 300">
+            <p style="max-width: 560px; font-size: 1.15rem; color: #e6e3de; font-weight: 300">
               Herramienta comercial en vivo para presentar obra, captar prospectos y operar con <strong>$0 USD / mes</strong> en servidores.
             </p>
           </div>
@@ -1005,10 +1055,10 @@
               <p class="stat-desc">Cambio de idioma en vivo para clientes locales y firmas internacionales.</p>
             </div>
 
-            <div class="stat-card col-12" style="padding: 20px 24px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
+            <div class="stat-card col-12" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
               <div style="display: flex; align-items: center; gap: 14px">
                 <span class="badge">KPIs de Negocio</span>
-                <strong style="font-size: 0.95rem">Presentación fluida en Sala de Juntas, iPad y Móvil</strong>
+                <strong style="font-size: 0.92rem">Presentación fluida en Sala de Juntas, iPad y Móvil</strong>
               </div>
               <div class="chip-list">
                 <span class="chip">✓ Contacto directo inmediato</span>
@@ -1040,34 +1090,34 @@
                   <img src="https://architechts.vercel.app/images/res-1.png" alt="Categoría 01" />
                   <div class="img-card-overlay">
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">01 / 03</span>
-                    <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 01*</strong>
+                    <strong style="font-size: 1rem; margin-top: 2px">Categoría 01*</strong>
                   </div>
                 </div>
                 <div class="img-card" style="aspect-ratio: 4/5">
                   <img src="https://architechts.vercel.app/images/corp-1.png" alt="Categoría 02" />
                   <div class="img-card-overlay">
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">02 / 03</span>
-                    <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 02*</strong>
+                    <strong style="font-size: 1rem; margin-top: 2px">Categoría 02*</strong>
                   </div>
                 </div>
                 <div class="img-card" style="aspect-ratio: 4/5">
                   <img src="https://architechts.vercel.app/images/civic-1.png" alt="Categoría 03" />
                   <div class="img-card-overlay">
                     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--primary-on-dark)">03 / 03</span>
-                    <strong style="font-size: 1.05rem; margin-top: 2px">Categoría 03*</strong>
+                    <strong style="font-size: 1rem; margin-top: 2px">Categoría 03*</strong>
                   </div>
                 </div>
               </div>
 
-              <div class="stat-card" style="padding: 18px 22px">
+              <div class="stat-card" style="padding: 16px 20px">
                 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
                   <div>
                     <span class="badge">Ficha por Obra Adaptable</span>
-                    <p style="font-size: 0.85rem; color: var(--body); margin-top: 6px">
+                    <p style="font-size: 0.84rem; color: var(--body); margin-top: 6px">
                       Memoria descriptiva · Ficha técnica (<strong>m², año, ubicación, materiales</strong>) · Galería fotográfica.
                     </p>
                   </div>
-                  <span style="font-size: 0.75rem; color: var(--muted); font-style: italic">
+                  <span style="font-size: 0.74rem; color: var(--muted); font-style: italic">
                     *Categorías pendientes de definir con el cliente.
                   </span>
                 </div>
@@ -1077,38 +1127,38 @@
             <div class="stat-card dark col-5" style="justify-content: space-between">
               <div>
                 <span class="badge dark-badge">03 · Motor de Contacto Persistente</span>
-                <h3 style="font-size: 1.55rem; font-weight: 500; margin-top: 12px; line-height: 1.15">
+                <h3 style="font-size: 1.45rem; font-weight: 500; margin-top: 10px; line-height: 1.15">
                   Botón flotante + Formulario al final de cada página.
                 </h3>
-                <p class="stat-desc" style="margin-top: 8px">
+                <p class="stat-desc" style="margin-top: 6px">
                   El prospecto cotiza en cualquier momento sin perder la obra que está viendo.
                 </p>
               </div>
 
-              <div style="background: #faf9f7; color: #33363b; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary)">
+              <div style="background: #faf9f7; color: #33363b; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary)">
                   3 Campos Directos de Conversión
                 </div>
-                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 9px; padding: 8px 12px; font-size: 0.78rem; color: var(--muted)">
                   1. Teléfono o correo de contacto
                 </div>
-                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 9px; padding: 8px 12px; font-size: 0.78rem; color: var(--muted)">
                   2. Asunto (ej. Proyecto Residencial)
                 </div>
-                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 0.8rem; color: var(--muted)">
+                <div style="background: #ffffff; border: 1px solid var(--border); border-radius: 9px; padding: 8px 12px; font-size: 0.78rem; color: var(--muted)">
                   3. Descripción / Mensaje
                 </div>
-                <div style="display: flex; gap: 8px; margin-top: 4px">
-                  <span style="flex: 1; text-align: center; background: var(--primary); color: #fff; padding: 8px; border-radius: 8px; font-size: 0.72rem; font-weight: 500">
+                <div style="display: flex; gap: 8px; margin-top: 2px">
+                  <span style="flex: 1; text-align: center; background: var(--primary); color: #fff; padding: 7px; border-radius: 8px; font-size: 0.7rem; font-weight: 500">
                     WhatsApp Directo ↗
                   </span>
-                  <span style="flex: 1; text-align: center; border: 1px solid var(--border); background: #fff; padding: 8px; border-radius: 8px; font-size: 0.72rem; font-weight: 500">
+                  <span style="flex: 1; text-align: center; border: 1px solid var(--border); background: #fff; padding: 7px; border-radius: 8px; font-size: 0.7rem; font-weight: 500">
                     Correo ↗
                   </span>
                 </div>
               </div>
 
-              <p style="font-size: 0.74rem; color: #b8bdc4; font-style: italic">
+              <p style="font-size: 0.72rem; color: #b8bdc4; font-style: italic">
                 *Canal de recepción (WhatsApp, correo o ambos) por confirmar con el cliente.
               </p>
             </div>
@@ -1137,7 +1187,7 @@
               </div>
 
               <div>
-                <h3 style="font-size: 1.6rem; font-weight: 500; letter-spacing: -0.03em">
+                <h3 style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em">
                   Blog / Ensayos con Fotografías Internas
                 </h3>
                 <p class="stat-desc" style="margin-top: 6px">
@@ -1145,48 +1195,48 @@
                 </p>
               </div>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--card); padding: 16px; border-radius: 14px; border: 1px solid var(--border)">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--card); padding: 14px; border-radius: 12px; border: 1px solid var(--border)">
                 <div>
-                  <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">1. Autoridad Comercial</strong>
-                  <p style="font-size: 0.8rem; color: var(--body); margin-top: 4px">
+                  <strong style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">1. Autoridad Comercial</strong>
+                  <p style="font-size: 0.78rem; color: var(--body); margin-top: 4px">
                     Explica criterio, materiales y procesos constructivos de <strong>Medelsa</strong> ante inversionistas.
                   </p>
                 </div>
                 <div>
-                  <strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">2. Tráfico en Google (SEO)</strong>
-                  <p style="font-size: 0.8rem; color: var(--body); margin-top: 4px">
+                  <strong style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary)">2. Tráfico en Google (SEO)</strong>
+                  <p style="font-size: 0.78rem; color: var(--body); margin-top: 4px">
                     Mantiene el sitio indexado y activo para atraer prospectos orgánicos continuamente.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="col-6" style="display: flex; flex-direction: column; gap: 14px">
-              <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
+            <div class="col-6" style="display: flex; flex-direction: column; gap: 12px">
+              <div class="stat-card" style="padding: 16px 20px; flex-direction: row; align-items: center; justify-content: space-between">
                 <div>
                   <span class="badge">Módulo Configurable 01</span>
-                  <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Gestión de Obras y Proyectos</h3>
+                  <h3 style="font-size: 1.1rem; font-weight: 500; margin-top: 4px">Gestión de Obras y Proyectos</h3>
                   <p class="stat-desc">Subir fotos (con compresión gratis), editar ficha técnica y reordenar prioridad.</p>
                 </div>
-                <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$3,500</span>
+                <span class="mono-price" style="color: var(--primary); font-size: 0.92rem">+$3,500</span>
               </div>
 
-              <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
+              <div class="stat-card" style="padding: 16px 20px; flex-direction: row; align-items: center; justify-content: space-between">
                 <div>
                   <span class="badge">Módulo Configurable 02</span>
-                  <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Gestión de Categorías (Portafolios)</h3>
+                  <h3 style="font-size: 1.1rem; font-weight: 500; margin-top: 4px">Gestión de Categorías (Portafolios)</h3>
                   <p class="stat-desc">Crear, editar, eliminar y reordenar categorías de mercado en vivo.</p>
                 </div>
-                <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$2,500</span>
+                <span class="mono-price" style="color: var(--primary); font-size: 0.92rem">+$2,500</span>
               </div>
 
-              <div class="stat-card" style="padding: 18px 22px; flex-direction: row; align-items: center; justify-content: space-between">
+              <div class="stat-card" style="padding: 16px 20px; flex-direction: row; align-items: center; justify-content: space-between">
                 <div>
                   <span class="badge">Módulo Configurable 03</span>
-                  <h3 style="font-size: 1.15rem; font-weight: 500; margin-top: 6px">Configuración de Contacto y Sitio</h3>
+                  <h3 style="font-size: 1.1rem; font-weight: 500; margin-top: 4px">Configuración de Contacto y Sitio</h3>
                   <p class="stat-desc">Cambiar WhatsApp, correos, teléfono, ubicación, texto de <em>Nosotros</em> y <em>Menciones</em>.</p>
                 </div>
-                <span class="mono-price" style="color: var(--primary); font-size: 0.95rem">+$2,000</span>
+                <span class="mono-price" style="color: var(--primary); font-size: 0.92rem">+$2,000</span>
               </div>
             </div>
           </div>
@@ -1308,12 +1358,12 @@
             </div>
           </div>
 
-          <div class="stat-card" style="margin-top: 20px; padding: 18px 24px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
+          <div class="stat-card" style="margin-top: 18px; padding: 16px 22px; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap">
             <div style="display: flex; align-items: center; gap: 12px">
               <span class="badge">Garantía Post-Lanzamiento</span>
-              <strong>3 semanas de soporte técnico y ajustes menores incluidos.</strong>
+              <strong style="font-size: 0.9rem">3 semanas de soporte técnico y ajustes menores incluidos.</strong>
             </div>
-            <span style="font-size: 0.8rem; color: var(--muted)">
+            <span style="font-size: 0.78rem; color: var(--muted)">
               *Cambios robustos o fuera de alcance se evalúan por horas.
             </span>
           </div>
@@ -1335,20 +1385,20 @@
 
           <div class="grid-12" style="align-items: start">
             <div class="col-7">
-              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
+              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
                 A. Plataforma Base + CMS de Blogs (Mínimo Requerido)
               </p>
-              <div class="module-toggle active" style="cursor: default; margin-bottom: 18px">
+              <div class="module-toggle active" style="cursor: default; margin-bottom: 16px">
                 <div>
-                  <strong style="font-size: 1.02rem; color: #ffffff">Plataforma Web Base + CMS de Blogs</strong>
-                  <p style="font-size: 0.8rem; color: #d6d3cd; margin-top: 3px">
+                  <strong style="font-size: 0.98rem; color: #ffffff">Plataforma Web Base + CMS de Blogs</strong>
+                  <p style="font-size: 0.78rem; color: #d6d3cd; margin-top: 3px">
                     3 Portafolios, Ficha de obra, Nosotros, Menciones, CTA contacto, ES/EN/JA, Cloud $0 y <code>/admin</code> de Blogs con fotos internas.
                   </p>
                 </div>
-                <span class="mono-price" style="color: #ffffff; font-size: 1.05rem">$22,000 MXN</span>
+                <span class="mono-price" style="color: #ffffff; font-size: 1rem">$22,000 MXN</span>
               </div>
 
-              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
+              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
                 B. Módulos Configurables Opcionales (Autonomía Total)
               </p>
 
@@ -1356,8 +1406,8 @@
                 <div style="display: flex; align-items: center; gap: 12px">
                   <input type="checkbox" checked onchange="recalcQuote()" id="mod1" data-price="3500" />
                   <div>
-                    <strong style="color: #ffffff; font-size: 0.95rem">1. Gestión de Obras y Proyectos</strong>
-                    <p style="font-size: 0.78rem; color: #d6d3cd">Alta, edición, fotos optimizadas y orden desde <code>/admin</code>.</p>
+                    <strong style="color: #ffffff; font-size: 0.92rem">1. Gestión de Obras y Proyectos</strong>
+                    <p style="font-size: 0.76rem; color: #d6d3cd">Alta, edición, fotos optimizadas y orden desde <code>/admin</code>.</p>
                   </div>
                 </div>
                 <span class="mono-price" style="color: var(--primary-on-dark)">+$3,500 MXN</span>
@@ -1367,8 +1417,8 @@
                 <div style="display: flex; align-items: center; gap: 12px">
                   <input type="checkbox" checked onchange="recalcQuote()" id="mod2" data-price="2500" />
                   <div>
-                    <strong style="color: #ffffff; font-size: 0.95rem">2. Gestión de Categorías (Portafolios)</strong>
-                    <p style="font-size: 0.78rem; color: #d6d3cd">Crear, editar, eliminar y reordenar categorías desde <code>/admin</code>.</p>
+                    <strong style="color: #ffffff; font-size: 0.92rem">2. Gestión de Categorías (Portafolios)</strong>
+                    <p style="font-size: 0.76rem; color: #d6d3cd">Crear, editar, eliminar y reordenar categorías desde <code>/admin</code>.</p>
                   </div>
                 </div>
                 <span class="mono-price" style="color: var(--primary-on-dark)">+$2,500 MXN</span>
@@ -1378,8 +1428,8 @@
                 <div style="display: flex; align-items: center; gap: 12px">
                   <input type="checkbox" checked onchange="recalcQuote()" id="mod3" data-price="2000" />
                   <div>
-                    <strong style="color: #ffffff; font-size: 0.95rem">3. Configuración de Contacto y Sitio</strong>
-                    <p style="font-size: 0.78rem; color: #d6d3cd">Editar WhatsApp, correos, teléfono, ubicación, Nosotros y Menciones.</p>
+                    <strong style="color: #ffffff; font-size: 0.92rem">3. Configuración de Contacto y Sitio</strong>
+                    <p style="font-size: 0.76rem; color: #d6d3cd">Editar WhatsApp, correos, teléfono, ubicación, Nosotros y Menciones.</p>
                   </div>
                 </div>
                 <span class="mono-price" style="color: var(--primary-on-dark)">+$2,000 MXN</span>
@@ -1389,30 +1439,30 @@
             <div class="quote-box col-5">
               <div style="display: flex; align-items: center; justify-content: space-between">
                 <span class="badge">Inversión Total</span>
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted)">+ IVA si aplica</span>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted)">+ IVA si aplica</span>
               </div>
               <div class="quote-total" id="totalAmount">$30,000 MXN</div>
-              <p style="font-size: 0.8rem; color: var(--muted); font-weight: 500" id="packageLabel">
+              <p style="font-size: 0.78rem; color: var(--muted); font-weight: 500" id="packageLabel">
                 Proyecto Completo (Autonomía Total)
               </p>
 
-              <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
-                <div style="background: #ffffff; border: 1px solid var(--border); padding: 12px; border-radius: 12px">
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted)">30% Anticipo</span>
-                  <div style="font-size: 1.2rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="anticipoAmount">$9,000 MXN</div>
+              <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+                <div style="background: #ffffff; border: 1px solid var(--border); padding: 11px; border-radius: 12px">
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; text-transform: uppercase; color: var(--muted)">30% Anticipo</span>
+                  <div style="font-size: 1.15rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="anticipoAmount">$9,000 MXN</div>
                 </div>
-                <div style="background: #ffffff; border: 1px solid var(--border); padding: 12px; border-radius: 12px">
-                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; color: var(--muted)">70% Contra Entrega</span>
-                  <div style="font-size: 1.2rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="entregaAmount">$21,000 MXN</div>
+                <div style="background: #ffffff; border: 1px solid var(--border); padding: 11px; border-radius: 12px">
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; text-transform: uppercase; color: var(--muted)">70% Contra Entrega</span>
+                  <div style="font-size: 1.15rem; font-weight: 600; color: var(--fg); margin-top: 2px" id="entregaAmount">$21,000 MXN</div>
                 </div>
               </div>
 
-              <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem; color: var(--body)">
-                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 6px">
+              <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 7px; font-size: 0.76rem; color: var(--body)">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 5px">
                   <span>Carga inicial incluida</span>
                   <strong>Hasta 15 obras (5 / categoría)</strong>
                 </div>
-                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 6px">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 5px">
                   <span>Servidores / Hosting / BD</span>
                   <strong style="color: var(--primary)">$0 USD / mes</strong>
                 </div>
@@ -1428,7 +1478,7 @@
     </main>
 
     <!-- =================================================================== -->
-    <!-- VISTA 2 / IMPRESIÓN PDF: PROPUESTA ÍNTEGRA (04_propuesta_comercial.md CON FORMATO) -->
+    <!-- VISTA 2: PROPUESTA ÍNTEGRA CON FORMATO (04_propuesta_comercial.md) -->
     <!-- =================================================================== -->
     <section class="formal-doc-wrapper" aria-label="Propuesta Técnica y Comercial con Formato">
       <article class="formal-sheet">
@@ -1463,7 +1513,7 @@
         </div>
 
         <!-- 1. Resumen Ejecutivo -->
-        <div class="doc-section">
+        <div class="doc-section" id="d1">
           <h2 class="doc-h2">1. Resumen Ejecutivo y Enfoque Estratégico</h2>
           <ul class="doc-list">
             <li>
@@ -1490,7 +1540,7 @@
         </div>
 
         <!-- 2. Portafolios por Categoría -->
-        <div class="doc-section">
+        <div class="doc-section" id="d2">
           <h2 class="doc-h2">2. Portafolios por Categoría &amp; Modo Presentación</h2>
           <h3 class="doc-h3">3 Categorías Iniciales*</h3>
           <div class="doc-quote">Nota: Las categorías están pendientes de definir con el cliente.</div>
@@ -1503,7 +1553,7 @@
         </div>
 
         <!-- 3. Motor de Contacto Directo -->
-        <div class="doc-section">
+        <div class="doc-section" id="d3">
           <h2 class="doc-h2">3. Motor de Contacto Directo: CTA Persistente</h2>
           <ul class="doc-list">
             <li><strong>Botón Flotante Omnipresente:</strong> Visible en todas las secciones del sitio.</li>
@@ -1515,7 +1565,7 @@
         </div>
 
         <!-- 4. Sistema de Administración Total (CMS) -->
-        <div class="doc-section">
+        <div class="doc-section" id="d4">
           <h2 class="doc-h2">4. Sistema de Administración Total (CMS) en Google Firestore</h2>
           <div class="doc-quote">
             Se contempla autonomía total de configuración como alcance completo; tras revisarlo con el cliente se podrán recortar módulos que no necesite y ajustar el costo final.
@@ -1542,7 +1592,7 @@
         </div>
 
         <!-- 5. Internacionalización Trilingüe -->
-        <div class="doc-section">
+        <div class="doc-section" id="d5">
           <h2 class="doc-h2">5. Internacionalización Trilingüe Nativa (ES / EN / JA)</h2>
           <ul class="doc-list">
             <li><strong>Conmutación Instantánea:</strong> Cambio de idioma en tiempo real (Español, Inglés y Japonés).</li>
@@ -1552,7 +1602,7 @@
         </div>
 
         <!-- 6. Arquitectura Tecnológica -->
-        <div class="doc-section">
+        <div class="doc-section" id="d6">
           <h2 class="doc-h2">6. Arquitectura Tecnológica &amp; Cero Costos Cloud ($0 USD)</h2>
           <ul class="doc-list">
             <li><strong>Frontend:</strong> React + Vite + TypeScript + Tailwind CSS.</li>
@@ -1563,7 +1613,7 @@
         </div>
 
         <!-- 7. Metodología de Entrega y Cronograma -->
-        <div class="doc-section">
+        <div class="doc-section" id="d7">
           <h2 class="doc-h2">7. Metodología de Entrega y Cronograma</h2>
           <table class="doc-table">
             <thead>
@@ -1609,7 +1659,7 @@
         </div>
 
         <!-- 8. Modelo Comercial, Inversión y Condiciones -->
-        <div class="doc-section">
+        <div class="doc-section" id="d8">
           <h2 class="doc-h2">8. Modelo Comercial, Inversión y Condiciones</h2>
 
           <h3 class="doc-h3">A. Plataforma Base + CMS de Blogs <em>(Mínimo Requerido)</em></h3>
@@ -1683,25 +1733,26 @@
 
     <script>
       const slides = Array.from(document.querySelectorAll(".slide"));
-      const dots = Array.from(document.querySelectorAll(".side-dot"));
-      const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
+      const deckLinks = Array.from(document.querySelectorAll("#deckIndex .rail-link"));
       const counterEl = document.getElementById("slideCounter");
       const progressEl = document.getElementById("progressBar");
-      const toggleBtn = document.getElementById("toggleModeBtn");
-      const slideNavLinks = document.getElementById("slideNavLinks");
+      const btnDeckMode = document.getElementById("btnDeckMode");
+      const btnDocMode = document.getElementById("btnDocMode");
+      const deckIndex = document.getElementById("deckIndex");
+      const docIndex = document.getElementById("docIndex");
+      const slideControls = document.getElementById("slideControls");
       let currentIdx = 0;
       let isDocMode = false;
 
       function setDocMode(val) {
         isDocMode = val;
         document.documentElement.classList.toggle("doc-mode", isDocMode);
-        toggleBtn.textContent = isDocMode ? "← Volver a Presentación" : "Ver Documento Formal";
-        slideNavLinks.style.display = isDocMode ? "none" : "";
+        btnDeckMode.classList.toggle("active", !isDocMode);
+        btnDocMode.classList.toggle("active", isDocMode);
+        deckIndex.style.display = isDocMode ? "none" : "block";
+        docIndex.style.display = isDocMode ? "block" : "none";
+        slideControls.style.display = isDocMode ? "none" : "flex";
         window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
-      function toggleDocMode() {
-        setDocMode(!isDocMode);
       }
 
       function updateActiveSlide() {
@@ -1713,8 +1764,7 @@
           if (rect.top <= mid) active = i;
         });
         currentIdx = active;
-        dots.forEach((d, i) => d.classList.toggle("active", i === active));
-        navLinks.forEach((a, i) => a.classList.toggle("active", i === active));
+        deckLinks.forEach((a, i) => a.classList.toggle("active", i === active));
         counterEl.textContent = `0${active + 1} / 0${slides.length}`;
         progressEl.style.transform = `scaleX(${(active + 1) / slides.length})`;
       }
