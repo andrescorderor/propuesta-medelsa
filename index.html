@@ -1180,8 +1180,8 @@
           </div>
 
           <div class="grid-12">
-            <div class="stat-card col-6" style="border-color: var(--primary); background: #ffffff">
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+            <div class="stat-card col-12" style="border-color: var(--primary); background: #ffffff">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
                 <span class="badge">Incluido en Plataforma Base ($22,000 MXN)</span>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--primary)">/admin → Blogs</span>
               </div>
@@ -1191,7 +1191,7 @@
                   Blog / Ensayos con Fotografías Internas
                 </h3>
                 <p class="stat-desc" style="margin-top: 6px">
-                  Editor enriquecido con títulos, citas, formato y <strong>carga de fotografías intercaladas dentro del artículo</strong>.
+                  Editor enriquecido con títulos, citas, formato y <strong>carga de fotografías intercaladas dentro del artículo</strong>. Acceso privado protegido sin configuraciones innecesarias.
                 </p>
               </div>
 
@@ -1208,35 +1208,6 @@
                     Mantiene el sitio indexado y activo para atraer prospectos orgánicos continuamente.
                   </p>
                 </div>
-              </div>
-            </div>
-
-            <div class="col-6" style="display: flex; flex-direction: column; gap: 12px">
-              <div class="stat-card" style="padding: 16px 20px; flex-direction: row; align-items: center; justify-content: space-between">
-                <div>
-                  <span class="badge">Módulo Configurable 01</span>
-                  <h3 style="font-size: 1.1rem; font-weight: 500; margin-top: 4px">Gestión de Obras y Proyectos</h3>
-                  <p class="stat-desc">Subir fotos (con compresión gratis), editar ficha técnica y reordenar prioridad.</p>
-                </div>
-                <span class="mono-price" style="color: var(--primary); font-size: 0.92rem">+$3,500</span>
-              </div>
-
-              <div class="stat-card" style="padding: 16px 20px; flex-direction: row; align-items: center; justify-content: space-between">
-                <div>
-                  <span class="badge">Módulo Configurable 02</span>
-                  <h3 style="font-size: 1.1rem; font-weight: 500; margin-top: 4px">Gestión de Categorías (Portafolios)</h3>
-                  <p class="stat-desc">Crear, editar, eliminar y reordenar categorías de mercado en vivo.</p>
-                </div>
-                <span class="mono-price" style="color: var(--primary); font-size: 0.92rem">+$2,500</span>
-              </div>
-
-              <div class="stat-card" style="padding: 16px 20px; flex-direction: row; align-items: center; justify-content: space-between">
-                <div>
-                  <span class="badge">Módulo Configurable 03</span>
-                  <h3 style="font-size: 1.1rem; font-weight: 500; margin-top: 4px">Configuración de Contacto y Sitio</h3>
-                  <p class="stat-desc">Cambiar WhatsApp, correos, teléfono, ubicación, texto de <em>Nosotros</em> y <em>Menciones</em>.</p>
-                </div>
-                <span class="mono-price" style="color: var(--primary); font-size: 0.92rem">+$2,000</span>
               </div>
             </div>
           </div>
@@ -1386,54 +1357,17 @@
           <div class="grid-12" style="align-items: start">
             <div class="col-7">
               <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
-                A. Plataforma Base + CMS de Blogs (Mínimo Requerido)
+                Alcance Contratado (Opción A · Plataforma Base + CMS de Blogs)
               </p>
               <div class="module-toggle active" style="cursor: default; margin-bottom: 16px">
                 <div>
-                  <strong style="font-size: 0.98rem; color: #ffffff">Plataforma Web Base + CMS de Blogs</strong>
-                  <p style="font-size: 0.78rem; color: #d6d3cd; margin-top: 3px">
-                    3 Portafolios, Ficha de obra, Nosotros, Menciones, CTA contacto, ES/EN/JA, Cloud $0 y <code>/admin</code> de Blogs con fotos internas.
+                  <strong style="font-size: 1.05rem; color: #ffffff">Plataforma Web Base + CMS de Blogs</strong>
+                  <p style="font-size: 0.82rem; color: #d6d3cd; margin-top: 6px; line-height: 1.5">
+                    3 Portafolios por categoría, Ficha técnica por obra, Nosotros, Menciones, Motor de Contacto directo (WhatsApp / Correo), Motor Trilingüe (ES / EN / JA), Infraestructura Cloud $0 USD y panel privado <code>/admin</code> exclusivo para publicar Blogs con fotografías internas.
                   </p>
                 </div>
-                <span class="mono-price" style="color: #ffffff; font-size: 1rem">$22,000 MXN</span>
+                <span class="mono-price" style="color: #ffffff; font-size: 1.1rem">$22,000 MXN</span>
               </div>
-
-              <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--primary-on-dark); margin-bottom: 8px">
-                B. Módulos Configurables Opcionales (Autonomía Total)
-              </p>
-
-              <label class="module-toggle" id="row-mod1">
-                <div style="display: flex; align-items: center; gap: 12px">
-                  <input type="checkbox" onchange="recalcQuote()" id="mod1" data-price="3500" />
-                  <div>
-                    <strong style="color: #ffffff; font-size: 0.92rem">1. Gestión de Obras y Proyectos</strong>
-                    <p style="font-size: 0.76rem; color: #d6d3cd">Alta, edición, fotos optimizadas y orden desde <code>/admin</code>.</p>
-                  </div>
-                </div>
-                <span class="mono-price" style="color: var(--primary-on-dark)">+$3,500 MXN</span>
-              </label>
-
-              <label class="module-toggle" id="row-mod2">
-                <div style="display: flex; align-items: center; gap: 12px">
-                  <input type="checkbox" onchange="recalcQuote()" id="mod2" data-price="2500" />
-                  <div>
-                    <strong style="color: #ffffff; font-size: 0.92rem">2. Gestión de Categorías (Portafolios)</strong>
-                    <p style="font-size: 0.76rem; color: #d6d3cd">Crear, editar, eliminar y reordenar categorías desde <code>/admin</code>.</p>
-                  </div>
-                </div>
-                <span class="mono-price" style="color: var(--primary-on-dark)">+$2,500 MXN</span>
-              </label>
-
-              <label class="module-toggle" id="row-mod3">
-                <div style="display: flex; align-items: center; gap: 12px">
-                  <input type="checkbox" onchange="recalcQuote()" id="mod3" data-price="2000" />
-                  <div>
-                    <strong style="color: #ffffff; font-size: 0.92rem">3. Configuración de Contacto y Sitio</strong>
-                    <p style="font-size: 0.76rem; color: #d6d3cd">Editar WhatsApp, correos, teléfono, ubicación, Nosotros y Menciones.</p>
-                  </div>
-                </div>
-                <span class="mono-price" style="color: var(--primary-on-dark)">+$2,000 MXN</span>
-              </label>
             </div>
 
             <div class="quote-box col-5">
