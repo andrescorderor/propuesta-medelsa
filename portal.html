@@ -1,0 +1,1294 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal de Progreso — Medelsa.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f5f3ef;
+        --surface: #ffffff;
+        --card: #faf9f7;
+        --fg: #33363b;
+        --body: #4b4f56;
+        --muted: #6b7078;
+        --border: #e6e3de;
+        --primary: #3d5a47;
+        --primary-soft: rgba(61, 90, 71, 0.1);
+        --primary-on-dark: #93b59e;
+        --amber-bg: rgba(180, 120, 42, 0.12);
+        --amber-fg: #8c5a18;
+        --slate-bg: rgba(75, 79, 86, 0.1);
+        --slate-fg: #4b4f56;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
+        letter-spacing: -0.01em;
+        overflow-x: hidden;
+        min-height: 100%;
+      }
+
+      a, button, [role="tab"], .interactive {
+        cursor: pointer !important;
+      }
+
+      .page-shell {
+        width: min(1220px, 100%);
+        margin: 0 auto;
+        padding: 24px 20px 56px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      /* Top Bar */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+      .brand-wrap {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        font-size: 1.75rem;
+        font-weight: 500;
+        letter-spacing: -0.06em;
+        color: var(--fg);
+        text-decoration: none;
+      }
+      .brand span {
+        color: var(--primary);
+      }
+      .portal-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+      }
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--fg);
+        font-size: 0.76rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.25s var(--ease);
+      }
+      .btn-outline:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .btn-solid {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 40px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid var(--fg);
+        background: var(--fg);
+        color: #faf9f7;
+        font-size: 0.76rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.25s var(--ease);
+      }
+      .btn-solid:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #ffffff;
+      }
+
+      /* 1. Executive Hero Summary */
+      .hero-card {
+        background: var(--fg);
+        color: #faf9f7;
+        border-radius: 24px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 24px 56px -32px rgba(51, 54, 59, 0.45);
+      }
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(147, 181, 158, 0.22) 0%, rgba(147, 181, 158, 0) 70%);
+        pointer-events: none;
+      }
+      .hero-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .eyebrow-dark {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--primary-on-dark);
+      }
+      .hero-title {
+        font-size: clamp(1.85rem, 3.8vw, 3rem);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        margin-top: 8px;
+      }
+      .hero-title em {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--primary-on-dark);
+      }
+      .hero-scope {
+        font-size: 0.9rem;
+        color: #d6d3cd;
+        margin-top: 8px;
+      }
+
+      .health-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(147, 181, 158, 0.16);
+        border: 1px solid rgba(147, 181, 158, 0.4);
+        color: var(--primary-on-dark);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+      }
+      .health-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--primary-on-dark);
+        box-shadow: 0 0 0 4px rgba(147, 181, 158, 0.25);
+      }
+
+      /* Progress Bar inside Hero */
+      .progress-block {
+        margin-top: 26px;
+        position: relative;
+        z-index: 1;
+      }
+      .progress-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .progress-label {
+        font-size: 0.8rem;
+        color: #d6d3cd;
+      }
+      .progress-pct {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--primary-on-dark);
+      }
+      .progress-track {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--primary-on-dark) 100%);
+        transition: width 0.7s var(--ease);
+      }
+
+      /* KPI Strip */
+      .kpi-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+      }
+      .kpi-item {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 14px 16px;
+      }
+      .kpi-item small {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.63rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #b8bdc4;
+      }
+      .kpi-item strong {
+        display: block;
+        font-size: 0.94rem;
+        font-weight: 500;
+        color: #ffffff;
+        margin-top: 5px;
+      }
+
+      /* Sub-Tabs Navigation */
+      .tabs-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 6px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        scrollbar-width: none;
+      }
+      .tabs-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .tab-btn {
+        flex: 1;
+        min-width: max-content;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 11px;
+        border: none;
+        background: transparent;
+        font-family: "Inter Tight", sans-serif;
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: var(--muted);
+        transition: all 0.25s var(--ease);
+      }
+      .tab-btn:hover {
+        color: var(--fg);
+        background: var(--card);
+      }
+      .tab-btn.active {
+        background: var(--fg);
+        color: #faf9f7;
+      }
+      .tab-count {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        padding: 2px 7px;
+        border-radius: 999px;
+        background: rgba(61, 90, 71, 0.14);
+        color: var(--primary);
+      }
+      .tab-btn.active .tab-count {
+        background: rgba(147, 181, 158, 0.22);
+        color: var(--primary-on-dark);
+      }
+
+      /* Panels */
+      .tab-panel {
+        display: none;
+        animation: panelIn 0.35s var(--ease);
+      }
+      .tab-panel.active {
+        display: block;
+      }
+      @keyframes panelIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .section-heading h2 {
+        font-size: 1.45rem;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+      }
+      .section-heading p {
+        font-size: 0.86rem;
+        color: var(--muted);
+      }
+
+      /* Status Badges */
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 11px;
+        border-radius: 999px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+      .st-green {
+        background: var(--primary-soft);
+        color: var(--primary);
+      }
+      .st-amber {
+        background: var(--amber-bg);
+        color: var(--amber-fg);
+      }
+      .st-slate {
+        background: var(--slate-bg);
+        color: var(--slate-fg);
+      }
+
+      /* Timeline Grid */
+      .phases-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+      .phase-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .phase-card.is-active {
+        border-color: var(--primary);
+        box-shadow: 0 14px 32px -24px rgba(61, 90, 71, 0.45);
+      }
+      .phase-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--muted);
+      }
+      .phase-card h3 {
+        font-size: 1.02rem;
+        font-weight: 500;
+        line-height: 1.25;
+      }
+      .phase-card p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* Modules Grid */
+      .modules-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .module-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .module-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .module-card h3 {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--fg);
+      }
+      .module-card p {
+        font-size: 0.84rem;
+        line-height: 1.5;
+        color: var(--body);
+      }
+
+      /* Client Inputs Checklist */
+      .inputs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .input-row {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 22px;
+        display: grid;
+        grid-template-columns: 36px 1fr auto;
+        align-items: center;
+        gap: 16px;
+      }
+      .input-idx {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--card);
+        border: 1px solid var(--border);
+        display: grid;
+        place-items: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--primary);
+      }
+      .input-row h3 {
+        font-size: 0.98rem;
+        font-weight: 500;
+      }
+      .input-row p {
+        font-size: 0.83rem;
+        color: var(--muted);
+        margin-top: 3px;
+        line-height: 1.45;
+      }
+      .input-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+      }
+      .owner-tag {
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      /* Access & Guides Grid */
+      .access-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .access-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .access-card.featured {
+        background: var(--card);
+        border-color: rgba(61, 90, 71, 0.35);
+      }
+      .access-card h3 {
+        font-size: 1.15rem;
+        font-weight: 500;
+      }
+      .access-card p {
+        font-size: 0.85rem;
+        line-height: 1.55;
+        color: var(--body);
+        margin-top: 6px;
+      }
+
+      /* Next Session & Agreements */
+      .session-banner {
+        background: var(--surface);
+        border: 1px solid var(--primary);
+        border-radius: 20px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 24px;
+        align-items: center;
+      }
+      .session-banner h3 {
+        font-size: 1.35rem;
+        font-weight: 500;
+        margin-top: 8px;
+        line-height: 1.2;
+      }
+      .session-meta {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.84rem;
+        color: var(--muted);
+      }
+      .agenda-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 20px;
+      }
+      .agenda-box small {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      .agenda-box ol {
+        padding-left: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: var(--body);
+        line-height: 1.45;
+      }
+
+      .agreements-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .agreement-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 20px;
+      }
+      .agreement-card h3 {
+        font-size: 0.96rem;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+      .agreement-card p {
+        font-size: 0.83rem;
+        color: var(--muted);
+        margin-top: 4px;
+        line-height: 1.45;
+      }
+
+      /* Support Footer */
+      .support-footer {
+        margin-top: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 24px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .support-footer h3 {
+        font-size: 1.12rem;
+        font-weight: 500;
+      }
+      .support-footer p {
+        font-size: 0.84rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .support-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn-wa {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 0 20px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: #ffffff;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.25s var(--ease);
+      }
+      .btn-wa:hover {
+        background: #2f4737;
+      }
+
+      /* Clean Modals (Zero native dialogs) */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(51, 54, 59, 0.62);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-backdrop.open {
+        display: flex;
+      }
+      .modal-box {
+        width: min(640px, 100%);
+        max-height: 86svh;
+        overflow-y: auto;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 28px 30px;
+        box-shadow: 0 32px 72px rgba(51, 54, 59, 0.35);
+      }
+      .modal-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 18px;
+      }
+      .modal-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--fg);
+        font-size: 1rem;
+        display: grid;
+        place-items: center;
+      }
+      .modal-close:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        font-size: 0.88rem;
+        line-height: 1.55;
+        color: var(--body);
+      }
+      .modal-step {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 14px 16px;
+      }
+      .modal-step strong {
+        display: block;
+        color: var(--fg);
+        margin-bottom: 4px;
+      }
+
+      /* Subtle Toast */
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--fg);
+        color: #faf9f7;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s var(--ease);
+        z-index: 250;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      @media (max-width: 940px) {
+        .kpi-grid, .phases-grid { grid-template-columns: repeat(2, 1fr); }
+        .modules-grid, .access-grid, .session-banner, .agreements-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 600px) {
+        .hero-card { padding: 22px 18px; }
+        .kpi-grid, .phases-grid { grid-template-columns: 1fr; }
+        .input-row { grid-template-columns: 1fr; gap: 10px; }
+        .input-idx { display: none; }
+        .input-right { align-items: flex-start; flex-direction: row; justify-content: space-between; width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <!-- Encabezado Superior -->
+      <header class="topbar">
+        <div class="brand-wrap">
+          <a href="./" class="brand">Medelsa<span>.</span></a>
+          <span class="portal-tag">Portal Ejecutivo de Progreso</span>
+        </div>
+        <div class="topbar-actions">
+          <a href="./" class="btn-outline" id="topProposalLink">Propuesta Comercial ↗</a>
+          <a href="https://architechts.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-solid" id="topDemoLink">
+            Ver Prototipo ↗
+          </a>
+        </div>
+      </header>
+
+      <!-- 1. Resumen Ejecutivo de Estado -->
+      <section class="hero-card" aria-label="Resumen ejecutivo del proyecto">
+        <div class="hero-top">
+          <div>
+            <p class="eyebrow-dark" id="heroLocation">León, Guanajuato · Operación en todo México</p>
+            <h1 class="hero-title" id="heroTitle">Plataforma Digital <em>&amp;</em> Portafolios</h1>
+            <p class="hero-scope" id="heroScope">Opción A · Plataforma Web Base + CMS Exclusivo de Blogs</p>
+          </div>
+          <div class="health-pill" id="healthPill">
+            <span class="health-dot"></span>
+            <span id="healthText">Listo para Arranque</span>
+          </div>
+        </div>
+
+        <div class="progress-block">
+          <div class="progress-head">
+            <span class="progress-label">Avance general del proyecto</span>
+            <span class="progress-pct" id="progressPct">20%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-item">
+            <small>Fase Actual</small>
+            <strong id="kpiPhase">Fase 1 · Identidad y Estructura</strong>
+          </div>
+          <div class="kpi-item">
+            <small>Meta de Go-Live</small>
+            <strong id="kpiGoLive">6 semanas desde insumos</strong>
+          </div>
+          <div class="kpi-item">
+            <small>Insumos Recibidos</small>
+            <strong id="kpiInputs">0 de 6 insumos</strong>
+          </div>
+          <div class="kpi-item">
+            <small>Última Actualización</small>
+            <strong id="kpiUpdated">25 de noviembre de 2026</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navegación por Sub-pestañas (Sin Scroll Infinito) -->
+      <nav class="tabs-bar" role="tablist" aria-label="Secciones del portal">
+        <button type="button" role="tab" aria-selected="true" class="tab-btn active" data-tab="fases">
+          01 · Fases y Módulos
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="tab-btn" data-tab="insumos">
+          02 · Insumos del Cliente <span class="tab-count" id="pendingCountBadge">6</span>
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="tab-btn" data-tab="accesos">
+          03 · Accesos y Guías
+        </button>
+        <button type="button" role="tab" aria-selected="false" class="tab-btn" data-tab="acuerdos">
+          04 · Acuerdos y Próxima Sesión
+        </button>
+      </nav>
+
+      <!-- Sub-pestaña 1: Fases y Estado de Módulos -->
+      <section class="tab-panel active" id="panel-fases" role="tabpanel">
+        <div class="section-heading">
+          <div>
+            <h2>Cronograma de 6 Semanas</h2>
+            <p>Seguimiento claro por etapa hasta la liberación en el dominio de Medelsa.</p>
+          </div>
+        </div>
+        <div class="phases-grid" id="phasesContainer"></div>
+
+        <div class="section-heading">
+          <div>
+            <h2>Estado de Módulos Contratados</h2>
+            <p>Alcance confirmado de la Opción A con infraestructura en nube a $0 USD / mes.</p>
+          </div>
+        </div>
+        <div class="modules-grid" id="modulesContainer"></div>
+      </section>
+
+      <!-- Sub-pestaña 2: Qué Necesitamos del Cliente -->
+      <section class="tab-panel" id="panel-insumos" role="tabpanel">
+        <div class="section-heading">
+          <div>
+            <h2>Qué Necesitamos de Medelsa</h2>
+            <p>Insumos clave para definir la nueva estética, completar la narrativa de marca y mantener el ritmo de 6 semanas.</p>
+          </div>
+        </div>
+        <div class="inputs-list" id="inputsContainer"></div>
+      </section>
+
+      <!-- Sub-pestaña 3: Centro de Accesos y Guías Rápidas -->
+      <section class="tab-panel" id="panel-accesos" role="tabpanel">
+        <div class="section-heading">
+          <div>
+            <h2>Centro de Accesos y Guías Rápidas</h2>
+            <p>Enlaces directos al proyecto y guías ejecutivas de preparación y operación.</p>
+          </div>
+        </div>
+
+        <div class="access-grid">
+          <article class="access-card featured">
+            <div>
+              <span class="status-badge st-green">Entorno de Referencia</span>
+              <h3 style="margin-top: 10px">Prototipo Conceptual Interactivo</h3>
+              <p>Base funcional actual sobre la cual evolucionaremos el nuevo lenguaje visual de alto impacto para Medelsa.</p>
+            </div>
+            <div>
+              <a href="https://architechts.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-solid" id="cardDemoLink">
+                Explorar Prototipo Conceptual ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="access-card featured">
+            <div>
+              <span class="status-badge st-slate">Documento Aprobado</span>
+              <h3 style="margin-top: 10px">Propuesta Comercial y Alcance</h3>
+              <p>Consulta en cualquier momento la presentación ejecutiva y el desglose oficial de la Opción A contratada.</p>
+            </div>
+            <div>
+              <a href="./" class="btn-outline" id="cardProposalLink">
+                Ver Propuesta Comercial ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="access-card">
+            <div>
+              <span class="status-badge st-amber">Guía de Arranque</span>
+              <h3 style="margin-top: 10px">Checklist de Material y Dominio (Onboarding)</h3>
+              <p>Cómo organizar la carpeta de marca, fotografías por categoría y qué dato necesitamos para enlazar su dominio actual.</p>
+            </div>
+            <div>
+              <button type="button" class="btn-outline" onclick="openModal('modal-onboarding')">
+                Abrir Guía de Onboarding →
+              </button>
+            </div>
+          </article>
+
+          <article class="access-card">
+            <div>
+              <span class="status-badge st-green">Guía de Uso</span>
+              <h3 style="margin-top: 10px">Cómo Publicar Artículos en el Blog (/admin)</h3>
+              <p>Flujo sencillo en 4 pasos para acceder desde el ícono discreto, subir portada, insertar fotos internas y publicar.</p>
+            </div>
+            <div>
+              <button type="button" class="btn-outline" onclick="openModal('modal-blog-guide')">
+                Abrir Guía del Blog →
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Sub-pestaña 4: Acuerdos Validados y Próxima Sesión -->
+      <section class="tab-panel" id="panel-acuerdos" role="tabpanel">
+        <div class="session-banner" id="nextSessionContainer"></div>
+
+        <div class="section-heading">
+          <div>
+            <h2>Acuerdos Validados</h2>
+            <p>Decisiones confirmadas con el equipo de Medelsa que rigen la construcción actual.</p>
+          </div>
+        </div>
+        <div class="agreements-grid" id="agreementsContainer"></div>
+      </section>
+
+      <!-- Banner de Soporte Directo -->
+      <footer class="support-footer">
+        <div>
+          <h3 id="supportHeadline">¿Dudas sobre el avance o entrega de material?</h3>
+          <p id="supportSubline">Atención directa para el equipo de Medelsa durante todo el proceso de diseño y lanzamiento.</p>
+        </div>
+        <div class="support-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-wa" id="supportWaBtn">
+            WhatsApp Directo ↗
+          </a>
+          <a href="#" class="btn-outline" id="supportEmailBtn">
+            Enviar Correo ↗
+          </a>
+          <button type="button" class="btn-outline" id="copyEmailBtn">
+            Copiar Correo
+          </button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Modal 1: Guía de Onboarding y Dominio -->
+    <div class="modal-backdrop" id="modal-onboarding" role="dialog" aria-modal="true" aria-labelledby="m1-title">
+      <div class="modal-box">
+        <div class="modal-head">
+          <div>
+            <span class="status-badge st-amber">Onboarding Medelsa</span>
+            <h2 id="m1-title" style="font-size: 1.35rem; font-weight: 500; margin-top: 8px">
+              Guía de Entrega de Material y Dominio
+            </h2>
+          </div>
+          <button type="button" class="modal-close" onclick="closeModal('modal-onboarding')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <p>Para agilizar el diseño y evitar retrasos, sugerimos compartir una sola carpeta (Google Drive o Dropbox) organizada en 4 bloques:</p>
+          <div class="modal-step">
+            <strong>1. Identidad y Marca</strong>
+            Logotipo oficial en alta resolución (SVG o PNG sin fondo), colores de preferencia, valores y breve historia. Con esto redactamos el resto de los textos institucionales.
+          </div>
+          <div class="modal-step">
+            <strong>2. Carpeta por Categoría y Obra (hasta 15 proyectos base)</strong>
+            Indicar las 3 categorías finales y crear una subcarpeta por obra con sus fotografías de mejor calidad y los datos disponibles (nombre, ubicación, año, m² o reseña).
+          </div>
+          <div class="modal-step">
+            <strong>3. Dominio Corporativo Existente</strong>
+            No es necesario comprar un dominio nuevo: solo necesitamos confirmar el contacto de quien administra el dominio actual de Medelsa para enlazar la web sin afectar sus correos.
+          </div>
+          <div class="modal-step">
+            <strong>4. Canales de Recepción</strong>
+            Confirmar el número de WhatsApp y/o correo donde desean recibir las solicitudes de nuevos clientes.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Guía Rápida del Blog (/admin) -->
+    <div class="modal-backdrop" id="modal-blog-guide" role="dialog" aria-modal="true" aria-labelledby="m2-title">
+      <div class="modal-box">
+        <div class="modal-head">
+          <div>
+            <span class="status-badge st-green">Operación de Contenidos</span>
+            <h2 id="m2-title" style="font-size: 1.35rem; font-weight: 500; margin-top: 8px">
+              Guía Rápida · Publicación en el Blog (/admin)
+            </h2>
+          </div>
+          <button type="button" class="modal-close" onclick="closeModal('modal-blog-guide')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <p>El panel fue simplificado exclusivamente para publicar artículos y ensayos sin configuraciones complejas:</p>
+          <div class="modal-step">
+            <strong>Paso 1 · Ingreso Discreto</strong>
+            Haga clic en el ícono de llave ubicado en la esquina inferior del pie de página e inicie sesión con su correo y contraseña autorizados.
+          </div>
+          <div class="modal-step">
+            <strong>Paso 2 · Crear Artículo y Portada</strong>
+            Presione <em>Nuevo artículo</em>, escriba el título, resumen y cargue la fotografía de portada (el sistema la optimiza automáticamente para carga veloz).
+          </div>
+          <div class="modal-step">
+            <strong>Paso 3 · Redacción con Fotografías Internas</strong>
+            Use el editor para agregar subtítulos, citas destacadas e insertar fotografías directamente entre los párrafos del artículo.
+          </div>
+          <div class="modal-step">
+            <strong>Paso 4 · Ordenar y Publicar</strong>
+            Guarde los cambios y ajuste el orden de aparición con las flechas. El artículo se refleja de inmediato en el sitio y fortalece su posicionamiento en Google.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">Correo copiado al portapapeles</div>
+
+    <script>
+      const FALLBACK_DATA = {
+        meta: {
+          clientName: "Medelsa.",
+          projectName: "Plataforma Digital & Portafolios",
+          scopeLabel: "Opción A · Plataforma Web Base + CMS Exclusivo de Blogs",
+          location: "León, Guanajuato · Operación en todo México",
+          healthStatus: "Listo para Arranque",
+          healthTone: "green",
+          lastUpdated: "25 de noviembre de 2026",
+          progressPercent: 20,
+          currentPhase: "Fase 1 · Identidad Digital y Estructura",
+          targetGoLive: "6 semanas desde recepción de insumos",
+          hostingCost: "$0 USD / mes"
+        },
+        phases: [
+          { id: "f1", code: "Fase 01", weeks: "Semana 1", title: "Identidad Digital, Dirección Visual y Estructura", status: "En Construcción", summary: "Definición detallada de páginas, categorías de portafolio y nueva propuesta visual audaz y poco convencional." },
+          { id: "f2", code: "Fase 02", weeks: "Semanas 2 – 3", title: "Diseño Responsivo, Portafolios y Motor Trilingüe", status: "Pendiente", summary: "Construcción de las 3 categorías, ficha técnica por obra, experiencia móvil/escritorio y conmutación ES / EN / JA." },
+          { id: "f3", code: "Fase 03", weeks: "Semanas 4 – 5", title: "CMS Exclusivo de Blogs y Motor de Contacto", status: "Pendiente", summary: "Panel privado /admin con acceso discreto para publicar artículos con fotografías internas y panel de contacto translúcido." },
+          { id: "f4", code: "Fase 04", weeks: "Semana 6", title: "Carga de Obras, Dominio Medelsa y Lanzamiento", status: "Pendiente", summary: "Optimización y carga de hasta 15 proyectos base (5 por categoría), enlace DNS al dominio existente y liberación en vivo." }
+        ],
+        modules: [
+          { id: "m1", name: "Nueva Dirección Visual y Arquitectura del Sitio", status: "En Construcción", detail: "Evolución estética hacia un diseño más ostentoso, llamativo y poco convencional, partiendo de la estructura validada." },
+          { id: "m2", name: "Portafolios por Categoría (3) y Ficha por Obra", status: "Listo en Demo", detail: "Catálogo interactivo con ficha técnica adaptable (memoria descriptiva, m², año, ubicación, materiales y galería)." },
+          { id: "m3", name: "Secciones Institucionales (Nosotros y Menciones)", status: "Listo en Demo", detail: "Presentación de trayectoria, premios y publicaciones con redacción editorial a partir de la información de marca." },
+          { id: "m4", name: "Motor de Contacto Translúcido y Formulario Base", status: "Listo para Prueba", detail: "Botones circulares translúcidos en esquina inferior derecha (web y móvil) + formulario al cierre de cada página." },
+          { id: "m5", name: "CMS Exclusivo de Blogs (/admin)", status: "Listo en Demo", detail: "Acceso discreto por ícono en el pie de página para redactar ensayos, cargar portada e insertar fotos dentro del artículo." },
+          { id: "m6", name: "Motor Trilingüe (ES / EN / JA) e Infraestructura $0 USD", status: "Listo en Demo", detail: "Navegación instantánea en 3 idiomas sobre nube de Google con certificado SSL y cero rentas mensuales." }
+        ],
+        clientInputs: [
+          { id: "in1", title: "Información de Identidad y Marca", detail: "Logotipo oficial en alta resolución/vector, lineamientos de marca, filosofía y valores para desarrollar el contenido editorial.", owner: "Dirección / Marca Medelsa", status: "Pendiente" },
+          { id: "in2", title: "Validación de Estructura y Dirección Visual", detail: "Confirmación del mapa detallado de secciones y selección de la línea visual de alto impacto con dirección.", owner: "Dirección Medelsa", status: "En Revisión" },
+          { id: "in3", title: "Definición de Categorías y Material por Proyecto", detail: "Confirmar las 3 categorías de portafolio y definir fotografías/datos disponibles por obra (hasta 5 proyectos por categoría).", owner: "Equipo de Proyectos Medelsa", status: "Pendiente" },
+          { id: "in4", title: "Contacto / Acceso del Dominio Existente de Medelsa", detail: "Identificar quién administra el dominio actual utilizado en los correos corporativos para apuntar los registros DNS.", owner: "Administración / TI Medelsa", status: "Pendiente" },
+          { id: "in5", title: "Canales Oficiales de Contacto y Aviso de Privacidad", detail: "Confirmar número de WhatsApp y/o correo receptor de prospectos, así como razón social para el aviso legal.", owner: "Área Comercial Medelsa", status: "Pendiente" },
+          { id: "in6", title: "Menciones, Premios y Artículos Iniciales de Blog (Opcional)", detail: "Listado de reconocimientos o publicaciones y 1 a 3 artículos iniciales si desean estrenar el blog el día del lanzamiento.", owner: "Dirección Medelsa", status: "Pendiente" }
+        ],
+        links: {
+          demoUrl: "https://architechts.vercel.app/",
+          demoLabel: "Explorar Prototipo Conceptual",
+          proposalUrl: "https://andrescorderor.github.io/propuesta-medelsa/",
+          proposalLabel: "Ver Propuesta Comercial"
+        },
+        nextSession: {
+          title: "Sesión de Definición de Estructura y Dirección Visual",
+          date: "Por confirmar con el equipo de Medelsa",
+          format: "Sesión ejecutiva · 45 min (Videollamada o presencial)",
+          agenda: [
+            "Revisar 3 propuestas de dirección visual más audaces, llamativas y poco convencionales.",
+            "Cerrar la estructura sección por sección y confirmar las 3 categorías de portafolio.",
+            "Alinear carpeta de insumos de marca y confirmar al responsable del dominio Medelsa."
+          ]
+        },
+        agreements: [
+          { date: "Validado", title: "Alcance Aprobado · Opción A ($22,000 MXN)", detail: "Plataforma Web Base + CMS exclusivo para publicación de Blogs (sin módulos de edición de obras, categorías ni teléfonos)." },
+          { date: "Validado", title: "Acceso Discreto al Panel /admin", detail: "Reemplazo de la palabra 'Admin' por un ícono minimalista integrado al pie de página." },
+          { date: "Validado", title: "Panel Flotante de Contacto Circular Translúcido", detail: "Botones circulares translúcidos en la esquina inferior derecha para navegación limpia en escritorio y móvil." },
+          { date: "Validado", title: "Evolución Estética de Alto Impacto", detail: "Se diseñará una experiencia visual más ostentosa, llamativa y fuera de lo convencional antes de maquetar las vistas finales." },
+          { date: "Validado", title: "Contenido Co-creado a partir de la Marca", detail: "Medelsa proporcionará la información base de marca y el material disponible por proyecto para completar el resto de la narrativa." },
+          { date: "Validado", title: "Uso del Dominio Corporativo Existente", detail: "Se aprovechará el dominio actual de Medelsa una vez confirmados los accesos de configuración DNS." }
+        ],
+        support: {
+          headline: "¿Dudas sobre el avance o entrega de material?",
+          subline: "Atención directa para el equipo de Medelsa durante todo el proceso de diseño y lanzamiento.",
+          whatsappNumber: "524770000000",
+          whatsappPrefill: "Hola, te escribo desde el Portal de Progreso de la Plataforma Digital Medelsa.",
+          email: "andresmcorderor@gmail.com"
+        }
+      };
+
+      function badgeClass(status) {
+        const s = (status || "").toLowerCase();
+        if (s.includes("aprobado") || s.includes("recibido") || s.includes("listo") || s.includes("validado")) return "st-green";
+        if (s.includes("construcción") || s.includes("revisión") || s.includes("curso")) return "st-amber";
+        return "st-slate";
+      }
+
+      function renderPortal(data) {
+        const m = data.meta;
+        document.getElementById("heroLocation").textContent = m.location;
+        document.getElementById("heroTitle").innerHTML = m.projectName.replace("&", "<em>&amp;</em>");
+        document.getElementById("heroScope").textContent = m.scopeLabel;
+        document.getElementById("healthText").textContent = m.healthStatus;
+        document.getElementById("progressPct").textContent = `${m.progressPercent}%`;
+        document.getElementById("progressFill").style.width = `${m.progressPercent}%`;
+        document.getElementById("kpiPhase").textContent = m.currentPhase;
+        document.getElementById("kpiGoLive").textContent = m.targetGoLive;
+        document.getElementById("kpiUpdated").textContent = m.lastUpdated;
+
+        const received = data.clientInputs.filter((i) => i.status.toLowerCase().includes("recibido")).length;
+        const totalIn = data.clientInputs.length;
+        const pending = totalIn - received;
+        document.getElementById("kpiInputs").textContent = `${received} de ${totalIn} recibidos`;
+        document.getElementById("pendingCountBadge").textContent = pending > 0 ? `${pending} pend.` : "Completo ✓";
+
+        // Links
+        document.getElementById("topDemoLink").href = data.links.demoUrl;
+        document.getElementById("cardDemoLink").href = data.links.demoUrl;
+        document.getElementById("cardDemoLink").textContent = `${data.links.demoLabel} ↗`;
+        document.getElementById("topProposalLink").href = data.links.proposalUrl;
+        document.getElementById("cardProposalLink").href = data.links.proposalUrl;
+        document.getElementById("cardProposalLink").textContent = `${data.links.proposalLabel} ↗`;
+
+        // Phases
+        document.getElementById("phasesContainer").innerHTML = data.phases
+          .map((p) => {
+            const activeCls = p.status.toLowerCase().includes("construcción") || p.status.toLowerCase().includes("curso") ? "is-active" : "";
+            return `
+              <article class="phase-card ${activeCls}">
+                <div>
+                  <div class="phase-meta">
+                    <span>${p.code}</span>
+                    <span>${p.weeks}</span>
+                  </div>
+                  <h3 style="margin-top:10px">${p.title}</h3>
+                  <p style="margin-top:8px">${p.summary}</p>
+                </div>
+                <div>
+                  <span class="status-badge ${badgeClass(p.status)}">${p.status}</span>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+
+        // Modules
+        document.getElementById("modulesContainer").innerHTML = data.modules
+          .map(
+            (mod) => `
+              <article class="module-card">
+                <div class="module-top">
+                  <h3>${mod.name}</h3>
+                  <span class="status-badge ${badgeClass(mod.status)}">${mod.status}</span>
+                </div>
+                <p>${mod.detail}</p>
+              </article>
+            `
+          )
+          .join("");
+
+        // Client Inputs
+        document.getElementById("inputsContainer").innerHTML = data.clientInputs
+          .map(
+            (item, idx) => `
+              <article class="input-row">
+                <div class="input-idx">0${idx + 1}</div>
+                <div>
+                  <h3>${item.title}</h3>
+                  <p>${item.detail}</p>
+                </div>
+                <div class="input-right">
+                  <span class="status-badge ${badgeClass(item.status)}">${item.status}</span>
+                  <span class="owner-tag">${item.owner}</span>
+                </div>
+              </article>
+            `
+          )
+          .join("");
+
+        // Next Session
+        const ns = data.nextSession;
+        document.getElementById("nextSessionContainer").innerHTML = `
+          <div>
+            <span class="status-badge st-green">Próxima Sesión de Trabajo</span>
+            <h3>${ns.title}</h3>
+            <div class="session-meta">
+              <span><strong>Fecha:</strong> ${ns.date}</span>
+              <span><strong>Formato:</strong> ${ns.format}</span>
+            </div>
+          </div>
+          <div class="agenda-box">
+            <small>Agenda Propuesta</small>
+            <ol>${ns.agenda.map((a) => `<li>${a}</li>`).join("")}</ol>
+          </div>
+        `;
+
+        // Agreements
+        document.getElementById("agreementsContainer").innerHTML = data.agreements
+          .map(
+            (ag) => `
+              <article class="agreement-card">
+                <span class="status-badge st-green">${ag.date}</span>
+                <h3>${ag.title}</h3>
+                <p>${ag.detail}</p>
+              </article>
+            `
+          )
+          .join("");
+
+        // Support
+        const sup = data.support;
+        document.getElementById("supportHeadline").textContent = sup.headline;
+        document.getElementById("supportSubline").textContent = sup.subline;
+        document.getElementById("supportWaBtn").href =
+          `https://wa.me/${sup.whatsappNumber.replace(/\D/g, "")}?text=${encodeURIComponent(sup.whatsappPrefill)}`;
+        document.getElementById("supportEmailBtn").href =
+          `mailto:${sup.email}?subject=${encodeURIComponent("Seguimiento Plataforma Digital Medelsa")}`;
+        document.getElementById("copyEmailBtn").onclick = () => {
+          navigator.clipboard?.writeText(sup.email);
+          const toast = document.getElementById("toast");
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 2400);
+        };
+      }
+
+      // Tabs logic
+      const tabButtons = Array.from(document.querySelectorAll(".tab-btn"));
+      const tabPanels = Array.from(document.querySelectorAll(".tab-panel"));
+      tabButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.tab;
+          tabButtons.forEach((b) => {
+            const act = b.dataset.tab === target;
+            b.classList.toggle("active", act);
+            b.setAttribute("aria-selected", String(act));
+          });
+          tabPanels.forEach((p) => {
+            p.classList.toggle("active", p.id === `panel-${target}`);
+          });
+        });
+      });
+
+      // Modal logic
+      function openModal(id) {
+        document.getElementById(id)?.classList.add("open");
+      }
+      function closeModal(id) {
+        document.getElementById(id)?.classList.remove("open");
+      }
+      document.querySelectorAll(".modal-backdrop").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          if (e.target === el) el.classList.remove("open");
+        });
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          document.querySelectorAll(".modal-backdrop.open").forEach((m) => m.classList.remove("open"));
+        }
+      });
+
+      // Load live JSON with local fallback
+      fetch("./ops-data/client-portal.json", { cache: "no-store" })
+        .then((res) => (res.ok ? res.json() : Promise.reject(new Error("HTTP " + res.status))))
+        .then((json) => renderPortal(json))
+        .catch(() => renderPortal(FALLBACK_DATA));
+    </script>
+  </body>
+</html>
