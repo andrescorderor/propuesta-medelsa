@@ -177,9 +177,11 @@
     }
   ],
   "support": {
-    "label": "Información de contacto",
-    "email": "andresmcorderor@gmail.com",
-    "phone": "+52 477 000 0000",
+    "company": "Uanify",
+    "tagline": "Ingeniería de Software e IA Estratégica",
+    "website": "https://uanify.com/",
+    "email": "info@uanify.com",
+    "phone": "+52 477 520 2961",
     "location": "León, Guanajuato · México"
   }
 }

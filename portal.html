@@ -913,29 +913,25 @@
             </div>
           </article>
 
-          <article class="access-card">
+          <article class="access-card" style="opacity: 0.78">
             <div>
-              <span class="status-badge st-amber">Guía de Arranque</span>
-              <h3 style="margin-top: 10px">Checklist de Material y Dominio (Onboarding)</h3>
-              <p>Cómo organizar la carpeta de marca, fotografías por categoría y qué dato necesitamos para enlazar su dominio actual.</p>
+              <span class="status-badge st-slate">Pendiente</span>
+              <h3 style="margin-top: 10px">Guía de Arranque y Entrega de Material</h3>
+              <p>Se generará a la medida en cuanto definamos en conjunto la estructura detallada de cada página y sus portafolios.</p>
             </div>
             <div>
-              <button type="button" class="btn-outline" onclick="openModal('modal-onboarding')">
-                Abrir Guía de Onboarding →
-              </button>
+              <span class="status-badge st-slate">Disponible tras definir estructura</span>
             </div>
           </article>
 
-          <article class="access-card">
+          <article class="access-card" style="opacity: 0.78">
             <div>
-              <span class="status-badge st-green">Guía de Uso</span>
-              <h3 style="margin-top: 10px">Cómo Publicar Artículos en el Blog (/admin)</h3>
-              <p>Flujo sencillo en 4 pasos para acceder desde el ícono discreto, subir portada, insertar fotos internas y publicar.</p>
+              <span class="status-badge st-slate">Pendiente</span>
+              <h3 style="margin-top: 10px">Guía de Uso del Blog (/admin)</h3>
+              <p>Manual rápido paso a paso para redactar artículos e insertar fotografías internas. Se habilitará una vez construido el módulo.</p>
             </div>
             <div>
-              <button type="button" class="btn-outline" onclick="openModal('modal-blog-guide')">
-                Abrir Guía del Blog →
-              </button>
+              <span class="status-badge st-slate">Disponible al liberar el software</span>
             </div>
           </article>
         </div>
@@ -954,35 +950,50 @@
         <div class="agreements-grid" id="agreementsContainer"></div>
       </section>
 
-      <!-- Pie discreto con acceso a ver información de contacto -->
+      <!-- Pie discreto con branding de Uanify y acceso a ver información de contacto -->
       <footer style="margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted)">
-        <span>Medelsa. · Portal de seguimiento del proyecto</span>
+        <span>
+          Medelsa. · Desarrollado por
+          <a href="https://uanify.com/" target="_blank" rel="noopener noreferrer" style="color: var(--fg); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border)">
+            Uanify
+          </a>
+          <span style="opacity: 0.75">· Ingeniería de Software e IA Estratégica</span>
+        </span>
         <button type="button" class="btn-outline" onclick="openModal('modal-contact')">
           Ver información de contacto
         </button>
       </footer>
     </div>
 
-    <!-- Modal 3: Información de Contacto -->
+    <!-- Modal: Información de Contacto (Uanify) -->
     <div class="modal-backdrop" id="modal-contact" role="dialog" aria-modal="true" aria-labelledby="m3-title">
       <div class="modal-box" style="width: min(480px, 100%)">
         <div class="modal-head">
           <div>
-            <span class="status-badge st-slate">Contacto</span>
+            <span class="status-badge st-green" id="contactModalCompany">Uanify</span>
             <h2 id="m3-title" style="font-size: 1.3rem; font-weight: 500; margin-top: 8px">
               Información de contacto
             </h2>
+            <p id="contactModalTagline" style="font-size: 0.8rem; color: var(--muted); margin-top: 3px">
+              Ingeniería de Software e IA Estratégica
+            </p>
           </div>
           <button type="button" class="modal-close" onclick="closeModal('modal-contact')" aria-label="Cerrar">✕</button>
         </div>
         <div class="modal-body">
           <div class="modal-step">
-            <strong>Correo electrónico</strong>
-            <span id="contactModalEmail">andresmcorderor@gmail.com</span>
+            <strong>Sitio web</strong>
+            <a id="contactModalWebsite" href="https://uanify.com/" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 500">
+              https://uanify.com/ ↗
+            </a>
           </div>
           <div class="modal-step">
-            <strong>Teléfono / WhatsApp</strong>
-            <span id="contactModalPhone">+52 477 000 0000</span>
+            <strong>Correo electrónico</strong>
+            <span id="contactModalEmail">info@uanify.com</span>
+          </div>
+          <div class="modal-step">
+            <strong>Teléfono</strong>
+            <span id="contactModalPhone">+52 477 520 2961</span>
           </div>
           <div class="modal-step">
             <strong>Ubicación</strong>
@@ -1124,9 +1135,11 @@
           { date: "Validado", title: "Uso del Dominio Corporativo Existente", detail: "Se aprovechará el dominio actual de Medelsa una vez confirmados los accesos de configuración DNS." }
         ],
         support: {
-          label: "Información de contacto",
-          email: "andresmcorderor@gmail.com",
-          phone: "+52 477 000 0000",
+          company: "Uanify",
+          tagline: "Ingeniería de Software e IA Estratégica",
+          website: "https://uanify.com/",
+          email: "info@uanify.com",
+          phone: "+52 477 520 2961",
           location: "León, Guanajuato · México"
         }
       };
@@ -1250,8 +1263,15 @@
           )
           .join("");
 
-        // Contact info modal
+        // Contact info modal (Uanify)
         const sup = data.support || {};
+        if (sup.company) document.getElementById("contactModalCompany").textContent = sup.company;
+        if (sup.tagline) document.getElementById("contactModalTagline").textContent = sup.tagline;
+        if (sup.website) {
+          const webEl = document.getElementById("contactModalWebsite");
+          webEl.href = sup.website;
+          webEl.textContent = `${sup.website} ↗`;
+        }
         if (sup.email) document.getElementById("contactModalEmail").textContent = sup.email;
         if (sup.phone) document.getElementById("contactModalPhone").textContent = sup.phone;
         if (sup.location) document.getElementById("contactModalLocation").textContent = sup.location;
