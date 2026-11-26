@@ -177,10 +177,9 @@
     }
   ],
   "support": {
-    "headline": "¿Dudas sobre el avance o entrega de material?",
-    "subline": "Atención directa para el equipo de Medelsa durante todo el proceso de diseño y lanzamiento.",
-    "whatsappNumber": "524770000000",
-    "whatsappPrefill": "Hola, te escribo desde el Portal de Progreso de la Plataforma Digital Medelsa.",
-    "email": "andresmcorderor@gmail.com"
+    "label": "Información de contacto",
+    "email": "andresmcorderor@gmail.com",
+    "phone": "+52 477 000 0000",
+    "location": "León, Guanajuato · México"
   }
 }

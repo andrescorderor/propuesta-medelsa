@@ -954,24 +954,42 @@
         <div class="agreements-grid" id="agreementsContainer"></div>
       </section>
 
-      <!-- Banner de Soporte Directo -->
-      <footer class="support-footer">
-        <div>
-          <h3 id="supportHeadline">¿Dudas sobre el avance o entrega de material?</h3>
-          <p id="supportSubline">Atención directa para el equipo de Medelsa durante todo el proceso de diseño y lanzamiento.</p>
-        </div>
-        <div class="support-actions">
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-wa" id="supportWaBtn">
-            WhatsApp Directo ↗
-          </a>
-          <a href="#" class="btn-outline" id="supportEmailBtn">
-            Enviar Correo ↗
-          </a>
-          <button type="button" class="btn-outline" id="copyEmailBtn">
-            Copiar Correo
-          </button>
-        </div>
+      <!-- Pie discreto con acceso a ver información de contacto -->
+      <footer style="margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 0.78rem; color: var(--muted)">
+        <span>Medelsa. · Portal de seguimiento del proyecto</span>
+        <button type="button" class="btn-outline" onclick="openModal('modal-contact')">
+          Ver información de contacto
+        </button>
       </footer>
+    </div>
+
+    <!-- Modal 3: Información de Contacto -->
+    <div class="modal-backdrop" id="modal-contact" role="dialog" aria-modal="true" aria-labelledby="m3-title">
+      <div class="modal-box" style="width: min(480px, 100%)">
+        <div class="modal-head">
+          <div>
+            <span class="status-badge st-slate">Contacto</span>
+            <h2 id="m3-title" style="font-size: 1.3rem; font-weight: 500; margin-top: 8px">
+              Información de contacto
+            </h2>
+          </div>
+          <button type="button" class="modal-close" onclick="closeModal('modal-contact')" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-step">
+            <strong>Correo electrónico</strong>
+            <span id="contactModalEmail">andresmcorderor@gmail.com</span>
+          </div>
+          <div class="modal-step">
+            <strong>Teléfono / WhatsApp</strong>
+            <span id="contactModalPhone">+52 477 000 0000</span>
+          </div>
+          <div class="modal-step">
+            <strong>Ubicación</strong>
+            <span id="contactModalLocation">León, Guanajuato · México</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Modal 1: Guía de Onboarding y Dominio -->
@@ -1106,11 +1124,10 @@
           { date: "Validado", title: "Uso del Dominio Corporativo Existente", detail: "Se aprovechará el dominio actual de Medelsa una vez confirmados los accesos de configuración DNS." }
         ],
         support: {
-          headline: "¿Dudas sobre el avance o entrega de material?",
-          subline: "Atención directa para el equipo de Medelsa durante todo el proceso de diseño y lanzamiento.",
-          whatsappNumber: "524770000000",
-          whatsappPrefill: "Hola, te escribo desde el Portal de Progreso de la Plataforma Digital Medelsa.",
-          email: "andresmcorderor@gmail.com"
+          label: "Información de contacto",
+          email: "andresmcorderor@gmail.com",
+          phone: "+52 477 000 0000",
+          location: "León, Guanajuato · México"
         }
       };
 
@@ -1233,20 +1250,11 @@
           )
           .join("");
 
-        // Support
-        const sup = data.support;
-        document.getElementById("supportHeadline").textContent = sup.headline;
-        document.getElementById("supportSubline").textContent = sup.subline;
-        document.getElementById("supportWaBtn").href =
-          `https://wa.me/${sup.whatsappNumber.replace(/\D/g, "")}?text=${encodeURIComponent(sup.whatsappPrefill)}`;
-        document.getElementById("supportEmailBtn").href =
-          `mailto:${sup.email}?subject=${encodeURIComponent("Seguimiento Plataforma Digital Medelsa")}`;
-        document.getElementById("copyEmailBtn").onclick = () => {
-          navigator.clipboard?.writeText(sup.email);
-          const toast = document.getElementById("toast");
-          toast.classList.add("show");
-          setTimeout(() => toast.classList.remove("show"), 2400);
-        };
+        // Contact info modal
+        const sup = data.support || {};
+        if (sup.email) document.getElementById("contactModalEmail").textContent = sup.email;
+        if (sup.phone) document.getElementById("contactModalPhone").textContent = sup.phone;
+        if (sup.location) document.getElementById("contactModalLocation").textContent = sup.location;
       }
 
       // Tabs logic
