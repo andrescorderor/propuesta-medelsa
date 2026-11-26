@@ -4,12 +4,12 @@
     "projectName": "Plataforma Digital & Portafolios",
     "scopeLabel": "Opción A · Plataforma Web Base + CMS Exclusivo de Blogs",
     "location": "León, Guanajuato · Operación en todo México",
-    "healthStatus": "Listo para Arranque",
-    "healthTone": "green",
-    "lastUpdated": "25 de noviembre de 2026",
-    "progressPercent": 20,
-    "currentPhase": "Fase 1 · Identidad Digital y Estructura",
-    "targetGoLive": "6 semanas desde recepción de insumos",
+    "healthStatus": "En Definición Inicial",
+    "healthTone": "amber",
+    "lastUpdated": "26 de noviembre de 2026",
+    "progressPercent": 5,
+    "currentPhase": "Inicio · Definición de Estructura",
+    "targetGoLive": "6 semanas tras aprobar estructura e insumos",
     "hostingCost": "$0 USD / mes"
   },
   "phases": [
@@ -17,9 +17,9 @@
       "id": "f1",
       "code": "Fase 01",
       "weeks": "Semana 1",
-      "title": "Identidad Digital, Dirección Visual y Estructura",
-      "status": "En Construcción",
-      "summary": "Definición detallada de páginas, categorías de portafolio y nueva propuesta visual audaz y poco convencional."
+      "title": "Definición de Estructura y Dirección Visual",
+      "status": "Por Iniciar",
+      "summary": "Sesión de trabajo para definir la estructura detallada de cada página, las 3 categorías y el diseño visual final."
     },
     {
       "id": "f2",
@@ -27,7 +27,7 @@
       "weeks": "Semanas 2 – 3",
       "title": "Diseño Responsivo, Portafolios y Motor Trilingüe",
       "status": "Pendiente",
-      "summary": "Construcción de las 3 categorías, ficha técnica por obra, experiencia móvil/escritorio y conmutación ES / EN / JA."
+      "summary": "Construcción del sitio con la nueva línea visual, 3 categorías de portafolio, ficha por obra y motor ES / EN / JA."
     },
     {
       "id": "f3",
@@ -49,55 +49,55 @@
   "modules": [
     {
       "id": "m1",
-      "name": "Nueva Dirección Visual y Arquitectura del Sitio",
-      "status": "En Construcción",
-      "detail": "Evolución estética hacia un diseño más ostentoso, llamativo y poco convencional, partiendo de la estructura validada."
+      "name": "Estructura a Detalle y Nueva Dirección Visual",
+      "status": "Por Definir en Reunión",
+      "detail": "Definición de secciones, contenido por página y nueva línea estética más llamativa y poco convencional."
     },
     {
       "id": "m2",
       "name": "Portafolios por Categoría (3) y Ficha por Obra",
-      "status": "Listo en Demo",
+      "status": "Pendiente",
       "detail": "Catálogo interactivo con ficha técnica adaptable (memoria descriptiva, m², año, ubicación, materiales y galería)."
     },
     {
       "id": "m3",
       "name": "Secciones Institucionales (Nosotros y Menciones)",
-      "status": "Listo en Demo",
-      "detail": "Presentación de trayectoria, premios y publicaciones con redacción editorial a partir de la información de marca."
+      "status": "Pendiente",
+      "detail": "Presentación de trayectoria, premios y publicaciones redactada a partir de la información de marca de Medelsa."
     },
     {
       "id": "m4",
-      "name": "Motor de Contacto Translúcido y Formulario Base",
-      "status": "Listo para Prueba",
+      "name": "Motor de Contacto Circular Translúcido y Formulario",
+      "status": "Pendiente",
       "detail": "Botones circulares translúcidos en esquina inferior derecha (web y móvil) + formulario al cierre de cada página."
     },
     {
       "id": "m5",
       "name": "CMS Exclusivo de Blogs (/admin)",
-      "status": "Listo en Demo",
+      "status": "Pendiente",
       "detail": "Acceso discreto por ícono en el pie de página para redactar ensayos, cargar portada e insertar fotos dentro del artículo."
     },
     {
       "id": "m6",
       "name": "Motor Trilingüe (ES / EN / JA) e Infraestructura $0 USD",
-      "status": "Listo en Demo",
+      "status": "Pendiente",
       "detail": "Navegación instantánea en 3 idiomas sobre nube de Google con certificado SSL y cero rentas mensuales."
     }
   ],
   "clientInputs": [
     {
       "id": "in1",
-      "title": "Información de Identidad y Marca",
-      "detail": "Logotipo oficial en alta resolución/vector, lineamientos de marca, filosofía y valores para desarrollar el contenido editorial.",
-      "owner": "Dirección / Marca Medelsa",
+      "title": "Reunión de Estructura y Dirección Visual",
+      "detail": "Definir en conjunto el mapa de páginas, las 3 categorías y el estilo visual que servirá de base para el diseño final.",
+      "owner": "Dirección Medelsa",
       "status": "Pendiente"
     },
     {
       "id": "in2",
-      "title": "Validación de Estructura y Dirección Visual",
-      "detail": "Confirmación del mapa detallado de secciones y selección de la línea visual de alto impacto con dirección.",
-      "owner": "Dirección Medelsa",
-      "status": "En Revisión"
+      "title": "Información de Identidad y Marca",
+      "detail": "Logotipo oficial en alta resolución/vector, lineamientos de marca, filosofía y valores para desarrollar el contenido editorial.",
+      "owner": "Dirección / Marca Medelsa",
+      "status": "Pendiente"
     },
     {
       "id": "in3",
@@ -130,18 +130,18 @@
   ],
   "links": {
     "demoUrl": "https://architechts.vercel.app/",
-    "demoLabel": "Explorar Prototipo Conceptual",
+    "demoLabel": "Ver Prototipo Conceptual Inicial",
     "proposalUrl": "https://andrescorderor.github.io/propuesta-medelsa/",
     "proposalLabel": "Ver Propuesta Comercial"
   },
   "nextSession": {
-    "title": "Sesión de Definición de Estructura y Dirección Visual",
+    "title": "Sesión de Definición de Estructura y Diseño Final",
     "date": "Por confirmar con el equipo de Medelsa",
-    "format": "Sesión ejecutiva · 45 min (Videollamada o presencial)",
+    "format": "Sesión de trabajo · 45 min (Videollamada o presencial)",
     "agenda": [
-      "Revisar 3 propuestas de dirección visual más audaces, llamativas y poco convencionales.",
-      "Cerrar la estructura sección por sección y confirmar las 3 categorías de portafolio.",
-      "Alinear carpeta de insumos de marca y confirmar al responsable del dominio Medelsa."
+      "Definir a detalle la estructura de páginas y las 3 categorías de portafolio.",
+      "Explorar referencias y definir la nueva dirección visual más llamativa y poco convencional.",
+      "Acordar entrega de información de marca y ubicar al responsable del dominio Medelsa."
     ]
   },
   "agreements": [
@@ -163,7 +163,7 @@
     {
       "date": "Validado",
       "title": "Evolución Estética de Alto Impacto",
-      "detail": "Se diseñará una experiencia visual más ostentosa, llamativa y fuera de lo convencional antes de maquetar las vistas finales."
+      "detail": "Se definirá una propuesta visual más ostentosa, llamativa y fuera de lo convencional antes de maquetar las vistas finales."
     },
     {
       "date": "Validado",
