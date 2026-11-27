@@ -210,8 +210,8 @@
     }
   ],
   "aiSync": {
-    "lastRunAt": "2026-11-27T06:39:51.621Z",
+    "lastRunAt": "2026-11-27T06:44:42.086Z",
     "lastCommitSha": "081c385",
-    "lastSummary": "Sincronización directa (sin GEMINI_API_KEY configurada)."
+    "lastSummary": "Respaldo determinístico (Gemini HTTP 404)."
   }
 }
