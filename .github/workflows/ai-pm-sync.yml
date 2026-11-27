@@ -1,0 +1,37 @@
+name: Uanify AI PM Sync -> Client Portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ops-data/pm-state.json'
+  repository_dispatch:
+    types: [code-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-client-portal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Proposal & Portals Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run AI PM Agent (Gemini Free Tier -> ops-data/client-portal.json)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PORTAL_SYNC_TOKEN: ${{ secrets.PORTAL_SYNC_TOKEN }}
+        run: node scripts/ai-pm-sync.mjs
+
+      - name: Commit Updated Client Portal & PM Telemetry
+        run: |
+          git config user.name "Uanify AI PM Bot"
+          git config user.email "info@uanify.com"
+          git diff --quiet ops-data/ || (git add ops-data/client-portal.json ops-data/pm-state.json && git commit -m "chore(portal): sync client portal via AI PM [skip ci]" && git push)

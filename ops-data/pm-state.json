@@ -1,0 +1,217 @@
+{
+  "project": {
+    "clientName": "Medelsa.",
+    "projectName": "Plataforma Digital & Portafolios",
+    "scopeLabel": "Opción A · Plataforma Web Base + CMS Exclusivo de Blogs",
+    "location": "León, Guanajuato · Operación en todo México",
+    "codeRepo": "andrescorderor/arch-studio",
+    "portalRepo": "andrescorderor/propuesta-medelsa",
+    "portalPath": "ops-data/client-portal.json",
+    "healthStatus": "En Definición Inicial",
+    "healthTone": "amber",
+    "progressPercent": 5,
+    "currentPhase": "Inicio · Definición de Estructura",
+    "targetGoLive": "6 semanas tras aprobar estructura e insumos",
+    "lastUpdated": "27 de noviembre de 2026"
+  },
+  "finances": {
+    "totalMxn": 22000,
+    "anticipoPercent": 30,
+    "anticipoMxn": 6600,
+    "anticipoPaid": false,
+    "entregaPercent": 70,
+    "entregaMxn": 15400,
+    "entregaPaid": false,
+    "notes": "Opción A aprobada por cliente (sin módulos opcionales de configuración). Dominio existente de Medelsa."
+  },
+  "phases": [
+    {
+      "id": "f1",
+      "code": "Fase 01",
+      "weeks": "Semana 1",
+      "title": "Definición de Estructura y Dirección Visual",
+      "status": "Por Iniciar",
+      "summary": "Sesión de trabajo para definir la estructura detallada de cada página, las 3 categorías y el diseño visual final."
+    },
+    {
+      "id": "f2",
+      "code": "Fase 02",
+      "weeks": "Semanas 2 – 3",
+      "title": "Diseño Responsivo, Portafolios y Motor Trilingüe",
+      "status": "Pendiente",
+      "summary": "Construcción del sitio con la nueva línea visual, 3 categorías de portafolio, ficha por obra y motor ES / EN / JA."
+    },
+    {
+      "id": "f3",
+      "code": "Fase 03",
+      "weeks": "Semanas 4 – 5",
+      "title": "CMS Exclusivo de Blogs y Motor de Contacto",
+      "status": "Pendiente",
+      "summary": "Panel privado /admin con acceso discreto para publicar artículos con fotografías internas y panel de contacto translúcido."
+    },
+    {
+      "id": "f4",
+      "code": "Fase 04",
+      "weeks": "Semana 6",
+      "title": "Carga de Obras, Dominio Medelsa y Lanzamiento",
+      "status": "Pendiente",
+      "summary": "Optimización y carga de hasta 15 proyectos base (5 por categoría), enlace DNS al dominio existente y liberación en vivo."
+    }
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "name": "Estructura a Detalle y Nueva Dirección Visual",
+      "status": "Por Definir en Reunión",
+      "detail": "Definición de secciones, contenido por página y nueva línea estética más llamativa y poco convencional."
+    },
+    {
+      "id": "m2",
+      "name": "Portafolios por Categoría (3) y Ficha por Obra",
+      "status": "Pendiente",
+      "detail": "Catálogo interactivo con ficha técnica adaptable (memoria descriptiva, m², año, ubicación, materiales y galería)."
+    },
+    {
+      "id": "m3",
+      "name": "Secciones Institucionales (Nosotros y Menciones)",
+      "status": "Pendiente",
+      "detail": "Presentación de trayectoria, premios y publicaciones redactada a partir de la información de marca de Medelsa."
+    },
+    {
+      "id": "m4",
+      "name": "Motor de Contacto Circular Translúcido y Formulario",
+      "status": "Pendiente",
+      "detail": "Botones circulares translúcidos en esquina inferior derecha (web y móvil) + formulario al cierre de cada página."
+    },
+    {
+      "id": "m5",
+      "name": "CMS Exclusivo de Blogs (/admin)",
+      "status": "Pendiente",
+      "detail": "Acceso discreto por ícono en el pie de página para redactar ensayos, cargar portada e insertar fotos dentro del artículo."
+    },
+    {
+      "id": "m6",
+      "name": "Motor Trilingüe (ES / EN / JA) e Infraestructura $0 USD",
+      "status": "Pendiente",
+      "detail": "Navegación instantánea en 3 idiomas sobre nube de Google con certificado SSL y cero rentas mensuales."
+    }
+  ],
+  "internalTasks": [
+    {
+      "id": "t1",
+      "title": "Reunión con Medelsa usando docs/06_guia_definicion_estructura_y_diseno.md",
+      "priority": "Alta",
+      "done": false
+    },
+    {
+      "id": "t2",
+      "title": "Definir propuesta visual audaz/poco convencional (aprobar Hero antes de maquetar todo)",
+      "priority": "Alta",
+      "done": false
+    },
+    {
+      "id": "t3",
+      "title": "Confirmar acceso DNS al dominio existente de Medelsa",
+      "priority": "Media",
+      "done": false
+    },
+    {
+      "id": "t4",
+      "title": "Confirmar recepción de anticipo 30% ($6,600 MXN)",
+      "priority": "Alta",
+      "done": false
+    }
+  ],
+  "clientInputs": [
+    {
+      "id": "in1",
+      "title": "Reunión de Estructura y Dirección Visual",
+      "detail": "Definir en conjunto el mapa de páginas, las 3 categorías y el estilo visual que servirá de base para el diseño final.",
+      "owner": "Dirección Medelsa",
+      "status": "Pendiente"
+    },
+    {
+      "id": "in2",
+      "title": "Información de Identidad y Marca",
+      "detail": "Logotipo oficial en alta resolución/vector, lineamientos de marca, filosofía y valores para desarrollar el contenido editorial.",
+      "owner": "Dirección / Marca Medelsa",
+      "status": "Pendiente"
+    },
+    {
+      "id": "in3",
+      "title": "Definición de Categorías y Material por Proyecto",
+      "detail": "Confirmar las 3 categorías de portafolio y definir fotografías/datos disponibles por obra (hasta 5 proyectos por categoría).",
+      "owner": "Equipo de Proyectos Medelsa",
+      "status": "Pendiente"
+    },
+    {
+      "id": "in4",
+      "title": "Contacto / Acceso del Dominio Existente de Medelsa",
+      "detail": "Identificar quién administra el dominio actual utilizado en los correos corporativos para apuntar los registros DNS.",
+      "owner": "Administración / TI Medelsa",
+      "status": "Pendiente"
+    },
+    {
+      "id": "in5",
+      "title": "Canales Oficiales de Contacto y Aviso de Privacidad",
+      "detail": "Confirmar número de WhatsApp y/o correo receptor de prospectos, así como razón social para el aviso legal.",
+      "owner": "Área Comercial Medelsa",
+      "status": "Pendiente"
+    },
+    {
+      "id": "in6",
+      "title": "Menciones, Premios y Artículos Iniciales de Blog (Opcional)",
+      "detail": "Listado de reconocimientos o publicaciones y 1 a 3 artículos iniciales si desean estrenar el blog el día del lanzamiento.",
+      "owner": "Dirección Medelsa",
+      "status": "Pendiente"
+    }
+  ],
+  "meetingNotes": "26/11/2026: Cliente aprobó Opción A ($22,000 MXN, solo CMS de Blogs). Pendiente agendar sesión para definir estructura de páginas y nueva dirección visual más llamativa y poco convencional. Usar siempre término 'Estudio' (nunca 'despacho').",
+  "nextSession": {
+    "title": "Sesión de Definición de Estructura y Diseño Final",
+    "date": "Por confirmar con el equipo de Medelsa",
+    "format": "Sesión de trabajo · 45 min (Videollamada o presencial)",
+    "agenda": [
+      "Definir a detalle la estructura de páginas y las 3 categorías de portafolio.",
+      "Explorar referencias y definir la nueva dirección visual más llamativa y poco convencional.",
+      "Acordar entrega de información de marca y ubicar al responsable del dominio Medelsa."
+    ]
+  },
+  "agreements": [
+    {
+      "date": "Validado",
+      "title": "Alcance Aprobado · Opción A ($22,000 MXN)",
+      "detail": "Plataforma Web Base + CMS exclusivo para publicación de Blogs (sin módulos de edición de obras, categorías ni teléfonos)."
+    },
+    {
+      "date": "Validado",
+      "title": "Acceso Discreto al Panel /admin",
+      "detail": "Reemplazo de la palabra 'Admin' por un ícono minimalista integrado al pie de página."
+    },
+    {
+      "date": "Validado",
+      "title": "Panel Flotante de Contacto Circular Translúcido",
+      "detail": "Botones circulares translúcidos en la esquina inferior derecha para navegación limpia en escritorio y móvil."
+    },
+    {
+      "date": "Validado",
+      "title": "Evolución Estética de Alto Impacto",
+      "detail": "Se definirá una propuesta visual más ostentosa, llamativa y fuera de lo convencional antes de maquetar las vistas finales."
+    },
+    {
+      "date": "Validado",
+      "title": "Contenido Co-creado a partir de la Marca",
+      "detail": "Medelsa proporcionará la información base de marca y el material disponible por proyecto para completar el resto de la narrativa."
+    },
+    {
+      "date": "Validado",
+      "title": "Uso del Dominio Corporativo Existente",
+      "detail": "Se aprovechará el dominio actual de Medelsa una vez confirmados los accesos de configuración DNS."
+    }
+  ],
+  "aiSync": {
+    "lastRunAt": "Pendiente de primera ejecución automática",
+    "lastCommitSha": "",
+    "lastSummary": "Configura GEMINI_API_KEY en los Secrets de propuesta-medelsa para activar el Agente PM."
+  }
+}
