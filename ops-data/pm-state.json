@@ -210,8 +210,8 @@
     }
   ],
   "aiSync": {
-    "lastRunAt": "Pendiente de primera ejecución automática",
-    "lastCommitSha": "",
-    "lastSummary": "Configura GEMINI_API_KEY en los Secrets de propuesta-medelsa para activar el Agente PM."
+    "lastRunAt": "2026-11-27T06:39:51.621Z",
+    "lastCommitSha": "081c385",
+    "lastSummary": "Sincronización directa (sin GEMINI_API_KEY configurada)."
   }
 }
