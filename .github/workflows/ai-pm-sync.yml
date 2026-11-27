@@ -5,8 +5,8 @@ on:
     branches: [main]
     paths:
       - 'ops-data/pm-state.json'
-  repository_dispatch:
-    types: [code-updated]
+  schedule:
+    - cron: '0 */2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Run AI PM Agent (Gemini Free Tier -> ops-data/client-portal.json)
+      - name: Run AI PM Agent (Gemini Free Tier -> PM & Client Portal)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          PORTAL_SYNC_TOKEN: ${{ secrets.PORTAL_SYNC_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
         run: node scripts/ai-pm-sync.mjs
 
       - name: Commit Updated Client Portal & PM Telemetry

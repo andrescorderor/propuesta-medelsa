@@ -4,7 +4,7 @@ import path from 'node:path';
 const PM_STATE_PATH = path.resolve('ops-data/pm-state.json');
 const CLIENT_PORTAL_PATH = path.resolve('ops-data/client-portal.json');
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
-const GITHUB_TOKEN = process.env.PORTAL_SYNC_TOKEN || process.env.GITHUB_TOKEN || '';
+const EVENT_NAME = process.env.EVENT_NAME || '';
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
 function formatDateEs(date = new Date()) {
@@ -18,15 +18,14 @@ function formatDateEs(date = new Date()) {
 
 async function fetchRecentCommits(codeRepo) {
   if (!codeRepo) return [];
-  const headers = {
-    Accept: 'application/vnd.github+json',
-    'User-Agent': 'uanify-ai-pm-agent',
-  };
-  if (GITHUB_TOKEN) headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
-
-  const res = await fetch(`https://api.github.com/repos/${codeRepo}/commits?per_page=12`, { headers });
+  const res = await fetch(`https://api.github.com/repos/${codeRepo}/commits?per_page=12`, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'uanify-ai-pm-agent',
+    },
+  });
   if (!res.ok) {
-    console.warn(`No se pudieron leer commits de ${codeRepo}: HTTP ${res.status}`);
+    console.warn(`No se pudieron leer commits públicos de ${codeRepo}: HTTP ${res.status}`);
     return [];
   }
   const list = await res.json();
@@ -77,23 +76,31 @@ function buildDeterministicPortal(pmState) {
 
 async function refineWithGemini(basePortal, pmState, commits) {
   if (!GEMINI_API_KEY) {
-    console.log('GEMINI_API_KEY no definida; usando sincronización determinística sin IA.');
-    return { portal: basePortal, summary: 'Sincronización directa (sin GEMINI_API_KEY configurada).' };
+    console.log('GEMINI_API_KEY no definida; usando sincronización determinística.');
+    return {
+      portal: basePortal,
+      pmUpdates: null,
+      summary: 'Sincronización directa sin API Key.',
+    };
   }
 
   const prompt = `Eres el Project Manager Ejecutivo de Uanify para el proyecto "${pmState.project.projectName}" del cliente "${pmState.project.clientName}".
 
-Tu tarea es generar el JSON actualizado para el PORTAL PÚBLICO DEL CLIENTE (ops-data/client-portal.json), combinando:
-1. El estado interno del PM (fases, módulos, insumos del cliente, notas de reunión).
-2. Los commits recientes del repositorio de código.
+Analiza:
+1. El estado interno del PM (pmState).
+2. Los commits recientes de código del repositorio público "${pmState.project.codeRepo}".
 
-REGLAS ESTRICTAS DE SEGURIDAD Y ESTILO:
-- Devuelve EXCLUSIVAMENTE JSON válido (sin bloques markdown, sin comentarios) con exactamente estas 2 llaves raíz: { "portal": <objeto con exactamente las mismas claves que basePortal>, "executiveSummary": "<resumen interno de 1-2 frases para Uanify sobre qué se actualizó>" }.
+Tu tarea es devolver EXCLUSIVAMENTE un objeto JSON válido (sin markdown ni comentarios) con estas 3 llaves raíz:
+- "portal": objeto completo para el PORTAL DEL CLIENTE (mismas llaves que basePortal).
+- "pmUpdates": objeto con { "progressPercent": number, "healthStatus": string, "currentPhase": string, "phases": array, "modules": array } reflejando el avance real tras las integraciones de código y notas.
+- "executiveSummary": resumen breve de 1-2 frases para Uanify sobre qué integraciones se detectaron y qué se reflejó.
+
+REGLAS ESTRICTAS:
 - Lenguaje 100% ejecutivo y de negocio en español.
 - NUNCA uses la palabra "despacho"; usa siempre "Estudio" o "estudio de arquitectura".
-- NUNCA menciones finanzas internas, tarifas, montos de pago pendientes, IA, Gemini, GitHub, commits, archivos de código ni tareas internas privadas en el objeto "portal".
-- Respeta el progreso y estatus reales del PM: no marques módulos como "Listo" o "Aprobado" si en pmState están en "Pendiente" o "Por Definir en Reunión", a menos que las notas de reunión o commits recientes demuestren explícitamente que esa etapa ya se aprobó o completó.
-- Mantén intactos los datos de "support" (Uanify) y "links".
+- NUNCA incluyas finanzas internas, montos de pago, IA, Gemini, GitHub, commits, rutas de código ni tareas internas privadas dentro de "portal".
+- Si los commits corresponden a ajustes previos a la reunión de estructura (como preparar guías, portal, accesos discretos, panel de contacto), mantén un avance realista acorde al estado inicial hasta que las notas o commits indiquen nueva maquetación/diseño final.
+- Mantén intactos "support" y "links" en "portal".
 
 basePortal:
 ${JSON.stringify(basePortal)}
@@ -123,7 +130,11 @@ ${JSON.stringify(commits)}`;
   if (!res.ok) {
     const errText = await res.text();
     console.warn(`Gemini API falló (${res.status}): ${errText}. Usando respaldo determinístico.`);
-    return { portal: basePortal, summary: `Respaldo determinístico (Gemini HTTP ${res.status}).` };
+    return {
+      portal: basePortal,
+      pmUpdates: null,
+      summary: `Respaldo determinístico (Gemini HTTP ${res.status}).`,
+    };
   }
 
   const data = await res.json();
@@ -140,24 +151,41 @@ ${JSON.stringify(commits)}`;
 
   return {
     portal: parsed.portal,
-    summary: parsed.executiveSummary || 'Portal del cliente actualizado por Agente PM (Gemini).',
+    pmUpdates: parsed.pmUpdates || null,
+    summary: parsed.executiveSummary || 'Portal y PM actualizados por Agente IA (Gemini).',
   };
 }
 
 async function main() {
   const pmState = JSON.parse(await fs.readFile(PM_STATE_PATH, 'utf8'));
   const commits = await fetchRecentCommits(pmState.project.codeRepo);
+  const latestSha = commits[0]?.sha || '';
+
+  if (EVENT_NAME === 'schedule' && latestSha && latestSha === pmState.aiSync?.lastCommitSha) {
+    console.log(`Sin commits nuevos desde ${latestSha}; omitiendo sync programado.`);
+    return;
+  }
+
   const basePortal = buildDeterministicPortal(pmState);
-  const { portal, summary } = await refineWithGemini(basePortal, pmState, commits);
+  const { portal, pmUpdates, summary } = await refineWithGemini(basePortal, pmState, commits);
 
   await fs.writeFile(CLIENT_PORTAL_PATH, JSON.stringify(portal, null, 2) + '\n', 'utf8');
+
+  if (pmUpdates) {
+    if (typeof pmUpdates.progressPercent === 'number') pmState.project.progressPercent = pmUpdates.progressPercent;
+    if (pmUpdates.healthStatus) pmState.project.healthStatus = pmUpdates.healthStatus;
+    if (pmUpdates.currentPhase) pmState.project.currentPhase = pmUpdates.currentPhase;
+    if (Array.isArray(pmUpdates.phases)) pmState.phases = pmUpdates.phases;
+    if (Array.isArray(pmUpdates.modules)) pmState.modules = pmUpdates.modules;
+  }
 
   pmState.project.lastUpdated = formatDateEs();
   pmState.aiSync = {
     lastRunAt: new Date().toISOString(),
-    lastCommitSha: commits[0]?.sha || '',
+    lastCommitSha: latestSha,
     lastSummary: summary,
   };
+
   await fs.writeFile(PM_STATE_PATH, JSON.stringify(pmState, null, 2) + '\n', 'utf8');
   console.log('Sync completado:', summary);
 }

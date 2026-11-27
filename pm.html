@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Uanify PM Privado â€” Medelsa.</title>
+    <title>Uanify PM Privado — Medelsa.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,7 +21,6 @@
         --primary: #93b59e;
         --primary-dark: #3d5a47;
         --amber: #e2b06b;
-        --danger: #e07a7a;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
@@ -31,25 +30,16 @@
         min-height: 100svh;
         overflow-x: hidden;
       }
-      a, button, select, input[type="checkbox"] { cursor: pointer !important; }
+      a, button { cursor: pointer !important; }
 
       .shell { width: min(1240px, 100%); margin: 0 auto; padding: 24px 20px 64px; display: flex; flex-direction: column; gap: 20px; }
       .topbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
       .brand { font-size: 1.45rem; font-weight: 600; letter-spacing: -0.04em; }
       .brand span { color: var(--primary); }
       .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 999px; font-family: "JetBrains Mono", monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; background: rgba(147, 181, 158, 0.14); color: var(--primary); }
+      .pill.amber { background: rgba(226, 176, 107, 0.16); color: var(--amber); }
       .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); color: var(--fg); font-family: inherit; font-size: 0.82rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
       .btn:hover { border-color: var(--primary); color: var(--primary); }
-      .btn.primary { background: var(--primary-dark); border-color: var(--primary-dark); color: #ffffff; }
-      .btn.primary:hover { filter: brightness(1.12); color: #ffffff; }
-      .btn.ai { background: var(--primary); border-color: var(--primary); color: #1e2024; font-weight: 600; }
-      .btn.ai:hover { filter: brightness(1.08); }
-      .btn:disabled { opacity: 0.5; pointer-events: none; }
-
-      .auth-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-      .input, .select, .textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--fg); padding: 10px 12px; font-family: inherit; font-size: 0.86rem; }
-      .input:focus, .select:focus, .textarea:focus { outline: none; border-color: var(--primary); }
-      .textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
 
       .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
       .tab { flex: 1; min-width: max-content; min-height: 40px; padding: 0 16px; border-radius: 9px; border: none; background: transparent; color: var(--muted); font-family: inherit; font-size: 0.84rem; font-weight: 500; }
@@ -60,16 +50,14 @@
 
       .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
       .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-      .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+      .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
       .card h3 { font-size: 1rem; font-weight: 500; }
-      .label { font-family: "JetBrains Mono", monospace; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 4px; display: block; }
+      .label { font-family: "JetBrains Mono", monospace; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); display: block; }
+      .val { font-size: 1.15rem; font-weight: 500; color: var(--fg); }
       .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-
-      .task-item { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
-      .task-item.done span { text-decoration: line-through; opacity: 0.55; }
-
-      .toast { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: #1e2024; font-weight: 600; padding: 12px 18px; border-radius: 12px; font-size: 0.84rem; opacity: 0; transform: translateY(12px); pointer-events: none; transition: all 0.25s; z-index: 99; }
-      .toast.show { opacity: 1; transform: translateY(0); }
+      .item-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+      .task-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+      .task-item.done span.txt { text-decoration: line-through; opacity: 0.55; }
 
       @media (max-width: 900px) {
         .grid-2, .grid-4 { grid-template-columns: 1fr; }
@@ -81,64 +69,44 @@
       <header class="topbar">
         <div class="row">
           <div class="brand">Uanify<span>.PM</span></div>
-          <span class="pill">Privado Â· Medelsa</span>
+          <span class="pill">Privado · Medelsa</span>
+          <span class="pill">Auto-Sync Activo · Sin PAT</span>
         </div>
         <div class="row">
           <a href="https://andrescorderor.github.io/propuesta-medelsa/portal.html" target="_blank" rel="noopener noreferrer" class="btn">
-            Ver Portal del Cliente â†—
+            Ver Portal del Cliente ↗
           </a>
-          <button type="button" class="btn primary" id="saveBtn" onclick="savePmState()">
-            Guardar Cambios
-          </button>
-          <button type="button" class="btn ai" id="syncBtn" onclick="triggerAiSync()">
-            âœ¨ Sincronizar con IA al Cliente
-          </button>
+          <a href="https://andrescorderor.github.io/propuesta-medelsa/" target="_blank" rel="noopener noreferrer" class="btn">
+            Ver Propuesta ↗
+          </a>
         </div>
       </header>
 
-      <!-- ConexiÃ³n segura con GitHub Token guardado solo en tu navegador -->
-      <section class="auth-bar">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          <strong style="font-size:0.86rem">ConexiÃ³n GitHub Privada:</strong>
-          <span id="connStatus" style="font-size:0.8rem;color:var(--amber)">Sin token (modo lectura local)</span>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;flex:1;max-width:520px;justify-content:flex-end">
-          <input type="password" id="patInput" class="input" style="max-width:300px" placeholder="Pega tu GitHub PAT (repo + workflow)" />
-          <button type="button" class="btn" onclick="connectGithub()">Conectar</button>
-          <button type="button" class="btn" onclick="disconnectGithub()">Salir</button>
-        </div>
-      </section>
-
       <nav class="tabs" role="tablist">
-        <button type="button" class="tab active" data-tab="resumen">01 Â· Resumen &amp; Finanzas</button>
-        <button type="button" class="tab" data-tab="fases">02 Â· Fases y MÃ³dulos</button>
-        <button type="button" class="tab" data-tab="insumos">03 Â· Insumos &amp; Notas de Junta</button>
-        <button type="button" class="tab" data-tab="tareas">04 Â· Tareas Internas &amp; Agente IA</button>
+        <button type="button" class="tab active" data-tab="resumen">01 · Resumen &amp; Finanzas</button>
+        <button type="button" class="tab" data-tab="fases">02 · Fases y Módulos</button>
+        <button type="button" class="tab" data-tab="insumos">03 · Insumos &amp; Notas de Junta</button>
+        <button type="button" class="tab" data-tab="tareas">04 · Tareas Internas &amp; Agente IA</button>
       </nav>
 
       <!-- TAB 1: RESUMEN Y FINANZAS PRIVADAS -->
       <section class="panel active" id="panel-resumen">
         <div class="grid-4">
           <div class="card">
-            <span class="label">Avance General (%)</span>
-            <input type="number" min="0" max="100" id="fProgress" class="input" />
+            <span class="label">Avance General</span>
+            <div class="val" id="vProgress">—</div>
           </div>
           <div class="card">
-            <span class="label">SemÃ¡foro de Salud</span>
-            <select id="fHealth" class="select">
-              <option value="En DefiniciÃ³n Inicial">En DefiniciÃ³n Inicial</option>
-              <option value="En Tiempo">En Tiempo</option>
-              <option value="En Pruebas">En Pruebas</option>
-              <option value="Listo para Lanzamiento">Listo para Lanzamiento</option>
-            </select>
+            <span class="label">Semáforo de Salud</span>
+            <div class="val" id="vHealth">—</div>
           </div>
           <div class="card">
             <span class="label">Fase Actual</span>
-            <input type="text" id="fPhase" class="input" />
+            <div class="val" id="vPhase">—</div>
           </div>
           <div class="card">
             <span class="label">Meta Go-Live</span>
-            <input type="text" id="fGoLive" class="input" />
+            <div class="val" id="vGoLive">—</div>
           </div>
         </div>
 
@@ -146,317 +114,152 @@
           <div class="card">
             <div class="row">
               <h3>Control Financiero Privado (Nunca visible al cliente)</h3>
-              <span class="pill">$22,000 MXN Â· OpciÃ³n A</span>
+              <span class="pill">$22,000 MXN · Opción A</span>
             </div>
-            <label class="task-item">
-              <input type="checkbox" id="finAnticipo" />
-              <span><strong>30% Anticipo ($6,600 MXN)</strong> â€” Recibido</span>
-            </label>
-            <label class="task-item">
-              <input type="checkbox" id="finEntrega" />
-              <span><strong>70% Contra Entrega ($15,400 MXN)</strong> â€” Recibido</span>
-            </label>
-            <div>
-              <span class="label">Notas financieras internas</span>
-              <textarea id="finNotes" class="textarea" style="min-height:70px"></textarea>
+            <div class="task-item">
+              <span><strong>30% Anticipo ($6,600 MXN)</strong></span>
+              <span class="pill" id="vAnticipo">Pendiente</span>
             </div>
+            <div class="task-item">
+              <span><strong>70% Contra Entrega ($15,400 MXN)</strong></span>
+              <span class="pill" id="vEntrega">Pendiente</span>
+            </div>
+            <p id="vFinNotes" style="font-size:0.84rem;color:var(--muted);line-height:1.5"></p>
           </div>
 
           <div class="card">
-            <h3>PrÃ³xima SesiÃ³n con Medelsa</h3>
-            <div>
-              <span class="label">TÃ­tulo de la sesiÃ³n</span>
-              <input type="text" id="nsTitle" class="input" />
-            </div>
-            <div class="grid-2">
-              <div>
-                <span class="label">Fecha y hora</span>
-                <input type="text" id="nsDate" class="input" />
-              </div>
-              <div>
-                <span class="label">Formato</span>
-                <input type="text" id="nsFormat" class="input" />
-              </div>
+            <h3>Próxima Sesión con Medelsa</h3>
+            <div class="item-box">
+              <strong id="nsTitle">—</strong>
+              <span style="font-size:0.84rem;color:var(--muted)" id="nsDate">—</span>
+              <span style="font-size:0.82rem;color:var(--primary)" id="nsFormat">—</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- TAB 2: FASES Y MÃ“DULOS -->
+      <!-- TAB 2: FASES Y MÓDULOS -->
       <section class="panel" id="panel-fases">
         <div class="card">
           <h3>Fases del Cronograma (6 Semanas)</h3>
-          <div class="grid-2" id="phasesEditor"></div>
+          <div class="grid-2" id="phasesView"></div>
         </div>
         <div class="card">
-          <h3>MÃ³dulos Contratados</h3>
-          <div class="grid-2" id="modulesEditor"></div>
+          <h3>Módulos Contratados</h3>
+          <div class="grid-2" id="modulesView"></div>
         </div>
       </section>
 
-      <!-- TAB 3: INSUMOS Y NOTAS EN CRUDO -->
+      <!-- TAB 3: INSUMOS Y NOTAS -->
       <section class="panel" id="panel-insumos">
         <div class="card">
-          <h3>Notas en Crudo de Reuniones (El Agente IA las traduce a lenguaje ejecutivo)</h3>
-          <textarea id="meetingNotes" class="textarea" placeholder="Pega aquÃ­ tus notas rÃ¡pidas de la reuniÃ³n con el cliente..."></textarea>
+          <h3>Notas Internas de Junta</h3>
+          <p id="meetingNotesView" style="font-size:0.9rem;line-height:1.6;color:var(--fg)"></p>
         </div>
         <div class="card">
           <h3>Estatus de Insumos del Cliente</h3>
-          <div class="grid-2" id="inputsEditor"></div>
+          <div class="grid-2" id="inputsView"></div>
         </div>
       </section>
 
-      <!-- TAB 4: TAREAS INTERNAS Y TELEMETRÃA IA -->
+      <!-- TAB 4: TAREAS INTERNAS Y TELEMETRÍA IA -->
       <section class="panel" id="panel-tareas">
         <div class="card">
           <h3>Backlog Interno Privado (Uanify)</h3>
-          <div class="row">
-            <input type="text" id="newTaskInput" class="input" style="flex:1" placeholder="Nueva tarea tÃ©cnica o pendiente interno..." />
-            <button type="button" class="btn primary" onclick="addInternalTask()">+ Agregar</button>
-          </div>
-          <div id="tasksList" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"></div>
+          <div id="tasksView" style="display:flex;flex-direction:column;gap:8px"></div>
         </div>
 
         <div class="card">
-          <h3>Ãšltima SincronizaciÃ³n del Agente PM (Gemini Free Tier Â· $0 USD)</h3>
+          <h3>Última Sincronización Automática (Gemini Free Tier · $0 USD)</h3>
           <p id="aiLastRun" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted)"></p>
-          <p id="aiLastSummary" style="font-size:0.9rem;line-height:1.5;color:var(--fg)"></p>
+          <p id="aiLastSummary" style="font-size:0.9rem;line-height:1.55;color:var(--fg)"></p>
         </div>
       </section>
     </div>
 
-    <div class="toast" id="toast"></div>
-
     <script>
-      const PM_REPO = "andrescorderor/propuesta-medelsa";
-      const PM_FILE = "ops-data/pm-state.json";
-      const STORAGE_KEY = "uanify_pm_pat_medelsa";
-      let state = null;
-      let fileSha = null;
-
-      function showToast(msg) {
-        const el = document.getElementById("toast");
-        el.textContent = msg;
-        el.classList.add("show");
-        setTimeout(() => el.classList.remove("show"), 3000);
-      }
-
-      function getPat() {
-        return localStorage.getItem(STORAGE_KEY) || "";
-      }
-
-      function updateConnBadge() {
-        const el = document.getElementById("connStatus");
-        if (getPat()) {
-          el.textContent = `Conectado a ${PM_REPO}`;
-          el.style.color = "var(--primary)";
-        } else {
-          el.textContent = "Sin token (solo lectura local)";
-          el.style.color = "var(--amber)";
-        }
-      }
-
-      async function connectGithub() {
-        const val = document.getElementById("patInput").value.trim();
-        if (!val) return showToast("Pega tu GitHub PAT primero");
-        localStorage.setItem(STORAGE_KEY, val);
-        document.getElementById("patInput").value = "";
-        updateConnBadge();
-        await loadState();
-        showToast("Conectado al repositorio privado");
-      }
-
-      function disconnectGithub() {
-        localStorage.removeItem(STORAGE_KEY);
-        updateConnBadge();
-        showToast("SesiÃ³n cerrada en este navegador");
-      }
-
       async function loadState() {
-        const pat = getPat();
         try {
-          if (pat) {
-            const res = await fetch(`https://api.github.com/repos/${PM_REPO}/contents/${PM_FILE}`, {
-              headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${pat}` },
-              cache: "no-store",
-            });
-            if (res.ok) {
-              const data = await res.json();
-              fileSha = data.sha;
-              const decoded = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
-              state = JSON.parse(decoded);
-              renderAll();
-              return;
-            }
-          }
-          const localRes = await fetch(`./${PM_FILE}`, { cache: "no-store" });
-          state = await localRes.json();
-          renderAll();
-        } catch (err) {
-          showToast("No se pudo cargar pm-state.json");
+          const res = await fetch("./ops-data/pm-state.json", { cache: "no-store" });
+          const state = await res.json();
+          renderAll(state);
+        } catch {
+          document.getElementById("aiLastSummary").textContent = "No se pudo cargar ops-data/pm-state.json.";
         }
       }
 
-      function renderAll() {
+      function renderAll(state) {
         if (!state) return;
-        document.getElementById("fProgress").value = state.project.progressPercent;
-        document.getElementById("fHealth").value = state.project.healthStatus;
-        document.getElementById("fPhase").value = state.project.currentPhase;
-        document.getElementById("fGoLive").value = state.project.targetGoLive;
+        document.getElementById("vProgress").textContent = `${state.project.progressPercent}%`;
+        document.getElementById("vHealth").textContent = state.project.healthStatus;
+        document.getElementById("vPhase").textContent = state.project.currentPhase;
+        document.getElementById("vGoLive").textContent = state.project.targetGoLive;
 
-        document.getElementById("finAnticipo").checked = !!state.finances.anticipoPaid;
-        document.getElementById("finEntrega").checked = !!state.finances.entregaPaid;
-        document.getElementById("finNotes").value = state.finances.notes || "";
+        const antEl = document.getElementById("vAnticipo");
+        antEl.textContent = state.finances.anticipoPaid ? "Recibido ✓" : "Pendiente";
+        antEl.className = state.finances.anticipoPaid ? "pill" : "pill amber";
 
-        document.getElementById("nsTitle").value = state.nextSession.title || "";
-        document.getElementById("nsDate").value = state.nextSession.date || "";
-        document.getElementById("nsFormat").value = state.nextSession.format || "";
-        document.getElementById("meetingNotes").value = state.meetingNotes || "";
+        const entEl = document.getElementById("vEntrega");
+        entEl.textContent = state.finances.entregaPaid ? "Recibido ✓" : "Pendiente";
+        entEl.className = state.finances.entregaPaid ? "pill" : "pill amber";
 
-        document.getElementById("phasesEditor").innerHTML = state.phases
+        document.getElementById("vFinNotes").textContent = state.finances.notes || "";
+        document.getElementById("nsTitle").textContent = state.nextSession.title || "";
+        document.getElementById("nsDate").textContent = state.nextSession.date || "";
+        document.getElementById("nsFormat").textContent = state.nextSession.format || "";
+        document.getElementById("meetingNotesView").textContent = state.meetingNotes || "";
+
+        document.getElementById("phasesView").innerHTML = state.phases
           .map(
-            (p, idx) => `
-            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            (p) => `
+            <div class="item-box">
               <div class="row">
-                <strong>${p.code} Â· ${p.title}</strong>
-                <select class="select" style="width:auto" onchange="state.phases[${idx}].status=this.value">
-                  ${["Por Iniciar", "Pendiente", "En ConstrucciÃ³n", "En Pruebas", "Aprobado"]
-                    .map((opt) => `<option value="${opt}" ${p.status === opt ? "selected" : ""}>${opt}</option>`)
-                    .join("")}
-                </select>
+                <strong>${p.code} · ${p.title}</strong>
+                <span class="pill">${p.status}</span>
               </div>
-              <p style="font-size:0.8rem;color:var(--muted)">${p.summary}</p>
+              <p style="font-size:0.82rem;color:var(--muted)">${p.summary}</p>
             </div>`
           )
           .join("");
 
-        document.getElementById("modulesEditor").innerHTML = state.modules
+        document.getElementById("modulesView").innerHTML = state.modules
           .map(
-            (m, idx) => `
-            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            (m) => `
+            <div class="item-box">
               <div class="row">
                 <strong>${m.name}</strong>
-                <select class="select" style="width:auto" onchange="state.modules[${idx}].status=this.value">
-                  ${["Por Definir en ReuniÃ³n", "Pendiente", "En ConstrucciÃ³n", "Listo para Prueba", "Aprobado"]
-                    .map((opt) => `<option value="${opt}" ${m.status === opt ? "selected" : ""}>${opt}</option>`)
-                    .join("")}
-                </select>
+                <span class="pill">${m.status}</span>
               </div>
-              <p style="font-size:0.8rem;color:var(--muted)">${m.detail}</p>
+              <p style="font-size:0.82rem;color:var(--muted)">${m.detail}</p>
             </div>`
           )
           .join("");
 
-        document.getElementById("inputsEditor").innerHTML = state.clientInputs
+        document.getElementById("inputsView").innerHTML = state.clientInputs
           .map(
-            (inp, idx) => `
-            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+            (inp) => `
+            <div class="item-box">
               <div class="row">
                 <strong>${inp.title}</strong>
-                <select class="select" style="width:auto" onchange="state.clientInputs[${idx}].status=this.value">
-                  ${["Pendiente", "En RevisiÃ³n", "Recibido âœ“"]
-                    .map((opt) => `<option value="${opt}" ${inp.status === opt ? "selected" : ""}>${opt}</option>`)
-                    .join("")}
-                </select>
+                <span class="pill">${inp.status}</span>
               </div>
-              <p style="font-size:0.78rem;color:var(--muted)">${inp.owner}</p>
+              <p style="font-size:0.8rem;color:var(--muted)">${inp.owner}</p>
             </div>`
           )
           .join("");
 
-        document.getElementById("tasksList").innerHTML = (state.internalTasks || [])
+        document.getElementById("tasksView").innerHTML = (state.internalTasks || [])
           .map(
-            (t, idx) => `
-            <label class="task-item ${t.done ? "done" : ""}">
-              <input type="checkbox" ${t.done ? "checked" : ""} onchange="state.internalTasks[${idx}].done=this.checked;renderAll()" />
-              <span style="flex:1;font-size:0.86rem">${t.title}</span>
+            (t) => `
+            <div class="task-item ${t.done ? "done" : ""}">
+              <span class="txt" style="font-size:0.88rem">${t.done ? "✓ " : "○ "}${t.title}</span>
               <span class="pill">${t.priority || "Media"}</span>
-            </label>`
+            </div>`
           )
           .join("");
 
-        document.getElementById("aiLastRun").textContent = `Ãšltimo sync: ${state.aiSync?.lastRunAt || "â€”"} ${state.aiSync?.lastCommitSha ? `Â· Commit ${state.aiSync.lastCommitSha}` : ""}`;
+        document.getElementById("aiLastRun").textContent = `Último sync: ${state.aiSync?.lastRunAt || "—"} ${state.aiSync?.lastCommitSha ? `· Commit ${state.aiSync.lastCommitSha}` : ""}`;
         document.getElementById("aiLastSummary").textContent = state.aiSync?.lastSummary || "";
-      }
-
-      function addInternalTask() {
-        const input = document.getElementById("newTaskInput");
-        const title = input.value.trim();
-        if (!title) return;
-        state.internalTasks.unshift({ id: "t" + Date.now(), title, priority: "Media", done: false });
-        input.value = "";
-        renderAll();
-      }
-
-      function collectForm() {
-        state.project.progressPercent = Number(document.getElementById("fProgress").value) || 0;
-        state.project.healthStatus = document.getElementById("fHealth").value;
-        state.project.currentPhase = document.getElementById("fPhase").value.trim();
-        state.project.targetGoLive = document.getElementById("fGoLive").value.trim();
-        state.finances.anticipoPaid = document.getElementById("finAnticipo").checked;
-        state.finances.entregaPaid = document.getElementById("finEntrega").checked;
-        state.finances.notes = document.getElementById("finNotes").value;
-        state.nextSession.title = document.getElementById("nsTitle").value.trim();
-        state.nextSession.date = document.getElementById("nsDate").value.trim();
-        state.nextSession.format = document.getElementById("nsFormat").value.trim();
-        state.meetingNotes = document.getElementById("meetingNotes").value;
-      }
-
-      async function savePmState() {
-        const pat = getPat();
-        if (!pat) return showToast("Conecta tu GitHub PAT arriba para guardar");
-        collectForm();
-        const btn = document.getElementById("saveBtn");
-        btn.disabled = true;
-        try {
-          const jsonStr = JSON.stringify(state, null, 2) + "\n";
-          const content = btoa(unescape(encodeURIComponent(jsonStr)));
-          const res = await fetch(`https://api.github.com/repos/${PM_REPO}/contents/${PM_FILE}`, {
-            method: "PUT",
-            headers: {
-              Accept: "application/vnd.github+json",
-              Authorization: `Bearer ${pat}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              message: `chore(pm): update status (${state.project.progressPercent}% Â· ${state.project.healthStatus})`,
-              content,
-              ...(fileSha ? { sha: fileSha } : {}),
-            }),
-          });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const out = await res.json();
-          fileSha = out.content.sha;
-          showToast("Guardado en PM privado Â· Agente IA sincronizando al cliente...");
-        } catch (err) {
-          showToast("Error al guardar: " + err.message);
-        } finally {
-          btn.disabled = false;
-        }
-      }
-
-      async function triggerAiSync() {
-        const pat = getPat();
-        if (!pat) return showToast("Conecta tu GitHub PAT arriba para sincronizar");
-        const btn = document.getElementById("syncBtn");
-        btn.disabled = true;
-        try {
-          const res = await fetch(`https://api.github.com/repos/${PM_REPO}/actions/workflows/ai-pm-sync.yml/dispatches`, {
-            method: "POST",
-            headers: {
-              Accept: "application/vnd.github+json",
-              Authorization: `Bearer ${pat}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ ref: "main" }),
-          });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          showToast("Agente IA disparado Â· El portal del cliente se actualizarÃ¡ en ~30s");
-        } catch (err) {
-          showToast("Error al disparar IA: " + err.message);
-        } finally {
-          btn.disabled = false;
-        }
       }
 
       document.querySelectorAll(".tab").forEach((t) => {
@@ -467,9 +270,7 @@
         });
       });
 
-      updateConnBadge();
       loadState();
     </script>
   </body>
 </html>
-
